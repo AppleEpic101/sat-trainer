@@ -21,13 +21,15 @@
 		background-color: #2c2e2d;
 		color: white;
 		overflow-x: hidden;
+
+		margin: 0 30px;
 	}
 
 	:global(body) {
 		margin: 0;
 	}
 
-	:global(h1, h2, h3, h4, h5, h6) {
+	:global(h1, h2, h3, h4, h5, h6, p) {
 		margin: 0;
 	}
 
@@ -62,8 +64,6 @@
 
 	header,
 	main {
-		width: 100%;
-		max-width: 72rem;
 		margin: 2rem auto;
 		padding: 0.5rem 1.2rem;
 	}
