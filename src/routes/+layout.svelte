@@ -38,21 +38,6 @@
 		color: inherit;
 	}
 
-	:global(.math-img, svg, img) {
-		filter: invert();
-	}
-
-	:global(.answer-choices img) {
-		background-color: inherit;
-		filter: saturate();
-	}
-
-	:global(table, th, td) {
-		border: 1px solid white;
-		border-collapse: collapse;
-		padding: 3px;
-	}
-
 	header {
 		display: flex;
 		align-items: center;
@@ -64,8 +49,8 @@
 
 	header,
 	main {
-		margin: 2rem auto;
-		padding: 0.5rem 1.2rem;
+		margin: 1rem auto;
+		padding: 0.2rem 1.2rem;
 	}
 
 	#logo {

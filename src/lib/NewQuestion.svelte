@@ -1,39 +1,86 @@
 <script>
 	export let data;
+	import MCQ from '$lib/MCQ.svelte';
+	import { format } from '$lib/parser.js';
+
+	let showAnswer = false;
+
 	console.log(data);
+
+	let difficulty = {
+		E: 'Easy',
+		M: 'Medium',
+		H: 'Hard'
+	};
+
+	let selectedAnswer = '';
 </script>
 
-<div class="meta">
-	{data.questionId}
-	{data.difficulty}
-	{data.skill_desc}
-</div>
-
-<div class="content">
-	<div class="stimulus">
+<div class="question-container">
+	<div class="meta">
 		<div>
-			{@html data.question.stimulus || ''}
-			{@html data.question.stem || ''}
+			ID: {data.questionId}
+		</div>
+		<div>
+			{difficulty[data.difficulty]} &bull;
+			{data.skill_desc}
 		</div>
 	</div>
 
-	<div class="answers">
-		{#each data.question.answerOptions as answerOption, i}
-			<button class="answer-choice">
-				<div class="letter">
-					{String.fromCharCode('A'.charCodeAt(0) + i)}
+	<div class="content">
+		{#if data.question.type === 'spr'}
+			<div id="spr" class="stimulus">
+				<div>
+					{@html format(data.question.stimulus || '')}
+					{@html format(data.question.stem || '')}
 				</div>
-				<div class="answer">
-					{@html answerOption.content}
+			</div>
+		{:else}
+			<div class="stimulus">
+				<div>
+					{@html format(data.question.stimulus || '')}
+					{@html format(data.question.stem || '')}
 				</div>
-			</button>
-		{/each}
+			</div>
+
+			<div class="answers">
+				<MCQ {data} bind:showAnswer bind:selectedAnswer />
+			</div>
+		{/if}
 	</div>
 </div>
 
+{#if showAnswer}
+	<div class="answer">
+		{@html format(data.question.rationale)}
+	</div>
+{/if}
+
+<link rel="stylesheet" href="/question.css" />
+
 <style>
+	.question-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 30px;
+		background-color: darkcyan;
+		border: 2px solid black;
+		border-bottom: 0;
+		height: 30px;
+	}
+
 	.content {
 		display: flex;
+		padding: 20px;
+		border: 2px solid black;
 	}
 
 	.stimulus,
@@ -42,44 +89,80 @@
 	}
 
 	.stimulus {
-		margin: 20px 10px 0 0;
-	}
-
-	.answers {
-		margin: 20px 0 0 10px;
-	}
-
-	:global(.stimulus p) {
-		line-height: 1.5;
-	}
-
-	.question {
-		font-size: 1.2rem;
-	}
-	.answer-choice {
-		cursor: pointer;
-		display: flex;
-		justify-content: left;
-		align-items: center;
-		border: 2px solid white;
-		border-radius: 15px;
-		background-color: inherit;
-		width: 100%;
-		min-height: 50px;
-		color: inherit;
-		margin: 20px 0;
-		padding: 5px;
-	}
-
-	.letter {
-		font-size: 1.3rem;
-		font-weight: bold;
 		margin: 0 10px;
 	}
 
-	.answer {
-		font-size: 1rem;
-		padding-top: 3px;
-		text-align: left;
+	.answers {
+		margin: 0 10px;
+	}
+
+	#spr {
+		display: flex;
+		justify-content: center;
+		text-align: center;
+	}
+
+	:global(.stimulus p) {
+		line-height: 2;
+	}
+
+	:global(.sr-only) {
+		display: none;
+	}
+
+	:global(svg) {
+		filter: invert();
+	}
+
+	:global(.standalone_image img, .standalone_statement img) {
+		display: block;
+		margin: 0 auto;
+	}
+
+	:global(.image-options-wrapper img) {
+		display: block;
+		margin: 0 auto 20px auto;
+	}
+
+	:global(.math-img:not([src='data:image/png;base64,']), .standalone_image img) {
+		filter: invert();
+	}
+
+	:global(.stimulus .math-img:is([src='data:image/png;base64,'])) {
+		border: 1px solid white;
+		border-radius: 20px;
+		padding: 10px;
+	}
+
+	:global(
+			.answer-choice img:not([src='data:image/png;base64,']),
+			.stimulus p img:not([src='data:image/png;base64,'])
+		) {
+		filter: invert();
+	}
+
+	:global(.table_WithBorder, .tableWithBorder) {
+		border-collapse: collapse;
+		text-align: center;
+	}
+	:global(
+			.table_WithBorder,
+			.table_WithBorder th,
+			.table_WithBorder td,
+			.tableWithBorder,
+			.tableWithBorder th,
+			.tableWithBorder td
+		) {
+		border: 1px solid white;
+		padding: 4px;
+	}
+
+	:global(table) {
+		margin: 0 auto;
+	}
+
+	:global(svg) {
+		display: block;
+		margin: 0 auto;
 	}
 </style>

@@ -11,6 +11,16 @@ export const GET = async ({url}) => {
     let program = url.searchParams.get("program");
     let queryParams = JSON.parse(url.searchParams.get("q")) || {};
 
+    let match = {};
+    for (let key in queryParams) {
+        if (Array.isArray(queryParams[key])) {
+            match[key] = { $in: queryParams[key] };
+        } else {
+            match[key] = queryParams[key];
+        }
+    }
+    console.log("ye", match);
+
     try {
         client = await MongoClient.connect(mongo);
 
@@ -19,7 +29,7 @@ export const GET = async ({url}) => {
 
         // get a random document from collection
         const document = await collection.aggregate([ 
-            { $match: queryParams },
+            { $match: match },
             { $sample: { size: 1 } }
         ]).toArray();
 
