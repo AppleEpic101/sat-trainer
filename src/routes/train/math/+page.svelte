@@ -1,7 +1,7 @@
 <script>
-	import OldQuestion from '$lib/OldQuestion.svelte';
-	import NewQuestion from '$lib/NewQuestion.svelte';
-	import Tags from '$lib/Tags.svelte';
+	import OldQuestion from '$lib/components/OldQuestion.svelte';
+	import NewQuestion from '$lib/components/NewQuestion.svelte';
+	import Tags from '$lib/components/Tags.svelte';
 	import { onMount } from 'svelte';
 	let data;
 

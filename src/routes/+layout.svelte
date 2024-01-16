@@ -1,3 +1,6 @@
+<script>
+</script>
+
 <header>
 	<div class="left-menu">
 		<a id="logo" href="/">SAT Illuminate</a>

@@ -1,6 +1,6 @@
 <script>
 	export let data;
-	import MCQ from '$lib/MCQ.svelte';
+	import MCQ from '$lib/components/MCQ.svelte';
 	import { format } from '$lib/parser.js';
 
 	let showAnswer = false;
