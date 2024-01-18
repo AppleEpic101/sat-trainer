@@ -2,30 +2,11 @@
 	let email = '';
 	let password = '';
 
-	const handleLogin = async () => {
-		const res = await fetch('/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ email, password })
-		});
-
-		const data = await res.json();
-
-		if (res.ok) {
-			console.log('success');
-			console.log(data);
-		} else {
-			console.log('error');
-			console.error(data);
-		}
-		// Handle login logic here
-		console.log(`Email: ${email}, Password: ${password}`);
-	};
+	const login = async () => {};
 </script>
 
-<form method="POST" on:submit|preventDefault={handleLogin}>
+<h2>Login</h2>
+<form on:submit|preventDefault={login}>
 	<label for="email">Email:</label>
 	<input id="email" type="email" bind:value={email} required />
 

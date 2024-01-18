@@ -11,6 +11,7 @@
 
 	<div class="right-menu">
 		<a class="menu" href="/login">Login</a>
+		<a class="menu" href="/register">Register</a>
 	</div>
 </header>
 
