@@ -71,7 +71,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 0 30px;
-		background-color: darkcyan;
+		background-color: var(--question-container-header);
 		border: 2px solid black;
 		border-bottom: 0;
 		height: 30px;

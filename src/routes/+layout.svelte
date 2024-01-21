@@ -19,11 +19,13 @@
 	<slot />
 </main>
 
+<link rel="stylesheet" href="/app.css" />
+
 <style>
 	:global(html) {
 		font-family: 'Roboto', sans-serif;
-		background-color: #2c2e2d;
-		color: white;
+		background-color: var(--primary-background);
+		color: var(--primary-text);
 		overflow-x: hidden;
 
 		margin: 0 30px;
@@ -46,7 +48,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background-color: rgb(28, 31, 33);
+		background-color: var(--primary-header);
 		height: 50px;
 		font-size: 1.5rem;
 	}

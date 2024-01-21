@@ -1,35 +1,30 @@
 <script>
+	import { enhance } from '$app/forms';
 	let email = '';
 	let password = '';
 
-	const register = async () => {
-		const res = await fetch('/api/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ email, password })
-		});
-
-		const data = await res.json();
-
-		if (res.ok) {
-			console.log('success');
-			console.log(data);
-		} else {
-			console.log('error');
-			console.error(data);
-		}
-	};
+	export let form;
 </script>
 
 <h2>Register</h2>
-<form on:submit|preventDefault={register}>
+<form method="POST" use:enhance>
 	<label for="email">Email:</label>
-	<input id="email" type="email" bind:value={email} required />
+	<input id="email" type="email" name="email" bind:value={email} />
 
 	<label for="password">Password:</label>
-	<input id="password" type="password" bind:value={password} required />
+	<input id="password" type="password" name="password" bind:value={password} />
 
 	<button type="submit">Register</button>
 </form>
+
+{#if form?.message}
+	<p>
+		{form.message}
+	</p>
+{/if}
+
+{#if form?.error}
+	<p>
+		{form.error}
+	</p>
+{/if}
