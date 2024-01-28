@@ -1,27 +1,28 @@
 <script>
+	import '../app.css';
 </script>
 
-<header>
-	<div class="left-menu">
-		<a id="logo" href="/">SAT Illuminate</a>
-		<a class="menu" href="/train">Train</a>
-		<a class="menu" href="/stats">Stats</a>
-		<a class="menu" href="/about">About</a>
+<header class="px-16 flex flex-row justify-between items-center h-12 py-8 text-2xl bg-cyan-500">
+	<div class="basis-1/3">
+		<a class="mr-2" href="/">SAT Illuminate</a>
+		<a class="mx-2" href="/train">Train</a>
+		<a class="mx-2" href="/stats">Stats</a>
+		<a class="mx-2" href="/about">About</a>
 	</div>
 
-	<div class="right-menu">
-		<a class="menu" href="/login">Login</a>
+	<div class="basis-1/3 mr-8 flex flex-row justify-end">
+		<a class="mx-8" href="/login">Login</a>
 		<a class="menu" href="/register">Register</a>
 	</div>
 </header>
 
-<main>
+<main class="mx-12">
 	<slot />
 </main>
 
 <link rel="stylesheet" href="/app.css" />
 
-<style>
+<!-- <style>
 	:global(html) {
 		font-family: 'Roboto', sans-serif;
 		background-color: var(--primary-background);
@@ -67,4 +68,4 @@
 	.menu {
 		margin: 0 1rem;
 	}
-</style>
+</style> -->
