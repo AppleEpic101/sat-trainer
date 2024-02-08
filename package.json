@@ -33,6 +33,7 @@
 		"cookie": "^0.6.0",
 		"flowbite": "^2.2.1",
 		"flowbite-svelte": "^0.44.22",
+		"js-cookie": "^3.0.5",
 		"jsonwebtoken": "^9.0.2",
 		"mongodb": "^6.3.0",
 		"tailwind-merge": "^2.2.1",

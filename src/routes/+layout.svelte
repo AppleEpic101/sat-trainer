@@ -3,14 +3,9 @@
 	import Nav from '$lib/components/Nav.svelte';
 
 	export let data;
-	console.log(data);
-
-	const isEmpty = (obj) => {
-		return Object.keys(obj).length === 0;
-	};
 </script>
 
-<Nav loggedIn={!isEmpty(data) || !data} />
+<Nav cookies={data} />
 
 <main class="mx-24">
 	<slot />
