@@ -21,9 +21,9 @@
 	};
 </script>
 
-<div class="tags">
+<div class="">
 	<Dropdown options={programs} field={'program'} placeholder={'Select program(s)'} bind:tags />
 	<Dropdown options={difficulty} field={'difficulty'} placeholder={'Select Difficulty'} bind:tags />
 	<Dropdown options={type} field={'isNew'} placeholder={'Select Type'} bind:tags />
-	<Dropdown options={domains} field={'skill_desc'} placeholder={'Select Domain'} bind:tags />
+	<!-- <Dropdown options={domains} field={'skill_desc'} placeholder={'Select Domain'} bind:tags /> -->
 </div>

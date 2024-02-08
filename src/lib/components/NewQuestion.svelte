@@ -16,8 +16,10 @@
 	let selectedAnswer = '';
 </script>
 
-<div class="question-container">
-	<div class="meta">
+<div class="">
+	<div
+		class="px-4 py-2 bg-cyan-500 border-black border-x-2 border-t-2 flex flex-start justify-between"
+	>
 		<div>
 			ID: {data.questionId}
 		</div>
@@ -27,7 +29,7 @@
 		</div>
 	</div>
 
-	<div class="content">
+	<div class="border-black border-2 flex flex-start">
 		{#if data.question.type === 'spr'}
 			<div id="spr" class="stimulus">
 				<div>
@@ -36,14 +38,14 @@
 				</div>
 			</div>
 		{:else}
-			<div class="stimulus">
+			<div class="basis-1/2">
 				<div>
 					{@html format(data.question.stimulus || '')}
 					{@html format(data.question.stem || '')}
 				</div>
 			</div>
 
-			<div class="answers">
+			<div class="basis-1/2">
 				<MCQ {data} bind:showAnswer bind:selectedAnswer />
 			</div>
 		{/if}
@@ -58,7 +60,7 @@
 
 <link rel="stylesheet" href="/question.css" />
 
-<style>
+<!-- <style>
 	.question-container {
 		display: flex;
 		flex-direction: column;
@@ -110,9 +112,9 @@
 		display: none;
 	}
 
-	:global(svg) {
+	/* :global(svg) {
 		filter: invert();
-	}
+	} */
 
 	:global(.standalone_image img, .standalone_statement img) {
 		display: block;
@@ -124,9 +126,9 @@
 		margin: 0 auto 20px auto;
 	}
 
-	:global(.math-img:not([src='data:image/png;base64,']), .standalone_image img) {
+	/* :global(.math-img:not([src='data:image/png;base64,']), .standalone_image img) {
 		filter: invert();
-	}
+	} */
 
 	:global(.stimulus .math-img:is([src='data:image/png;base64,'])) {
 		border: 1px solid white;
@@ -134,12 +136,12 @@
 		padding: 10px;
 	}
 
-	:global(
+	/* :global(
 			.answer-choice img:not([src='data:image/png;base64,']),
 			.stimulus p img:not([src='data:image/png;base64,'])
 		) {
 		filter: invert();
-	}
+	} */
 
 	:global(.table_WithBorder, .tableWithBorder) {
 		border-collapse: collapse;
@@ -165,4 +167,4 @@
 		display: block;
 		margin: 0 auto;
 	}
-</style>
+</style> -->

@@ -21,12 +21,6 @@ export const actions = {
                 path: "/",
                 maxAge: 60 * 60 * 24 * 30
             })
-            event.cookies.set("email", email, {
-                httpOnly: true,
-                secure: true,
-                path: "/",
-                maxAge: 60 * 60 * 24 * 30
-            });
 
             return { token, message: "Logged in successfully."};
         }

@@ -1,26 +1,22 @@
 <script>
 	import '../app.css';
+	import Nav from '$lib/components/Nav.svelte';
+
+	export let data;
+	console.log(data);
+
+	const isEmpty = (obj) => {
+		return Object.keys(obj).length === 0;
+	};
 </script>
 
-<header class="px-16 flex flex-row justify-between items-center h-12 py-8 text-2xl bg-cyan-500">
-	<div class="basis-1/3">
-		<a class="mr-2" href="/">SAT Illuminate</a>
-		<a class="mx-2" href="/train">Train</a>
-		<a class="mx-2" href="/stats">Stats</a>
-		<a class="mx-2" href="/about">About</a>
-	</div>
+<Nav loggedIn={!isEmpty(data) || !data} />
 
-	<div class="basis-1/3 mr-8 flex flex-row justify-end">
-		<a class="mx-8" href="/login">Login</a>
-		<a class="menu" href="/register">Register</a>
-	</div>
-</header>
-
-<main class="mx-12">
+<main class="mx-24">
 	<slot />
 </main>
 
-<link rel="stylesheet" href="/app.css" />
+<!-- <link rel="stylesheet" href="/app.css" /> -->
 
 <!-- <style>
 	:global(html) {
