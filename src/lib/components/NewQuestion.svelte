@@ -38,14 +38,14 @@
 				</div>
 			</div>
 		{:else}
-			<div class="basis-1/2">
+			<div class="basis-1/2 p-4">
 				<div>
 					{@html format(data.question.stimulus || '')}
 					{@html format(data.question.stem || '')}
 				</div>
 			</div>
 
-			<div class="basis-1/2">
+			<div class="basis-1/2 p-4">
 				<MCQ {data} bind:showAnswer bind:selectedAnswer />
 			</div>
 		{/if}

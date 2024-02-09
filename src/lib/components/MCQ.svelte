@@ -29,84 +29,42 @@
 </script>
 
 {#each data.question.answerOptions as answerOption, i}
-	<label>
+	<label class="flex flex-col">
 		<input
 			type="radio"
 			name="r"
 			bind:group={selectedAnswer}
 			value={String.fromCharCode('A'.charCodeAt(0) + i)}
 			disabled={lockedAnswers.includes(i)}
+			class="hidden"
 		/>
-		<div class="answer-choice">
-			<span class="letter">
-				{String.fromCharCode('A'.charCodeAt(0) + i)}
+		<div
+			class="flex items-center justify-start border-2 border-black rounded-lg min-h-16 my-2 p-1 hover:cursor-pointer"
+		>
+			<span class="self-center text-lg font-bold mx-2"
+				>{String.fromCharCode('A'.charCodeAt(0) + i)}
 			</span>
-			<span class="answer-text">
-				{@html format(answerOption.content)}
-			</span>
+			<span class="self-center text-lg">{@html format(answerOption.content)} </span>
 		</div>
 	</label>
 {/each}
-<button class="submit {selectedAnswer !== '' && !hideSubmit ? '' : 'hidden'}" on:click={submit}
-	>Submit</button
+<button
+	class={`submit ${
+		selectedAnswer !== '' && !hideSubmit ? '' : 'invisible'
+	} bg-aquamarine border border-black rounded p-1 w-full cursor-pointer`}
+	on:click={submit}>Submit</button
 >
 
 <style>
 	.submit {
-		background-color: aquamarine;
-		border: 1px solid black;
-		border-radius: 5px;
-		padding: 5px;
-		width: 100%;
-		cursor: pointer;
-	}
-
-	.submit.hidden {
-		visibility: hidden;
-	}
-
-	.answer-choice {
-		cursor: pointer;
-		display: flex;
-		justify-content: left;
-		align-items: center;
-		border: 2px solid white;
-		border-radius: 15px;
-		background-color: inherit;
-		min-height: 50px;
-		color: inherit;
-		margin: 20px 0;
-		padding: 5px;
-	}
-
-	.answer-choice:first-of-type {
-		margin-top: 0;
-	}
-
-	label input[type='radio'] {
-		display: none;
+		@apply bg-teal-400;
 	}
 
 	input[type='radio']:checked + div {
-		border: 2px solid aqua;
-		color: aqua;
-		text-shadow: 0 2px 2px #808080;
+		@apply border-teal-400 text-teal-400 shadow-md;
 	}
 
 	input[type='radio']:disabled + div {
-		border: 2px solid #808080;
-		color: #808080;
-	}
-
-	.letter {
-		font-size: 1.3rem;
-		font-weight: bold;
-		margin: 0 10px;
-	}
-
-	.answer-text {
-		font-size: 1rem;
-		padding-top: 3px;
-		text-align: left;
+		@apply border-gray-400 text-gray-400;
 	}
 </style>

@@ -29,7 +29,7 @@
 		>
 	</NavBrand>
 	{#if loggedIn}
-		<div class="flex items-center md:order-2">
+		<div class="flex items-center md:order-2 hover:cursor-pointer">
 			<Avatar id="avatar-menu" src="/pfp.jpg" />
 			<NavHamburger class1="w-full md:flex md:w-auto md:order-1" />
 		</div>

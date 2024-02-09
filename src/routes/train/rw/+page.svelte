@@ -70,13 +70,15 @@
 	onMount(fetchData);
 </script>
 
-<Tags {domains} bind:tags={q} />
-<br />
-<button on:click={fetchData}>New Question</button>
-{#if isLoading}
-	<p>...loading</p>
-{:else if data?.isNew}
-	<NewQuestion {data} />
-{:else}
-	<OldQuestion {data} />
-{/if}
+<div class="mt-4">
+	<Tags {domains} bind:tags={q} />
+	<br />
+	<button on:click={fetchData}>New Question</button>
+	{#if isLoading}
+		<p>...loading</p>
+	{:else if data?.isNew}
+		<NewQuestion {data} />
+	{:else}
+		<OldQuestion {data} />
+	{/if}
+</div>
