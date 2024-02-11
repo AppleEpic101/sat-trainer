@@ -91,7 +91,10 @@
 <div class="mt-4">
 	<Tags {domains} bind:tags={q} />
 	<br />
-	<button on:click={fetchData}>New Question</button>
+	<button
+		class="mb-4 w-full bg-cyan-500 text-lg rounded-lg hover:shadow-lg focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50"
+		on:click={fetchData}>New Question</button
+	>
 	{#if isLoading}
 		<p>...loading</p>
 	{:else if data?.isNew}

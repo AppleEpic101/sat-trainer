@@ -9,9 +9,9 @@ const mongo = MONGO_STRING;
 let client = await MongoClient.connect(mongo);
 let db = client.db("accounts");
 let collection = db.collection("users");
-let cookiesdb = db.collection("cookies");
 
-export const login = async (email, password) => {
+export const login = async (data) => {
+    let { email, password } = data;
     const user = await collection.findOne({ email });
 
     if(!user) { 

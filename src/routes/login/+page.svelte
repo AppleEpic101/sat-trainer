@@ -1,7 +1,9 @@
 <script>
+	import { Input, Label, Helper, Button } from 'flowbite-svelte';
 	import { enhance } from '$app/forms';
 	let email = '';
 	let password = '';
+	let username = '';
 
 	export let form;
 	$: console.log(form);
@@ -16,8 +18,8 @@
 			<input
 				class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600"
 				id="email"
-				type="email"
 				name="email"
+				type="email"
 				bind:value={email}
 			/>
 		</div>

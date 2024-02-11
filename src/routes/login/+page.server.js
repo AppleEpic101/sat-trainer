@@ -5,10 +5,12 @@ export const actions = {
     default: async (event) => {
         const data = await event.request.formData();
 
-        const email = data.get('email');
-        const password = data.get('password');
+        const user = {
+            email: data.get('email'),
+            password: data.get('password'),
+        }
 
-        const response = await login(email, password);
+        const response = await login(user);
 
         if (response.status !== 200) {
             return fail(response.status, {error: response.body.message});

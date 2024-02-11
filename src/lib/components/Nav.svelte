@@ -14,18 +14,14 @@
 
 	export let cookies;
 
-	const isEmpty = (obj) => {
-		return Object.keys(obj).length === 0;
-	};
-
-	let loggedIn = !isEmpty(cookies) || !cookies;
+	let loggedIn = cookies;
 </script>
 
 <Navbar class="bg-cyan-500">
 	<NavBrand href="/">
 		<img src="/logo.png" class="me-3 h-12 sm:h-10" alt="Logo" />
 		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
-			>SAT Illuminate</span
+			>Sigma SAT</span
 		>
 	</NavBrand>
 	{#if loggedIn}
@@ -35,8 +31,8 @@
 		</div>
 		<Dropdown placement="bottom" triggeredBy="#avatar-menu">
 			<DropdownHeader>
-				<span class="block text-sm">Bonnie Green</span>
-				<span class="block truncate text-sm font-medium">name@flowbite.com</span>
+				<span class="block text-sm">{cookies.username}</span>
+				<span class="block truncate text-sm font-medium">{cookies.email}</span>
 			</DropdownHeader>
 			<DropdownItem>Dashboard</DropdownItem>
 			<DropdownItem>Settings</DropdownItem>

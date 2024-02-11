@@ -5,10 +5,14 @@ export const actions = {
     default: async (event) => {
         const data = await event.request.formData();
 
-        const email = data.get('email');
-        const password = data.get('password');
+        const user = {
+            username: data.get('username'),
+            email: data.get('email'),
+            password: data.get('password'),
+            confirmPassword: data.get('confirmPassword'),
+        }
 
-        const { error } = await register(email, password);
+        const { error } = await register(user);
 
 		if (error) {
 			return fail(400, { error });

@@ -17,12 +17,6 @@
 			lockedAnswers = [...lockedAnswers, index];
 			selectedAnswer = '';
 		}
-
-		if (lockedAnswers.length === 3) {
-			selectedAnswer = data.question.correct_answer[0];
-			showAnswer = true;
-			hideSubmit = true;
-		}
 	};
 
 	$: console.log(lockedAnswers);
