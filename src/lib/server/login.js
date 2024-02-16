@@ -12,7 +12,7 @@ let collection = db.collection("users");
 
 export const login = async (data) => {
     let { email, password } = data;
-    const user = await collection.findOne({ email });
+    const user = await collection.findOne({ $or: [{ email: email }, { username: email }] });
 
     if(!user) { 
         return {

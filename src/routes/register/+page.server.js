@@ -1,5 +1,6 @@
 import { register } from '$lib/server/register.js';
 import { fail } from "@sveltejs/kit";
+import { redirect } from "@sveltejs/kit";
 
 export const actions = {
     default: async (event) => {
@@ -17,7 +18,8 @@ export const actions = {
 		if (error) {
 			return fail(400, { error });
 		} else {
-			return { message: "Registration successful! You can now login." };
+            throw redirect(301, "/");
+			// return { message: "Registration successful! You can now login." };
 		}
     }
 }

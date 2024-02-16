@@ -14,12 +14,12 @@
 		<h2 class="text-2xl font-bold">Login</h2>
 
 		<div class="my-3">
-			<label class="block" for="email">Email:</label>
+			<label class="block" for="email">Username/Email:</label>
 			<input
 				class="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600"
 				id="email"
 				name="email"
-				type="email"
+				type="text"
 				bind:value={email}
 			/>
 		</div>

@@ -1,5 +1,6 @@
 import { login } from '$lib/server/login.js';
 import { fail } from "@sveltejs/kit";
+import { redirect } from "@sveltejs/kit";
 
 export const actions = {
     default: async (event) => {
@@ -24,8 +25,9 @@ export const actions = {
                 maxAge: 60 * 60 * 24 * 30
             })
 
-            return { token, message: "Logged in successfully."};
-        }
+            throw redirect(301, "/");
 
+            // return { token, message: "Logged in successfully."};
+        }
     }
 }
