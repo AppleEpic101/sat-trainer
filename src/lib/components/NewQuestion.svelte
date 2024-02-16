@@ -21,11 +21,11 @@
 		class="px-4 py-2 bg-cyan-500 border-black border-x-2 border-t-2 flex flex-start justify-between"
 	>
 		<div>
-			ID: {data.questionId}
+			ID: {data.id.SAT}
 		</div>
 		<div>
-			{difficulty[data.difficulty]} &bull;
-			{data.skill_desc}
+			Level {data.difficulty} &bull;
+			{data.skill}
 		</div>
 	</div>
 

@@ -13,13 +13,13 @@ export const GET = async ({url}) => {
 
     let match = {};
     for (let key in queryParams) {
-        if (Array.isArray(queryParams[key])) {
+        if (Array.isArray(queryParams[key]) && queryParams[key].length !== 0) {
+            queryParams[key] = queryParams[key].flat();
             match[key] = { $in: queryParams[key] };
-        } else {
+        } else if (queryParams[key].length !== 0) {
             match[key] = queryParams[key];
         }
     }
-    console.log("ye", match);
 
     try {
         client = await MongoClient.connect(mongo);
@@ -27,13 +27,15 @@ export const GET = async ({url}) => {
         let db = client.db("questions");
         let collection = db.collection(program);
 
+        const count = await collection.countDocuments(match);
+        console.log("ye", count);
         // get a random document from collection
         const document = await collection.aggregate([ 
             { $match: match },
             { $sample: { size: 1 } }
         ]).toArray();
 
-        return new Response(JSON.stringify(document[0], null, 2), { status: 200 });
+        return new Response(JSON.stringify({ document: document[0], count: count }, null, 2), { status: 200 });
     } catch(e) {
         console.log(e);
         return error(500, "Internal Server Error");

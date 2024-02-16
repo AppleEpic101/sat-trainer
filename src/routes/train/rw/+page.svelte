@@ -41,22 +41,20 @@
 	for (let i = 0; i < domains.length; i++) {
 		skills.push(...Object.keys(domains[i].skills));
 	}
-	let q = {
-		program: ['SAT'],
-		difficulty: ['E', 'M', 'H'],
-		isNew: [true],
-		skill_desc: skills
-	};
+	let q = {};
 	$: str = JSON.stringify(q);
 
 	$: console.log(q);
 
+	let document, count;
 	const fetchData = async () => {
 		isLoading = true;
 		try {
-			const res = await fetch(`/api/questions?program=sat-rw&q=${str}`);
+			const res = await fetch(`/api/questions?program=rw&q=${str}`);
 			if (res.ok) {
-				data = await res.json();
+				let data = await res.json();
+				document = data.document;
+				count = data.count;
 			} else {
 				console.error('Error fetching data:', res.status, res.statusText);
 			}
@@ -73,12 +71,12 @@
 <div class="mt-4">
 	<Tags {domains} bind:tags={q} />
 	<br />
+	{count}
+	<br />
 	<button on:click={fetchData}>New Question</button>
 	{#if isLoading}
 		<p>...loading</p>
-	{:else if data?.isNew}
-		<NewQuestion {data} />
 	{:else}
-		<OldQuestion {data} />
+		<NewQuestion data={document} />
 	{/if}
 </div>

@@ -38,7 +38,7 @@
 			<span class="self-center text-lg font-bold mx-2"
 				>{String.fromCharCode('A'.charCodeAt(0) + i)}
 			</span>
-			<span class="self-center text-lg">{@html format(answerOption.content)} </span>
+			<span class="self-center text-lg">{@html format(answerOption)} </span>
 		</div>
 	</label>
 {/each}
