@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rawdog ul {
+    list-style: inherit;
+    margin-left: 15px;
+}

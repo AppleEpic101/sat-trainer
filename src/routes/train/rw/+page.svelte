@@ -3,6 +3,8 @@
 	import NewQuestion from '$lib/components/NewQuestion.svelte';
 	import Tags from '$lib/components/Tags.svelte';
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+
 	let data;
 
 	let isLoading = true;
@@ -42,19 +44,17 @@
 		skills.push(...Object.keys(domains[i].skills));
 	}
 	let q = {};
-	$: str = JSON.stringify(q);
 
-	$: console.log(q);
+	$: console.log('query', q);
 
 	let document, count;
 	const fetchData = async () => {
 		isLoading = true;
 		try {
-			const res = await fetch(`/api/questions?program=rw&q=${str}`);
+			const res = await fetch(`/api/questions?program=rw&q=${JSON.stringify(q)}`);
 			if (res.ok) {
 				let data = await res.json();
 				document = data.document;
-				count = data.count;
 			} else {
 				console.error('Error fetching data:', res.status, res.statusText);
 			}
@@ -65,15 +65,33 @@
 		}
 	};
 
-	onMount(fetchData);
+	const countDocs = async () => {
+		console.log('countDocs', q);
+		const res = await fetch(`/api/countDocs?program=rw&query=${JSON.stringify(q)}`);
+		const data = await res.json();
+
+		count = data.count;
+	};
+
+	$: onMount(() => {
+		fetchData();
+	});
+	$: if (browser) q && countDocs();
 </script>
 
 <div class="mt-4">
-	<Tags {domains} bind:tags={q} />
-	<br />
-	{count}
-	<br />
-	<button on:click={fetchData}>New Question</button>
+	<div class="">
+		<Tags {domains} bind:tags={q} />
+
+		<form>
+			<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
+				>New Question
+				{#if count}
+					({count} questions)
+				{/if}
+			</button>
+		</form>
+	</div>
 	{#if isLoading}
 		<p>...loading</p>
 	{:else}

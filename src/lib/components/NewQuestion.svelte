@@ -5,14 +5,6 @@
 
 	let showAnswer = false;
 
-	console.log(data);
-
-	let difficulty = {
-		E: 'Easy',
-		M: 'Medium',
-		H: 'Hard'
-	};
-
 	let selectedAnswer = '';
 </script>
 
@@ -30,25 +22,21 @@
 	</div>
 
 	<div class="border-black border-2 flex flex-start">
-		{#if data.question.type === 'spr'}
-			<div id="spr" class="stimulus">
-				<div>
-					{@html format(data.question.stimulus || '')}
-					{@html format(data.question.stem || '')}
-				</div>
+		<div class="basis-1/2 p-4">
+			<div class="rawdog">
+				{@html format(data.question.stimulus || '')}
 			</div>
-		{:else}
-			<div class="basis-1/2 p-4">
-				<div>
-					{@html format(data.question.stimulus || '')}
-					{@html format(data.question.stem || '')}
-				</div>
-			</div>
+		</div>
 
-			<div class="basis-1/2 p-4">
+		<div class="basis-1/2 p-4">
+			{@html format(data.question.stem || '')}
+
+			{#if data.questionType === 'spr'}
+				Test
+			{:else}
 				<MCQ {data} bind:showAnswer bind:selectedAnswer />
-			</div>
-		{/if}
+			{/if}
+		</div>
 	</div>
 </div>
 
@@ -60,61 +48,19 @@
 
 <link rel="stylesheet" href="/question.css" />
 
-<!-- <style>
-	.question-container {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	.meta {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0 30px;
-		background-color: var(--question-container-header);
-		border: 2px solid black;
-		border-bottom: 0;
-		height: 30px;
-	}
-
-	.content {
-		display: flex;
-		padding: 20px;
-		border: 2px solid black;
-	}
-
-	.stimulus,
-	.answers {
-		flex: 1;
-	}
-
-	.stimulus {
-		margin: 0 10px;
-	}
-
-	.answers {
-		margin: 0 10px;
-	}
-
-	#spr {
-		display: flex;
-		justify-content: center;
-		text-align: center;
-	}
-
-	:global(.stimulus p) {
-		line-height: 2;
-	}
-
+<style>
 	:global(.sr-only) {
 		display: none;
 	}
 
-	/* :global(svg) {
-		filter: invert();
+	/* :global(table) {
+		margin: 0 auto;
 	} */
+
+	:global(svg) {
+		display: block;
+		margin: 0 auto;
+	}
 
 	:global(.standalone_image img, .standalone_statement img) {
 		display: block;
@@ -125,23 +71,6 @@
 		display: block;
 		margin: 0 auto 20px auto;
 	}
-
-	/* :global(.math-img:not([src='data:image/png;base64,']), .standalone_image img) {
-		filter: invert();
-	} */
-
-	:global(.stimulus .math-img:is([src='data:image/png;base64,'])) {
-		border: 1px solid white;
-		border-radius: 20px;
-		padding: 10px;
-	}
-
-	/* :global(
-			.answer-choice img:not([src='data:image/png;base64,']),
-			.stimulus p img:not([src='data:image/png;base64,'])
-		) {
-		filter: invert();
-	} */
 
 	:global(.table_WithBorder, .tableWithBorder) {
 		border-collapse: collapse;
@@ -155,16 +84,18 @@
 			.tableWithBorder th,
 			.tableWithBorder td
 		) {
-		border: 1px solid white;
+		border: 1px solid black;
 		padding: 4px;
 	}
 
-	:global(table) {
-		margin: 0 auto;
+	:global(.table) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
-
-	:global(svg) {
-		display: block;
-		margin: 0 auto;
+	:global(.gdr th, .gdr td) {
+		text-align: center;
+		border: 1px solid black;
+		padding: 4px;
 	}
-</style> -->
+</style>

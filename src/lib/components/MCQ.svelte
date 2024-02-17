@@ -9,14 +9,9 @@
 	let lockedAnswers = [];
 	const submit = () => {
 		let index = selectedAnswer.charCodeAt(0) - 'A'.charCodeAt(0);
-		if (data.question.correct_answer.includes(selectedAnswer)) {
-			lockedAnswers = data.question.answerOptions.map((_, i) => i).filter((i) => i !== index);
-			showAnswer = true;
-			hideSubmit = true;
-		} else {
-			lockedAnswers = [...lockedAnswers, index];
-			selectedAnswer = '';
-		}
+		lockedAnswers = data.question.answerOptions.map((_, i) => i).filter((i) => i !== index);
+		showAnswer = true;
+		hideSubmit = true;
 	};
 
 	$: console.log(lockedAnswers);
@@ -38,7 +33,7 @@
 			<span class="self-center text-lg font-bold mx-2"
 				>{String.fromCharCode('A'.charCodeAt(0) + i)}
 			</span>
-			<span class="self-center text-lg">{@html format(answerOption)} </span>
+			<span class="self-center text-md">{@html format(answerOption)} </span>
 		</div>
 	</label>
 {/each}

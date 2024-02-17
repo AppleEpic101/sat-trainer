@@ -51,26 +51,13 @@
 	$: console.log(tags);
 </script>
 
-<!-- <div class="p-2 w-full bg-slate-300 flex flex-wrap">
-	{#each tags.difficulty as diff}
-		<Badge dismissable large color="green">{diff}</Badge>
-	{/each}
-</div> -->
-
 <div class="flex flex-wrap">
-	<MultiSelect class="mr-4" items={source} label={'Choose source'} bind:value={tags.source} />
+	<MultiSelect class="mr-4 grow" items={source} label={'Choose source'} bind:value={tags.source} />
 	<MultiSelect
-		class="mr-4"
+		class="mr-4 grow"
 		items={difficulty}
 		label={'Choose difficulty'}
 		bind:value={tags.difficulty}
 	/>
-	<MultiSelect class="" items={skills} label={'Choose skills'} bind:value={tags.skill} />
+	<MultiSelect class="grow" items={skills} label={'Choose skills'} bind:value={tags.skill} />
 </div>
-
-<!-- <div class="">
-	<Dropdown options={programs} field={'program'} placeholder={'Select program(s)'} bind:tags />
-	<Dropdown options={difficulty} field={'difficulty'} placeholder={'Select Difficulty'} bind:tags />
-	<Dropdown options={type} field={'isNew'} placeholder={'Select Type'} bind:tags />
-	<SkillDropdown options={domains} field={'skill_desc'} name={'Select Domain'} bind:tags />
-</div> -->
