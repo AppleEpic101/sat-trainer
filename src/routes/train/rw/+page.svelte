@@ -4,6 +4,7 @@
 	import Tags from '$lib/components/Tags.svelte';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { enhance } from '$app/forms';
 
 	let data;
 
@@ -58,15 +59,14 @@
 			} else {
 				console.error('Error fetching data:', res.status, res.statusText);
 			}
-		} catch (error) {
-			console.error('Error fetching data:', error);
+		} catch (e) {
+			console.log(e);
 		} finally {
 			isLoading = false;
 		}
 	};
 
 	const countDocs = async () => {
-		console.log('countDocs', q);
 		const res = await fetch(`/api/countDocs?program=rw&query=${JSON.stringify(q)}`);
 		const data = await res.json();
 
@@ -83,18 +83,13 @@
 	<div class="">
 		<Tags {domains} bind:tags={q} />
 
-		<form>
-			<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
-				>New Question
-				{#if count}
-					({count} questions)
-				{/if}
-			</button>
-		</form>
+		<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
+			>New Question
+			{#if count}
+				({count} questions)
+			{/if}
+		</button>
 	</div>
-	{#if isLoading}
-		<p>...loading</p>
-	{:else}
-		<NewQuestion data={document} />
-	{/if}
+
+	<NewQuestion {isLoading} data={document} />
 </div>

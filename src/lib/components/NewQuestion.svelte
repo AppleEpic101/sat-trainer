@@ -1,48 +1,76 @@
 <script>
 	export let data;
 	import MCQ from '$lib/components/MCQ.svelte';
+	import { Spinner } from 'flowbite-svelte';
 	import { format } from '$lib/parser.js';
 
-	let showAnswer = false;
+	export let isLoading;
 
-	let selectedAnswer = '';
+	let showAnswer, selectedAnswer;
+
+	$: {
+		if (isLoading) {
+			showAnswer = false;
+			selectedAnswer = '';
+		}
+	}
 </script>
 
-<div class="">
+{#if isLoading}
 	<div
 		class="px-4 py-2 bg-cyan-500 border-black border-x-2 border-t-2 flex flex-start justify-between"
 	>
-		<div>
-			ID: {data.id.SAT}
-		</div>
-		<div>
-			Level {data.difficulty} &bull;
-			{data.skill}
-		</div>
+		Loading
 	</div>
-
-	<div class="border-black border-2 flex flex-start">
-		<div class="basis-1/2 p-4">
-			<div class="rawdog">
-				{@html format(data.question.stimulus || '')}
+	<div class="border-black border-2 h-96 mb-5 flex items-center justify-center">
+		<Spinner color="gray" size={8} />
+	</div>
+{:else}
+	<div class="">
+		<div
+			class="px-4 py-2 bg-cyan-500 border-black border-x-2 border-t-2 flex flex-start justify-between"
+		>
+			<div>
+				ID: {data.id.SAT}
+			</div>
+			<div>
+				Level {data.difficulty} &bull;
+				{data.skill}
 			</div>
 		</div>
 
-		<div class="basis-1/2 p-4">
-			{@html format(data.question.stem || '')}
+		<div class="border-black border-2">
+			<div class="flex flex-start">
+				<div class="basis-1/2 p-4">
+					<div class="rawdog">
+						{@html format(data.question.stimulus || '')}
+					</div>
+				</div>
 
-			{#if data.questionType === 'spr'}
-				Test
-			{:else}
-				<MCQ {data} bind:showAnswer bind:selectedAnswer />
+				<div class="basis-1/2 p-4">
+					{@html format(data.question.stem || '')}
+
+					{#if data.questionType === 'spr'}
+						Test
+					{:else}
+						<MCQ {data} bind:showAnswer bind:selectedAnswer />
+					{/if}
+				</div>
+			</div>
+			{#if showAnswer}
+				<div class="p-8 mx-5 mb-5 bg-slate-300">
+					<div>
+						Your Answer: {selectedAnswer}
+					</div>
+					<div>
+						Correct Answer: {data.question.correctAnswer}
+					</div>
+					<div>
+						{@html format(data.question.rationale)}
+					</div>
+				</div>
 			{/if}
 		</div>
-	</div>
-</div>
-
-{#if showAnswer}
-	<div class="answer">
-		{@html format(data.question.rationale)}
 	</div>
 {/if}
 
