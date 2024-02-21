@@ -10,6 +10,11 @@ let collection = db.collection("users");
 export const load = async (event) => {
     const data = authenticate(event.cookies);
     if(!data) return undefined;
-    const {email, username} = await collection.findOne({_id: new ObjectId(data.id)});
-    return { email, username };
+
+    try {
+        const {email, username} = await collection.findOne({_id: new ObjectId(data.id)});
+        return { email, username };
+    } catch (e) {
+        return { error: "Account does not exist."}
+    }
 }

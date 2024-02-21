@@ -40,7 +40,40 @@ export const register = async (data) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new UserModel({ username, email, password: hashedPassword });
+    const newUser = new UserModel(
+        { 
+            username, 
+            email, 
+            password: hashedPassword,
+            stats: {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+            },
+            reading: {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+            },
+            math: {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+            },
+
+            isAdmin: false,
+            
+            settings: {
+                darkMode: false,
+                hideProfile: false,
+            }
+        });
 
     try {
         await collection.insertOne(newUser);
@@ -64,8 +97,8 @@ export const updateInfo = async (data) => {
 
     if(password === "") {
         delete data.password;
-        delete data.confirmPassword;
     }
+    delete data.confirmPassword;
     delete data._id;
     
 

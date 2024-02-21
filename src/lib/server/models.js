@@ -6,20 +6,25 @@ const user = new mongoose.Schema({
     password: { type: String, required: true },
 
     stats: {
+        rating: Number,
         experience: Number,
         correct: Number,
         incorrect: Number,
-
-        reading: {
-            experience: Number,
-            correct: Number,
-            incorrect: Number,
-        },
-        math: {
-            experience: Number,
-            correct: Number,
-            incorrect: Number,
-        },
+        skipped: Number,
+    },
+    reading: {
+        rating: Number,
+        experience: Number,
+        correct: Number,
+        incorrect: Number,
+        skipped: Number,
+    },
+    math: {
+        rating: Number,
+        experience: Number,
+        correct: Number,
+        incorrect: Number,
+        skipped: Number,
     },
     
     isAdmin: {
