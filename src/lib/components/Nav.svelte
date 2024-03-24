@@ -34,7 +34,7 @@
 				<span class="block text-sm">{cookies.username}</span>
 				<span class="block truncate text-sm font-medium">{cookies.email}</span>
 			</DropdownHeader>
-			<DropdownItem>Dashboard</DropdownItem>
+			<DropdownItem href="/dashboard">Dashboard</DropdownItem>
 			<DropdownItem href="/settings">Settings</DropdownItem>
 			<DropdownDivider />
 
