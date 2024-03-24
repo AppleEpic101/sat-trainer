@@ -5,48 +5,13 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
+	import { getLevel, updateRating } from '$lib/question/rating.js';
 
-	let data;
+	export let data;
 
 	let isLoading = true;
 
-	const domains = [
-		{
-			domain: 'Information and Ideas',
-			skills: {
-				'Central Ideas and Details': 'Central Ideas and Details',
-				Inferences: 'Inferences',
-				'Command of Evidence': 'Command of Evidence'
-			}
-		},
-		{
-			domain: 'Craft and Structure',
-			skills: {
-				'Words in Context': 'Words in Context',
-				'Text Structure and Purpose': 'Text Structure and Purpose',
-				'Cross-Text Connections': 'Cross-Text Connections'
-			}
-		},
-		{
-			domain: 'Expression of Ideas',
-			skills: { 'Rhetorical Synthesis': 'Rhetorical Synthesis', Transitions: 'Transitions' }
-		},
-		{
-			domain: 'Standard English Conventions',
-			skills: {
-				Boundaries: 'Boundaries',
-				'Form, Structure, and Sense': 'Form, Structure, and Sense'
-			}
-		}
-	];
-
-	let skills = [];
-	for (let i = 0; i < domains.length; i++) {
-		skills.push(...Object.keys(domains[i].skills));
-	}
 	let q = {};
-
-	$: console.log('query', q);
 
 	let document, count;
 	const fetchData = async () => {
@@ -79,9 +44,12 @@
 	$: if (browser) q && countDocs();
 </script>
 
-<div class="mt-4">
+{data?.reading?.rating}
+{data?.reading?.experience}
+
+<div class="mx-24 my-4">
 	<div class="">
-		<Tags {domains} bind:tags={q} />
+		<Tags bind:tags={q} />
 
 		<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
 			>New Question
@@ -91,5 +59,5 @@
 		</button>
 	</div>
 
-	<NewQuestion {isLoading} data={document} />
+	<NewQuestion {isLoading} user={data} data={document} />
 </div>

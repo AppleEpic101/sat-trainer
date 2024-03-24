@@ -3,11 +3,12 @@
 	import Nav from '$lib/components/Nav.svelte';
 
 	export let data;
+	// console.log('DEEZ', data);
 </script>
 
 <Nav cookies={data} />
 
-<main class="mx-24">
+<main class="">
 	<slot />
 </main>
 

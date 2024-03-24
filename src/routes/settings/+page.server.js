@@ -11,13 +11,18 @@ let collection = db.collection("users");
 
 let id;
 
-export const load = async (event) => {
-    const data = authenticate(event.cookies);
-    if(!data) return undefined;
-    const user = await collection.findOne({_id: new ObjectId(data.id)});
-    user._id = user._id.toString();
+export const load = async ({fetch}) => {
+    const res = await fetch("/api/user");
+    const user = await res.json();
     id = user._id;
     return user;
+
+    // const data = authenticate(event.cookies);
+    // if(!data) return undefined;
+    // const user = await collection.findOne({_id: new ObjectId(data.id)});
+    // user._id = user._id.toString();
+    // id = user._id;
+    // return user;
 }
 
 export const actions = {

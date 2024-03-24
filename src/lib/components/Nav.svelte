@@ -14,7 +14,7 @@
 
 	export let cookies;
 
-	$: loggedIn = cookies && Object.keys(cookies).length !== 0;
+	$: loggedIn = !cookies.error;
 </script>
 
 <Navbar class="bg-cyan-500">
