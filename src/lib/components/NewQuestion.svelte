@@ -102,10 +102,6 @@
 		display: none;
 	}
 
-	/* :global(table) {
-		margin: 0 auto;
-	} */
-
 	:global(svg) {
 		display: block;
 		margin: 0 auto;

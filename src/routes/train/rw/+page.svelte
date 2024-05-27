@@ -44,8 +44,8 @@
 	$: if (browser) q && countDocs();
 </script>
 
-{data?.reading?.rating}
-{data?.reading?.experience}
+<!-- {data?.reading?.rating}
+{data?.reading?.experience} -->
 
 <div class="mx-24 my-4">
 	<div class="">

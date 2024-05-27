@@ -49,6 +49,7 @@
 		<NavLi class="text-lg hover:" href="/" active={true}>Home</NavLi>
 		<NavLi class="text-lg" href="/about">About</NavLi>
 		{#if loggedIn}
+			<NavLi class="text-lg" href="/problems">Problems</NavLi>
 			<NavLi class="text-lg" href="/train">Train</NavLi>
 			<NavLi class="text-lg" href="/stats">Stats</NavLi>
 		{/if}
