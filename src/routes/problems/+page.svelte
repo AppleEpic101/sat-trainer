@@ -5,19 +5,29 @@
 </script>
 
 <div class="mx-24">
-	<div>Questions</div>
+	<div class="text-xl">Questions</div>
 
-	<div class="flex flex-row flex-wrap">
-		{#each questions as question}
-			<a href="/problems/{question.id.SAT}">
-				<div class="border-2 border-black m-4 w-96 h-48">
-					<div>{question.id.SAT}</div>
-					<div>Level {question.difficulty}</div>
-					<div>{question.skill}</div>
-					<div>{question.domain}</div>
-					<div></div>
-				</div></a
+	<table class="table-fixed w-full">
+		<thead>
+			<tr>
+				<th class="text-left">ID</th>
+				<th class="text-left">Skill</th>
+				<th class="text-left">Source</th>
+				<th class="text-left">Difficulty</th></tr
 			>
-		{/each}
-	</div>
+		</thead>
+		<tbody>
+			{#each questions as question}
+				<tr
+					class="hover:cursor-pointer hover:bg-gray-200"
+					on:click={() => (window.location.href = '/problems/' + question.id.SAT)}
+				>
+					<td>{question.id.SAT}</td>
+					<td>{question.skill}</td>
+					<td>{question.domain}</td>
+					<td>{question.difficulty}</td></tr
+				>
+			{/each}
+		</tbody>
+	</table>
 </div>
