@@ -5,7 +5,7 @@ export const load = async ({fetch}) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            limit: 25,
+            limit: 938,
             section: 'Reading'
         })
     });

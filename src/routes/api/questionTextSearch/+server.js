@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
 import { MONGO_STRING } from "$env/static/private";
 
 const client = await MongoClient.connect(MONGO_STRING);
@@ -9,10 +9,10 @@ const math = questions.collection("math");
 
 export const POST = async ({request}) => {
     const res = await request.json();
-    const { limit, section } = res;
+    const { section, query } = res;
 
     let collection = section === "Reading" ? rw : math;
 
-    let data = await collection.find({}).toArray();
+    let data = await collection.find({ $text: { $search: query }}).toArray();
     return new Response(JSON.stringify(data), { status: 201 });
 }
