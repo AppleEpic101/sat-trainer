@@ -1,6 +1,7 @@
 <script>
 	export let data;
 	import MCQ from '$lib/components/MCQ.svelte';
+	import SPR from '$lib/components/SPR.svelte';
 	import { Spinner } from 'flowbite-svelte';
 	import { format } from '$lib/parser.js';
 
@@ -68,7 +69,7 @@
 					{@html format(data.question.stem || '')}
 
 					{#if data.questionType === 'spr'}
-						Test
+						test
 					{:else}
 						<MCQ {data} bind:showAnswer bind:selectedAnswer />
 					{/if}

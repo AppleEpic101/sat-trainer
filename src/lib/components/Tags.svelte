@@ -4,7 +4,7 @@
 	import Dropdown from '$lib/components/Dropdown.svelte';
 	import SkillDropdown from '$lib/components/SkillDropdown.svelte';
 	export let tags;
-
+	export let section;
 	const programs = {
 		SAT: 'SAT',
 		PSAT: 'PSAT',
@@ -28,7 +28,7 @@
 		{ value: [6, 7], name: 'Hard (6-7)' }
 	];
 
-	const skills = [
+	const readingSkills = [
 		{ value: 'Central Ideas and Details', name: 'Central Ideas and Details' },
 		{ value: 'Inferences', name: 'Inferences' },
 		{ value: 'Command of Evidence', name: 'Command of Evidence' },
@@ -40,6 +40,57 @@
 		{ value: 'Boundaries', name: 'Boundaries' },
 		{ value: 'Form, Structure, and Sense', name: 'Form, Structure, and Sense' }
 	];
+
+	const mathSkills = [
+		{ value: 'Linear equations in one variable', name: 'Linear equations in one variable' },
+		{ value: 'Linear functions', name: 'Linear functions' },
+		{ value: 'Linear equations in two variables', name: 'Linear equations in two variables' },
+		{
+			value: 'Systems of two linear equations in two variables',
+			name: 'Systems of two linear equations in two variables'
+		},
+		{
+			value: 'Linear inequalities in one or two variables',
+			name: 'Linear inequalities in one or two variables'
+		},
+		{ value: 'Nonlinear functions', name: 'Nonlinear functions' },
+		{
+			value: 'Nonlinear equations in one variable and systems of equations in two variables',
+			name: 'Nonlinear equations in one variable and systems of equations in two variables'
+		},
+		{ value: 'Equivalent expressions', name: 'Equivalent expressions' },
+		{
+			value: 'Ratios, rates, proportional relationships, and units',
+			name: 'Ratios, rates, proportional relationships, and units'
+		},
+		{ value: 'Percentages', name: 'Percentages' },
+		{
+			value: 'One-variable data: Distributions and measures of center and spread',
+			name: 'One-variable data: Distributions and measures of center and spread'
+		},
+		{
+			value: 'Two-variable data: Models and scatterplots',
+			name: 'Two-variable data: Models and scatterplots'
+		},
+		{
+			value: 'Probability and conditional probability',
+			name: 'Probability and conditional probability'
+		},
+		{
+			value: 'Inference from sample statistics and margin of error',
+			name: 'Inference from sample statistics and margin of error'
+		},
+		{
+			value: 'Evaluating statistical claims: Observational studies and experiments',
+			name: 'Evaluating statistical claims: Observational studies and experiments'
+		},
+		{ value: 'Area and volume', name: 'Area and volume' },
+		{ value: 'Lines, angles, and triangles', name: 'Lines, angles, and triangles' },
+		{ value: 'Right triangles and trigoometry', name: 'Right triangles and trigoometry' },
+		{ value: 'Circles', name: 'Circles' }
+	];
+
+	const skills = section === 'Reading' ? readingSkills : mathSkills;
 
 	const type = {
 		New: true,
