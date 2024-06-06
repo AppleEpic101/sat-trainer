@@ -7,6 +7,9 @@ const questions = client.db("questions");
 const rw = questions.collection("rw");
 const math = questions.collection("math");
 
+await rw.createIndex({"question.stimulus": "text"});
+await math.createIndex({"question.stimulus": "text"});
+
 export const POST = async ({request}) => {
     const res = await request.json();
     const { section, query } = res;
