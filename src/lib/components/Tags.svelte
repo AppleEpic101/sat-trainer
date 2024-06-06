@@ -86,7 +86,7 @@
 		},
 		{ value: 'Area and volume', name: 'Area and volume' },
 		{ value: 'Lines, angles, and triangles', name: 'Lines, angles, and triangles' },
-		{ value: 'Right triangles and trigoometry', name: 'Right triangles and trigoometry' },
+		{ value: 'Right triangles and trigonometry', name: 'Right triangles and trigonometry' },
 		{ value: 'Circles', name: 'Circles' }
 	];
 
