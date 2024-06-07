@@ -69,7 +69,7 @@
 					{@html format(data.question.stem || '')}
 
 					{#if data.questionType === 'spr'}
-						test
+						<SPR bind:showAnswer bind:selectedAnswer />
 					{:else}
 						<MCQ {data} bind:showAnswer bind:selectedAnswer />
 					{/if}
@@ -84,11 +84,17 @@
 						Correct Answer: {data.question.correctAnswer}
 					</div>
 					<div>
-						{#each data.question.rationale as item}
+						{#if data.questionType === 'spr'}
 							<div>
-								{@html format(item)}
+								{@html format(data.question.rationale)}
 							</div>
-						{/each}
+						{:else}
+							{#each data.question.rationale as item}
+								<div>
+									{@html format(item)}
+								</div>
+							{/each}
+						{/if}
 					</div>
 				</div>
 			{/if}

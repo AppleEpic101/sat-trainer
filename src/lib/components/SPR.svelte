@@ -1,16 +1,17 @@
 <script>
 	import { format } from '$lib/parser.js';
 
-	let hideSubmit = true;
-
-	export let showAnswer;
+	export let showAnswer = false;
 	export let selectedAnswer = '';
 </script>
 
 <input type="text" bind:value={selectedAnswer} />
-<button
-	class={`submit ${
-		selectedAnswer !== '' && !hideSubmit ? '' : 'invisible'
-	} bg-aquamarine border border-black rounded p-1 w-full cursor-pointer`}
-	on:click={submit}>Submit</button
->
+
+{#if selectedAnswer !== '' && !showAnswer}
+	<button
+		class="bg-teal-400 border border-black rounded my-4 p-1 w-full cursor-pointer"
+		on:click={() => {
+			showAnswer = !showAnswer;
+		}}>Submit</button
+	>
+{/if}
