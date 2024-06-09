@@ -174,6 +174,7 @@ export const register = async (data) => {
                 correct: 0,
                 incorrect: 0,
                 skipped: 0,
+                
                 "Linear equations in one variable": {
                     rating: 0,
                     experience: 0,
@@ -217,29 +218,28 @@ export const register = async (data) => {
                 correct: 0,
                 incorrect: 0,
                 skipped: 0,
-                topics: {
-                    "Nonlinear functions": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Nonlinear equations in one variable": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Equivalent expressions": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                }
+
+                "Nonlinear functions": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Nonlinear equations in one variable": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Equivalent expressions": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
             },
             "Problem-Solving and Data Analysis": {
                 rating: 0,
@@ -247,57 +247,56 @@ export const register = async (data) => {
                 correct: 0,
                 incorrect: 0,
                 skipped: 0,
-                topics: {
-                    "Ratios, rates, proportional relationships, and units": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Percentages": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "One-variable data: Distributions and measures of center and spread": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Two-variable data: Models and scatterplots": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Probability and conditional probability": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Inference from sample statistics and margin of error": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Evaluating statistical claims: Observational studies and experiments": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                }
+                
+                "Ratios, rates, proportional relationships, and units": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Percentages": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "One-variable data: Distributions and measures of center and spread": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Two-variable data: Models and scatterplots": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Probability and conditional probability": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Inference from sample statistics and margin of error": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Evaluating statistical claims: Observational studies and experiments": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
             },
             "Geometry and Trigonometry": {
                 rating: 0,
@@ -305,36 +304,35 @@ export const register = async (data) => {
                 correct: 0,
                 incorrect: 0,
                 skipped: 0,
-                topics: {
-                    "Area and volume": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Lines, angles, and triangles": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Right triangles and trigonometry": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                    "Circles": {
-                        rating: 0,
-                        experience: 0,
-                        correct: 0,
-                        incorrect: 0,
-                        skipped: 0,
-                    },
-                }
+                
+                "Area and volume": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Lines, angles, and triangles": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Right triangles and trigonometry": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Circles": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
             },
         },
 
