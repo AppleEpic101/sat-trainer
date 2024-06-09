@@ -40,7 +40,7 @@ export const register = async (data) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new UserModel({ 
+    const newUser = { 
         username, 
         email, 
         password: hashedPassword,
@@ -343,11 +343,10 @@ export const register = async (data) => {
             darkMode: false,
             hideProfile: false,
         }
-    });
+    };
 
     try {
         await collection.insertOne(newUser);
-        // await collection.insertOne({ email, password: hashedPassword }); 
         return { error: "" };
     } catch (error) {
         return { error: error?.toString() };
