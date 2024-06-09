@@ -40,40 +40,310 @@ export const register = async (data) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new UserModel(
-        { 
-            username, 
-            email, 
-            password: hashedPassword,
-            stats: {
-                rating: 0,
-                experience: 0,
-                correct: 0,
-                incorrect: 0,
-                skipped: 0,
-            },
-            reading: {
-                rating: 0,
-                experience: 0,
-                correct: 0,
-                incorrect: 0,
-                skipped: 0,
-            },
-            math: {
-                rating: 0,
-                experience: 0,
-                correct: 0,
-                incorrect: 0,
-                skipped: 0,
-            },
+    const newUser = new UserModel({ 
+        username, 
+        email, 
+        password: hashedPassword,
+        stats: {
+            rating: 0,
+            experience: 0,
+            correct: 0,
+            incorrect: 0,
+            skipped: 0,
+        },
+        reading: {
+            rating: 0,
+            experience: 0,
+            correct: 0,
+            incorrect: 0,
+            skipped: 0,
 
-            isAdmin: false,
-            
-            settings: {
-                darkMode: false,
-                hideProfile: false,
-            }
-        });
+            "Information and Ideas": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+
+                "Central Ideas and Details": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Inferences": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Command of Evidence": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+            },
+            "Craft and Structure": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+
+                "Words in Context": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Text Structure and Purpose": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Cross-Text Connections": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+            },
+            "Expression of Ideas": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+
+                "Rhetorical Synthesis": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Transitions": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+            },
+            "Standard English Conventions": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+
+                "Boundaries": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                "Form, Structure, and Sense": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+            },
+        },
+        math: {
+            rating: 0,
+            experience: 0,
+            correct: 0,
+            incorrect: 0,
+            skipped: 0,
+
+            "Algebra": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+                "Linear equations in one variable": {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },
+                'Linear functions': {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },  
+
+                'Linear equations in two variables': {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },  
+                'System of two linear equations in two variables': {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },  
+                'Linear inequalities in one or two variables': {
+                    rating: 0,
+                    experience: 0,
+                    correct: 0,
+                    incorrect: 0,
+                    skipped: 0,
+                },  
+            },
+            "Advanced Math": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+                topics: {
+                    "Nonlinear functions": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Nonlinear equations in one variable": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Equivalent expressions": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                }
+            },
+            "Problem-Solving and Data Analysis": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+                topics: {
+                    "Ratios, rates, proportional relationships, and units": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Percentages": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "One-variable data: Distributions and measures of center and spread": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Two-variable data: Models and scatterplots": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Probability and conditional probability": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Inference from sample statistics and margin of error": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Evaluating statistical claims: Observational studies and experiments": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                }
+            },
+            "Geometry and Trigonometry": {
+                rating: 0,
+                experience: 0,
+                correct: 0,
+                incorrect: 0,
+                skipped: 0,
+                topics: {
+                    "Area and volume": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Lines, angles, and triangles": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Right triangles and trigonometry": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                    "Circles": {
+                        rating: 0,
+                        experience: 0,
+                        correct: 0,
+                        incorrect: 0,
+                        skipped: 0,
+                    },
+                }
+            },
+        },
+
+        isAdmin: false,
+        settings: {
+            darkMode: false,
+            hideProfile: false,
+        }
+    });
 
     try {
         await collection.insertOne(newUser);
