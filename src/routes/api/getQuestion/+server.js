@@ -13,6 +13,8 @@ export const POST = async ({request}) => {
 
     let collection = section === "Reading" ? rw : math;
 
-    let data = await collection.findOne({ skill: { $in: focus }})
-    return new Response(JSON.stringify(data), { status: 201 });
+    // let data = await collection.findOne({ skill: { $in: focus }})
+    let data = await collection.aggregate([{ $match: { skill: { $in: focus }} }, { $sample: { size: 1 } }]).toArray();
+
+    return new Response(JSON.stringify(data[0]), { status: 201 });
 }
