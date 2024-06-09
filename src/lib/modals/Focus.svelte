@@ -4,16 +4,7 @@
 	let dialog;
 	$: if (dialog && showModal) dialog.showModal();
 
-	const skills = {
-		'Information and Ideas': ['Central Ideas and Details', 'Inferences', 'Command of Evidence'],
-		'Craft and Structure': [
-			'Words in Context',
-			'Text Structure and Purpose',
-			'Cross-Text Connections'
-		],
-		'Expression of Ideas': ['Rhetorical Synthesis', 'Transitions'],
-		'Standard English Conventions': ['Boundaries', 'Form, Structure, and Sense']
-	};
+	export let skills;
 
 	let domainSelections = {};
 	let skillSelections = {};

@@ -8,4 +8,7 @@
 	<a class="font-bold text-2xl border-black bg-slate-600 text-white p-10" href="/train/classic-rw"
 		>Classic Reading</a
 	>
+	<a class="font-bold text-2xl border-black bg-slate-600 text-white p-10" href="/train/classic-math"
+		>Classic Math</a
+	>
 </div>
