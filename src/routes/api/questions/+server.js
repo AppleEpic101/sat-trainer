@@ -2,6 +2,7 @@ import { MongoClient } from "mongodb";
 import { MONGO_STRING } from "$env/static/private"
 import { error } from "@sveltejs/kit";
 
+// replaced by getQuestion
 
 const mongo = MONGO_STRING;
 
