@@ -9,21 +9,18 @@
 	let domainSelections = {};
 	let skillSelections = {};
 
-	// Initialize selections
-	$: {
-		domainSelections = Object.keys(skills).reduce((acc, domain) => {
-			acc[domain] = true;
-			return acc;
-		}, {});
+	domainSelections = Object.keys(skills).reduce((acc, domain) => {
+		acc[domain] = true;
+		return acc;
+	}, {});
 
-		skillSelections = Object.keys(skills).reduce((acc, domain) => {
-			acc[domain] = skills[domain].reduce((skillAcc, skill) => {
-				skillAcc[skill] = true;
-				return skillAcc;
-			}, {});
-			return acc;
+	skillSelections = Object.keys(skills).reduce((acc, domain) => {
+		acc[domain] = skills[domain].reduce((skillAcc, skill) => {
+			skillAcc[skill] = true;
+			return skillAcc;
 		}, {});
-	}
+		return acc;
+	}, {});
 
 	export let selectedSkillsArray;
 	$: selectedSkillsArray = Object.keys(skillSelections).reduce((acc, domain) => {
