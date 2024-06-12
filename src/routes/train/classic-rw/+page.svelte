@@ -2,11 +2,14 @@
 	import { onMount } from 'svelte';
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
+	import { getLevel } from '$lib/question/rating.js';
+
+	export let data;
 
 	let showModal = false;
 	let selectedSkillsArray;
 
-	let data;
+	let questionData;
 	let isLoading = true;
 	let showAnswer, selectedAnswer;
 
@@ -19,7 +22,7 @@
 			},
 			body: JSON.stringify({ section: 'Reading', focus: selectedSkillsArray })
 		});
-		data = await res.json();
+		questionData = await res.json();
 		isLoading = false;
 	};
 	onMount(() => {
@@ -36,6 +39,23 @@
 		'Expression of Ideas': ['Rhetorical Synthesis', 'Transitions'],
 		'Standard English Conventions': ['Boundaries', 'Form, Structure, and Sense']
 	};
+
+	let readingStats = data?.reading;
+	let readingLevel = getLevel(readingStats.experience);
+
+	let domainStats, domainLevel;
+	let skillStats, skillLevel;
+
+	$: {
+		if (readingStats && questionData) {
+			domainStats = readingStats[questionData.domain];
+			domainLevel = getLevel(domainStats.experience);
+			skillStats = readingStats[questionData.domain][questionData.skill];
+			skillLevel = getLevel(skillStats.experience);
+		}
+	}
+
+	console.log(getLevel(110));
 </script>
 
 <div class="m-4">
@@ -49,6 +69,20 @@
 			{:else if selectedSkillsArray?.length > 1}
 				<div>{selectedSkillsArray.length} focuses selected</div>
 			{/if}
+
+			<div>
+				Reading Level {readingLevel.level}
+				{readingLevel.currentXP} / {readingLevel.xpNeededToNext}
+			</div>
+			<div>
+				{questionData?.domain} Level {domainLevel?.level}
+				{domainLevel?.currentXP} / {domainLevel?.xpNeededToNext}
+			</div>
+			<div>
+				{questionData?.skill}
+				{skillLevel?.level}
+				{skillLevel?.currentXP} / {skillLevel?.xpNeededToNext}
+			</div>
 		</div>
 		<div><a class="cursor-pointer" on:click={() => (showModal = true)}> Change Focus </a></div>
 	</div>
@@ -59,6 +93,6 @@
 			>
 		{/if}
 		<Focus {skills} bind:showModal bind:selectedSkillsArray />
-		<Question {data} bind:isLoading bind:showAnswer bind:selectedAnswer />
+		<Question data={questionData} bind:isLoading bind:showAnswer bind:selectedAnswer />
 	</div>
 </div>

@@ -1,13 +1,25 @@
 export const getLevel = (xp) => {
     let level = 0;
-    let xpNeeded = 0;
+    let xpNeededToNext = 0;
     let xpTotal = 0;
-    while(xpTotal < xp) {
+    let currentXP = xp;
+
+    while (xpTotal <= xp) {
         level++;
-        xpNeeded = Math.floor(100 * Math.pow(1.1, level));
-        xpTotal += xpNeeded;
+        xpNeededToNext = Math.floor(100 * Math.pow(1.1, level));
+        xpTotal += xpNeededToNext;
+
+        if (xpTotal > xp) {
+            currentXP = xp - (xpTotal - xpNeededToNext);
+            break;
+        }
     }
-    return { level, xpNeeded, xpTotal };
+
+    return { level, currentXP, xpNeededToNext, xpTotal };
+}
+
+export const gainXP = (xp, questionLevel, isCorrect, streak, boost = 1) => {
+    
 }
 
 export const updateRating = (rating, questionLevel, isCorrect, boost = 1) => {
