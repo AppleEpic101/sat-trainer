@@ -40,8 +40,8 @@
 		'Standard English Conventions': ['Boundaries', 'Form, Structure, and Sense']
 	};
 
-	let readingStats = data?.reading;
-	let readingLevel = getLevel(readingStats.experience);
+	$: readingStats = data?.reading;
+	$: readingLevel = getLevel(readingStats.experience);
 
 	let domainStats, domainLevel;
 	let skillStats, skillLevel;
@@ -55,7 +55,30 @@
 		}
 	}
 
-	console.log(getLevel(110));
+	const update = async () => {
+		const res = await fetch('/api/updateXP', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				section: 'Reading',
+				user: data,
+				question: questionData,
+				selectedAnswer
+			})
+		});
+
+		let obj = await res.json();
+		data = obj.user;
+	};
+	$: {
+		if (showAnswer) {
+			update();
+		}
+	}
+
+	$: console.log(data);
 </script>
 
 <div class="m-4">

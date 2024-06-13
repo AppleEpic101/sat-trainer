@@ -18,9 +18,32 @@ export const getLevel = (xp) => {
     return { level, currentXP, xpNeededToNext, xpTotal };
 }
 
-export const gainXP = (xp, questionLevel, isCorrect, streak, boost = 1) => {
-    
+export const gainXP = (probability, difficulty, isCorrect, streak, boost = 1) => {
+    let experienceGain = 0;
+
+    if (isCorrect) {
+        experienceGain = 100;
+        if (probability < 0.5) {
+            experienceGain *= 1.5;
+        }
+        if (probability >= 0.5) {
+            experienceGain *= 1.2;
+        }
+        if (streak > 5) {
+            experienceGain *= 1.3;
+        }
+        if (difficulty > 5) {
+            experienceGain *= 1.4;
+        }
+        experienceGain *= boost;
+    }
+    else {
+        experienceGain = 0;
+    }
+
+    return experienceGain;
 }
+
 
 export const updateRating = (rating, questionLevel, isCorrect, boost = 1) => {
     const ratingChange = 0.01 * questionLevel;
