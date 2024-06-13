@@ -59,8 +59,29 @@
 </script>
 
 <div class="m-4">
-	<div class="flex flex-row justify-evenly">
-		<div>
+	<div class="flex flex-row justify-between gap-4 m-4">
+		<div class="border border-black w-1/2">
+			<!-- <div>
+				Reading Level {readingLevel.level}
+				{readingLevel.currentXP} / {readingLevel.xpNeededToNext}
+			</div>
+			<div>
+				{questionData?.domain} Level {domainLevel?.level}
+				{domainLevel?.currentXP} / {domainLevel?.xpNeededToNext}
+			</div> -->
+			<div>
+				<div>
+					{questionData?.skill}
+				</div>
+				<div>
+					Level {skillLevel?.level}
+				</div>
+				<div>
+					{skillLevel?.currentXP} / {skillLevel?.xpNeededToNext}
+				</div>
+			</div>
+		</div>
+		<div class="w-1/2 border border-black">
 			<div>Reading</div>
 			{#if selectedSkillsArray?.length == 1}
 				<div>Focus: {selectedSkillsArray[0]}</div>
@@ -69,22 +90,8 @@
 			{:else if selectedSkillsArray?.length > 1}
 				<div>{selectedSkillsArray.length} focuses selected</div>
 			{/if}
-
-			<div>
-				Reading Level {readingLevel.level}
-				{readingLevel.currentXP} / {readingLevel.xpNeededToNext}
-			</div>
-			<div>
-				{questionData?.domain} Level {domainLevel?.level}
-				{domainLevel?.currentXP} / {domainLevel?.xpNeededToNext}
-			</div>
-			<div>
-				{questionData?.skill}
-				{skillLevel?.level}
-				{skillLevel?.currentXP} / {skillLevel?.xpNeededToNext}
-			</div>
+			<a class="cursor-pointer" on:click={() => (showModal = true)}> Change Focus </a>
 		</div>
-		<div><a class="cursor-pointer" on:click={() => (showModal = true)}> Change Focus </a></div>
 	</div>
 	<div>
 		{#if showAnswer}
