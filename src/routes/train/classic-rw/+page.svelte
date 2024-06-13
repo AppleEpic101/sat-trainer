@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
-	import { getLevel } from '$lib/question/rating.js';
+	import { getLevel, gainXP } from '$lib/question/rating.js';
 
 	export let data;
 
@@ -77,8 +77,6 @@
 			update();
 		}
 	}
-
-	$: console.log(data);
 </script>
 
 <div class="m-4">
@@ -123,6 +121,6 @@
 			>
 		{/if}
 		<Focus {skills} bind:showModal bind:selectedSkillsArray />
-		<Question data={questionData} bind:isLoading bind:showAnswer bind:selectedAnswer />
+		<Question data={questionData} user={data} bind:isLoading bind:showAnswer bind:selectedAnswer />
 	</div>
 </div>
