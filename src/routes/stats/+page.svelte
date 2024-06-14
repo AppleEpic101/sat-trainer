@@ -19,12 +19,7 @@
 	<div>{domain}</div>
 	{#each READING_SKILLS[domain] as skill}
 		<div>
-			<Leaderboard
-				data={readingLeaderboard[skill]}
-				{domain}
-				{skill}
-				field={'reading.' + domain + '.' + skill}
-			/>
+			<Leaderboard data={readingLeaderboard[skill]} {domain} {skill} section={'reading'} />
 		</div>
 	{/each}
 {/each}

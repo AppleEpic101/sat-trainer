@@ -2,12 +2,12 @@
 	export let data;
 	export let domain;
 	export let skill;
-	export let field;
+	export let section;
 </script>
 
 <div>{skill}</div>
 {#each data as user, i}
-	{i + 1}
+	{i + 1})
 	{user.username}
-	{console.log(user[field])}
+	{user[section][domain][skill].experience}
 {/each}

@@ -31,7 +31,7 @@ export const load = async ({fetch}) => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ sortArgument: { "stats.rating": -1 } })
+        body: JSON.stringify({ sortArgument: { "stats.experience": -1 } })
     });
 
     let overall = await overallRes.json();
