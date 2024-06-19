@@ -1,54 +1,11 @@
-<script>
-	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
-	export let data;
-
-	let currentQuery = data.query;
-	let query = data.query;
-
-	$: list = data.questions;
-
-	const handleKeyDown = async (event) => {
-		if (event.key === 'Enter') {
-			goto(`?search=${encodeURIComponent(query)}`);
-			currentQuery = query;
-		}
-	};
-</script>
-
-<div class="mx-24 my-8">
-	<input
-		type="text"
-		placeholder="Search..."
-		class="w-full p-2 border-gray-300 rounded"
-		bind:value={query}
-		on:keydown={handleKeyDown}
-	/>
-	<div>Query: {currentQuery}</div>
-	<div class="text-xl">Questions</div>
-
-	<table class="table-fixed w-full">
-		<thead>
-			<tr>
-				<th class="text-left">ID</th>
-				<th class="text-left">Skill</th>
-				<th class="text-left">Source</th>
-				<th class="text-left">Difficulty</th></tr
-			>
-		</thead>
-		<tbody>
-			{#each list as question, i}
-				<tr
-					class="hover:cursor-pointer hover:bg-gray-200"
-					on:click={() => (window.location.href = '/problems/' + question.id.SAT)}
-				>
-					<td>{i + 1}) {question.id.SAT}</td>
-					<td>{question.skill}</td>
-					<td>{question.domain}</td>
-					<td>{question.difficulty}</td></tr
-				>
-			{/each}
-		</tbody>
-	</table>
+<div class="mx-8 my-4">
+	<div class="text-2xl">Problem List</div>
+	<div class="flex flex-row justify-evenly align my-8">
+		<a class="font-bold text-2xl border-black bg-slate-600 text-white p-10" href="/problems/reading"
+			>Reading</a
+		>
+		<a class="font-bold text-2xl border-black bg-slate-600 text-white p-10" href="/problems/math"
+			>Math</a
+		>
+	</div>
 </div>

@@ -1,7 +1,5 @@
 export const load = async ({fetch, url}) => {
     const search = url.searchParams.get('search') || '';
-
-    console.log("LOADING")
     
     const res = await fetch('/api/questionTextSearch', {
         method: 'POST',
@@ -10,7 +8,7 @@ export const load = async ({fetch, url}) => {
         },
         body: JSON.stringify({
             query: search,
-            section: 'Reading'
+            section: 'Math'
         })
     });
     return {

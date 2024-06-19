@@ -12,7 +12,7 @@ await math.createIndex({"question.stimulus": "text"});
 
 export const POST = async ({request}) => {
     const res = await request.json();
-    const { section, query } = res;
+    const { section, query, limit, skip } = res;
 
     let collection = section === "Reading" ? rw : math;
 
@@ -22,6 +22,6 @@ export const POST = async ({request}) => {
     } else {
         data = await collection.find({ $text: { $search: query }}).toArray();
     }
-    
+
     return new Response(JSON.stringify(data), { status: 201 });
 }
