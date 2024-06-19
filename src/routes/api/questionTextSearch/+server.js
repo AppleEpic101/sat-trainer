@@ -16,6 +16,12 @@ export const POST = async ({request}) => {
 
     let collection = section === "Reading" ? rw : math;
 
-    let data = await collection.find({ $text: { $search: query }}).toArray();
+    let data;
+    if (query.trim() === "") {
+        data = await collection.find({}).toArray();
+    } else {
+        data = await collection.find({ $text: { $search: query }}).toArray();
+    }
+    
     return new Response(JSON.stringify(data), { status: 201 });
 }

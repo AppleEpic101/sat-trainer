@@ -4,37 +4,13 @@
 	import { onMount } from 'svelte';
 	export let data;
 
-	let { questions } = data;
+	let currentQuery = data.query;
+	let query = data.query;
 
-	let currentQuery = '';
-	let query = '';
-
-	onMount(() => {
-		if (browser) {
-			const urlParams = new URLSearchParams(window.location.search);
-			query = urlParams.get('search') || '';
-			currentQuery = urlParams.get('search') || '';
-			query && filter();
-		}
-	});
-
-	let list = questions;
-
-	const filter = async () => {
-		const res = await fetch('/api/questionTextSearch/', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ query, section: 'Reading' })
-		});
-
-		list = await res.json();
-	};
+	$: list = data.questions;
 
 	const handleKeyDown = async (event) => {
 		if (event.key === 'Enter') {
-			await filter();
 			goto(`?search=${encodeURIComponent(query)}`);
 			currentQuery = query;
 		}
