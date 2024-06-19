@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import Nav from '$lib/components/Nav.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	export let data;
 	// console.log('DEEZ', data);
@@ -12,6 +13,7 @@
 	<slot />
 </main>
 
+<Footer />
 <!-- <link rel="stylesheet" href="/app.css" /> -->
 
 <!-- <style>
