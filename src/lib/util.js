@@ -31,6 +31,35 @@ export const READING_SKILL_LIST = [
     'Form, Structure, and Sense'
 ]
 
+export const MATH_DOMAIN_LIST = [
+    'Algebra',
+    'Advanced Math',
+    'Problem-Solving and Data Analysis',
+    'Geometry and Trigonometry'
+];
+
+export const MATH_SKILL_LIST = [
+    'Linear equations in one variable',
+    'Linear functions',
+    'Linear equations in two variables',
+    'System of two linear equations in two variables',
+    'Linear inequalities in one or two variables',
+    'Nonlinear functions',
+    'Nonlinear equations in one variable',
+    'Equivalent expressions',
+    'Ratios, rates, proportional relationships, and units',
+    'Percentages',
+    'One-variable data: Distributions and measures of center and spread',
+    'Two-variable data: Models and scatterplots',
+    'Probability and conditional probability',
+    'Inference from sample statistics and margin of error',
+    'Evaluating statistical claims: Observational studies and experiments',
+    'Area and volume',
+    'Lines, angles, and triangles',
+    'Right triangles and trigonometry',
+    'Circles'
+];
+
 export const MATH_SKILLS = {
     Algebra: [
         'Linear equations in one variable',
