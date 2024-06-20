@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import Leveling from '$lib/components/Leveling.svelte';
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
 	import { getLevel, gainXP } from '$lib/question/rating.js';
@@ -80,27 +81,14 @@
 </script>
 
 <div class="m-4">
-	<div class="flex flex-row justify-between gap-4 m-4">
-		<div class="border border-black w-1/2">
-			<!-- <div>
-				Reading Level {readingLevel.level}
-				{readingLevel.currentXP} / {readingLevel.xpNeededToNext}
-			</div>
-			<div>
-				{questionData?.domain} Level {domainLevel?.level}
-				{domainLevel?.currentXP} / {domainLevel?.xpNeededToNext}
-			</div> -->
-			<div>
-				<div>
-					{questionData?.skill}
-				</div>
-				<div>
-					Level {skillLevel?.level}
-				</div>
-				<div>
-					{skillLevel?.currentXP} / {skillLevel?.xpNeededToNext}
-				</div>
-			</div>
+	<div class="flex flex-row justify-between gap-4 mb-2">
+		<div class="w-1/2">
+			<Leveling
+				name={questionData?.skill}
+				level={skillLevel?.level}
+				current={skillLevel?.currentXP}
+				total={skillLevel?.xpNeededToNext}
+			/>
 		</div>
 		<div class="w-1/2 border border-black">
 			<div>Reading</div>
@@ -112,6 +100,7 @@
 				<div>{selectedSkillsArray.length} focuses selected</div>
 			{/if}
 			<a class="cursor-pointer" on:click={() => (showModal = true)}> Change Focus </a>
+			<Focus {skills} bind:showModal bind:selectedSkillsArray />
 		</div>
 	</div>
 	<div>
@@ -120,7 +109,6 @@
 				>Continue</button
 			>
 		{/if}
-		<Focus {skills} bind:showModal bind:selectedSkillsArray />
 		<Question data={questionData} user={data} bind:isLoading bind:showAnswer bind:selectedAnswer />
 	</div>
 </div>

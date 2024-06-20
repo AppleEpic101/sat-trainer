@@ -9,7 +9,7 @@
 
 <Nav cookies={data} />
 
-<main class="">
+<main class="min-h-screen">
 	<slot />
 </main>
 
