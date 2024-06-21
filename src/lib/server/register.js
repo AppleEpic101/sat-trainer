@@ -197,7 +197,7 @@ export const register = async (data) => {
                     incorrect: 0,
                     skipped: 0,
                 },  
-                'System of two linear equations in two variables': {
+                'Systems of two linear equations in two variables': {
                     rating: 0,
                     experience: 0,
                     correct: 0,
@@ -337,206 +337,168 @@ export const register = async (data) => {
         },
 
         log: {
-            focus: 'All',
+            readingFocus: "All Reading Topics", 
+            mathFocus: "All Math Topics",
 
-            "reading": {
+            "All Reading Topics": {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
 
             'Information and Ideas': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Craft and Structure': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Expression of Ideas': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Standard English Conventions': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
 
             'Central Ideas and Details': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Inferences': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Command of Evidence': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Words in Context': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Text Structure and Purpose': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Cross-Text Connections': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Rhetorical Synthesis': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Transitions': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Boundaries': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Form, Structure, and Sense': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
 
-            "math": {
+            "All Math Topics": {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
 
             'Algebra': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Advanced Math': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Problem-Solving and Data Analysis': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Geometry and Trigonometry': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
 
             'Linear equations in one variable': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Linear functions': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Linear equations in two variables': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
-            'System of two linear equations in two variables': {
+            'Systems of two linear equations in two variables': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Linear inequalities in one or two variables': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Nonlinear functions': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
-            'Nonlinear equations in one variable': {
+            'Nonlinear equations in one variable and systems of equations in two variables': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Equivalent expressions': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Ratios, rates, proportional relationships, and units': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Percentages': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'One-variable data: Distributions and measures of center and spread': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Two-variable data: Models and scatterplots': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Probability and conditional probability': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Inference from sample statistics and margin of error': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Evaluating statistical claims: Observational studies and experiments': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Area and volume': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Lines, angles, and triangles': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Right triangles and trigonometry': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
             'Circles': {
                 current: undefined,
-                isAnswered: false,
                 past: [],
             },
         },

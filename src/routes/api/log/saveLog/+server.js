@@ -9,27 +9,10 @@ export const POST = async ({request, fetch}) => {
     const res = await request.json();
     const { user, section, focus, questionID } = res;
 
-    if (section === "Reading") {
-        if (focus === "All") {
-            await users.updateOne({ _id: new ObjectId(user._id) }, { $set: {
-                "log.reading.current": questionID,
-            }});
-        } else {
-            await users.updateOne({ _id: new ObjectId(user._id) }, { $set: {
-                ["log." + focus + ".current"]: questionID,
-            }});
-        }
-    } else {
-        if (focus === "All") {
-            await users.updateOne({ _id: new ObjectId(user._id) }, { $set: {
-                "log.math.current": questionID,
-            }});
-        } else {
-            await users.updateOne({ _id: new ObjectId(user._id) }, { $set: {
-                ["log." + focus + ".current"]: questionID,
-            }});
-        }
-    }
+    
+    await users.updateOne({ _id: new ObjectId(user._id) }, { $set: {
+        ["log." + focus + ".current"]: questionID,
+    }});
 
     return new Response(JSON.stringify(res), { status: 201 });
 }

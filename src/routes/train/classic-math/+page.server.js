@@ -9,7 +9,7 @@ export const load = async ({fetch, depends}) => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ user, section: "Reading" })
+        body: JSON.stringify({ user, section: "Math" })
     });
 
     const data = await res.json();

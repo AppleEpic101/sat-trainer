@@ -1,75 +1,61 @@
 <script>
-	import { onMount } from 'svelte';
+	import Leveling from '$lib/components/Leveling.svelte';
+	import FocusDisplay from '$lib/components/FocusDisplay.svelte';
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
 	import { getLevel, gainXP } from '$lib/question/rating.js';
+	import { MATH_SKILLS, generateSkillsArray } from '$lib/util.js';
 
 	export let data;
+	// $: console.log(data);
 
 	let showModal = false;
-	let selectedSkillsArray;
 
-	let questionData;
-	let isLoading = true;
+	$: selection = data?.user.log.mathFocus;
+	$: skillsArray = generateSkillsArray(data.user.log.mathFocus, 'Math');
+
+	let isLoading = false;
 	let showAnswer, selectedAnswer;
 
 	const fetchQuestion = async () => {
 		isLoading = true;
+
 		let res = await fetch('/api/getQuestion', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ section: 'Math', focus: selectedSkillsArray })
+			body: JSON.stringify({ section: 'Math', focus: skillsArray })
 		});
-		questionData = await res.json();
+
+		data.question = await res.json();
+
+		await fetch('/api/log/saveLog', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				user: data.user,
+				section: 'Math',
+				focus: selection,
+				questionID: data.question._id
+			})
+		});
 		isLoading = false;
 	};
-	onMount(() => {
-		fetchQuestion();
-	});
 
-	const skills = {
-		Algebra: [
-			'Linear equations in one variable',
-			'Linear functions',
-			'Linear equations in two variables',
-			'System of two linear equations in two variables',
-			'Linear inequalities in one or two variables'
-		],
-		'Advanced Math': [
-			'Nonlinear functions',
-			'Nonlinear equations in one variable',
-			'Equivalent expressions'
-		],
-		'Problem-Solving and Data Analysis': [
-			'Ratios, rates, proportional relationships, and units',
-			'Percentages',
-			'One-variable data: Distributions and measures of center and spread',
-			'Two-variable data: Models and scatterplots',
-			'Probability and conditional probability',
-			'Inference from sample statistics and margin of error',
-			'Evaluating statistical claims: Observational studies and experiments'
-		],
-		'Geometry and Trigonometry': [
-			'Area and volume',
-			'Lines, angles, and triangles',
-			'Right triangles and trigonometry',
-			'Circles'
-		]
-	};
-
-	$: mathStats = data?.math;
-	$: mathLevel = getLevel(mathStats.experience);
+	$: mathStats = data?.user?.math;
+	$: mathLevel = getLevel(mathStats?.experience);
 
 	let domainStats, domainLevel;
 	let skillStats, skillLevel;
 
 	$: {
-		if (mathStats && questionData) {
-			domainStats = mathStats[questionData.domain];
+		if (mathStats && data.question) {
+			domainStats = mathStats[data.question.domain];
 			domainLevel = getLevel(domainStats.experience);
-			skillStats = mathStats[questionData.domain][questionData.skill];
+			skillStats = mathStats[data.question.domain][data.question.skill];
 			skillLevel = getLevel(skillStats.experience);
 		}
 	}
@@ -82,14 +68,14 @@
 			},
 			body: JSON.stringify({
 				section: 'Math',
-				user: data,
-				question: questionData,
+				user: data.user,
+				question: data.question,
 				selectedAnswer
 			})
 		});
 
 		let obj = await res.json();
-		data = obj.user;
+		data.user = obj.user;
 	};
 	$: {
 		if (showAnswer) {
@@ -99,39 +85,25 @@
 </script>
 
 <div class="m-4">
-	<div class="flex flex-row justify-between gap-4 m-4">
-		<div class="border border-black w-1/2">
-			<!-- <div>
-				Reading Level {readingLevel.level}
-				{readingLevel.currentXP} / {readingLevel.xpNeededToNext}
-			</div>
-			<div>
-				{questionData?.domain} Level {domainLevel?.level}
-				{domainLevel?.currentXP} / {domainLevel?.xpNeededToNext}
-			</div> -->
-			<div>
-				<div>
-					{questionData?.skill}
-				</div>
-				<div>
-					Level {skillLevel?.level}
-				</div>
-				<div>
-					{skillLevel?.currentXP} / {skillLevel?.xpNeededToNext}
-				</div>
-			</div>
+	<div class="flex flex-row justify-between gap-4 mb-2">
+		<div class="w-1/2">
+			<Leveling
+				name={data.question?.skill}
+				level={skillLevel?.level}
+				current={skillLevel?.currentXP}
+				total={skillLevel?.xpNeededToNext}
+			/>
 		</div>
-		<div class="w-1/2 border border-black">
-			<div>Math</div>
-			{#if selectedSkillsArray?.length == 1}
-				<div>Focus: {selectedSkillsArray[0]}</div>
-			{:else if selectedSkillsArray?.length === 19}
-				<div>All focuses selected</div>
-			{:else if selectedSkillsArray?.length > 1}
-				<div>{selectedSkillsArray.length} focuses selected</div>
-			{/if}
-
-			<a class="cursor-pointer" on:click={() => (showModal = true)}> Change Focus </a>
+		<div class="w-1/2">
+			<FocusDisplay {selection} bind:showModal />
+			<Focus
+				skills={MATH_SKILLS}
+				section={'Math'}
+				bind:showModal
+				bind:selection
+				bind:skillsArray
+				user={data.user}
+			/>
 		</div>
 	</div>
 	<div>
@@ -140,7 +112,12 @@
 				>Continue</button
 			>
 		{/if}
-		<Focus {skills} bind:showModal bind:selectedSkillsArray />
-		<Question data={questionData} bind:isLoading bind:showAnswer bind:selectedAnswer />
+		<Question
+			data={data.question}
+			user={data.user}
+			bind:isLoading
+			bind:showAnswer
+			bind:selectedAnswer
+		/>
 	</div>
 </div>

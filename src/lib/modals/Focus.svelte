@@ -8,6 +8,8 @@
 
 	export let skills;
 
+	export let section;
+
 	export let user;
 	export let selection;
 	export let skillsArray;
@@ -17,16 +19,6 @@
 		if (!showModal) unsavedSelection = selection;
 	}
 
-	// $: {
-	// 	if (selection === 'All') {
-	// 		skillsArray = [...READING_SKILL_LIST];
-	// 	} else if (READING_SKILLS[selection]) {
-	// 		skillsArray = READING_SKILLS[selection];
-	// 	} else {
-	// 		skillsArray = [selection];
-	// 	}
-	// }
-
 	const changeFocus = async () => {
 		selection = unsavedSelection;
 
@@ -35,7 +27,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ newFocus: selection, user })
+			body: JSON.stringify({ newFocus: selection, user, section })
 		});
 		invalidate('var');
 	};
@@ -61,10 +53,10 @@
 			>
 
 			<div class="m-8">
-				<p class="text-2xl">Change Reading Focus</p>
+				<p class="text-2xl">Change {section} Focus</p>
 
-				<input type="radio" bind:group={unsavedSelection} value={'All'} />
-				<label>All Reading Topics</label>
+				<input type="radio" bind:group={unsavedSelection} value={`All ${section} Topics`} />
+				<label>All {section} Topics</label>
 
 				{#each Object.keys(skills) as domain}
 					<div>

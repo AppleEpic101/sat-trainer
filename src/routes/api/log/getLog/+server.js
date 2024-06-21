@@ -1,11 +1,8 @@
 import { MongoClient, ObjectId } from "mongodb";
 import { MONGO_STRING } from "$env/static/private";
-import { getLevel, updateRating } from "$lib/question/rating";
 import { generateSkillsArray } from "$lib/util.js";
 
 const client = await MongoClient.connect(MONGO_STRING);
-const accounts = client.db("accounts");
-const users = accounts.collection("users");
 
 const questions = client.db("questions");
 const rw = questions.collection("rw");
@@ -16,17 +13,18 @@ export const POST = async ({request, fetch}) => {
     const { user, section } = res;
 
     let collection = section === "Reading" ? rw : math;
-    let focus = user.log.focus;
+    let focus = section === "Reading" ? user.log.readingFocus : user.log.mathFocus;
 
-    let skillsArray = generateSkillsArray(focus, "Reading");
-    if (focus === "All") {
-        focus = section.toLowerCase();
-    }
+    let skillsArray = generateSkillsArray(focus, section);
     
     let question;
+    console.log("FOCUS", user.log)
     if (user.log[focus].current) {
+        console.log("CURRENT QUESTION", user.log[focus].current)
         question = await collection.findOne({_id: new ObjectId(user.log[focus].current)});
+        console.log(question);
     } else {
+        console.log("NO CURRENT QUESTION")
         let questionRes = await fetch('/api/getQuestion', {
             method: 'POST',
             headers: {
@@ -35,6 +33,7 @@ export const POST = async ({request, fetch}) => {
             body: JSON.stringify({ section, focus: skillsArray })
         });
         question = await questionRes.json();
+        console.log(question)
     
         await fetch("/api/log/saveLog", {
             method: "POST",

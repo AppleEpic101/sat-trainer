@@ -4,14 +4,16 @@
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
 	import { getLevel, gainXP } from '$lib/question/rating.js';
-	import { generateSkillsArray } from '$lib/util.js';
+	import { READING_SKILLS, generateSkillsArray } from '$lib/util.js';
 
 	export let data;
 
 	let showModal = false;
 
-	$: selection = data?.user.log.focus;
-	$: skillsArray = generateSkillsArray(data.user.log.focus, 'Reading');
+	$: selection = data?.user.log.readingFocus;
+	$: skillsArray = generateSkillsArray(data.user.log.readingFocus, 'Reading');
+
+	$: console.log(data);
 
 	let isLoading = false;
 	let showAnswer, selectedAnswer;
@@ -42,17 +44,6 @@
 			})
 		});
 		isLoading = false;
-	};
-
-	const skills = {
-		'Information and Ideas': ['Central Ideas and Details', 'Inferences', 'Command of Evidence'],
-		'Craft and Structure': [
-			'Words in Context',
-			'Text Structure and Purpose',
-			'Cross-Text Connections'
-		],
-		'Expression of Ideas': ['Rhetorical Synthesis', 'Transitions'],
-		'Standard English Conventions': ['Boundaries', 'Form, Structure, and Sense']
 	};
 
 	$: readingStats = data?.user?.reading;
@@ -106,7 +97,14 @@
 		</div>
 		<div class="w-1/2">
 			<FocusDisplay {selection} bind:showModal />
-			<Focus {skills} bind:showModal bind:selection bind:skillsArray user={data.user} />
+			<Focus
+				skills={READING_SKILLS}
+				section={'Reading'}
+				bind:showModal
+				bind:selection
+				bind:skillsArray
+				user={data.user}
+			/>
 		</div>
 	</div>
 	<div>

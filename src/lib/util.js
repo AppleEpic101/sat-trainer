@@ -4,7 +4,7 @@ export const generateSkillsArray = (focus, section) => {
     const SKILLS = section === 'Reading' ? READING_SKILLS : MATH_SKILLS;
     const SKILL_LIST = section === 'Reading' ? READING_SKILL_LIST : MATH_SKILL_LIST;
 
-    if (focus === 'All') {
+    if (focus === 'All Reading Topics' || focus === 'All Math Topics') {
        return [...SKILL_LIST];
     } else if (SKILLS[focus]) {
         return SKILLS[focus];
@@ -55,10 +55,10 @@ export const MATH_SKILL_LIST = [
     'Linear equations in one variable',
     'Linear functions',
     'Linear equations in two variables',
-    'System of two linear equations in two variables',
+    'Systems of two linear equations in two variables',
     'Linear inequalities in one or two variables',
     'Nonlinear functions',
-    'Nonlinear equations in one variable',
+    'Nonlinear equations in one variable and systems of equations in two variables',
     'Equivalent expressions',
     'Ratios, rates, proportional relationships, and units',
     'Percentages',
@@ -78,12 +78,12 @@ export const MATH_SKILLS = {
         'Linear equations in one variable',
         'Linear functions',
         'Linear equations in two variables',
-        'System of two linear equations in two variables',
+        'Systems of two linear equations in two variables',
         'Linear inequalities in one or two variables'
     ],
     'Advanced Math': [
         'Nonlinear functions',
-        'Nonlinear equations in one variable',
+        'Nonlinear equations in one variable and systems of equations in two variables',
         'Equivalent expressions'
     ],
     'Problem-Solving and Data Analysis': [
