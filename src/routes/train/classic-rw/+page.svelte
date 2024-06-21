@@ -100,7 +100,7 @@
 				<div>{selectedSkillsArray.length} focuses selected</div>
 			{/if}
 			<a class="cursor-pointer" on:click={() => (showModal = true)}> Change Focus </a>
-			<Focus {skills} bind:showModal bind:selectedSkillsArray />
+			<Focus {skills} bind:showModal bind:skillsArray={selectedSkillsArray} />
 		</div>
 	</div>
 	<div>

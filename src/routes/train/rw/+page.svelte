@@ -49,7 +49,7 @@
 
 <div class="mx-24 my-4">
 	<div class="">
-		<Tags bind:tags={q} />
+		<Tags bind:tags={q} section={'Reading'} />
 
 		<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
 			>New Question
