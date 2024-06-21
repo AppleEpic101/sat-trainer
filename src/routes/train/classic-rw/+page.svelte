@@ -8,7 +8,9 @@
 	export let data;
 
 	let showModal = false;
-	let selectedSkillsArray;
+
+	let selection = data.log.focus;
+	let skillsArray;
 
 	let questionData;
 	let isLoading = true;
@@ -21,7 +23,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ section: 'Reading', focus: selectedSkillsArray })
+			body: JSON.stringify({ section: 'Reading', focus: skillsArray })
 		});
 		questionData = await res.json();
 		isLoading = false;
@@ -92,15 +94,15 @@
 		</div>
 		<div class="w-1/2 border border-black">
 			<div>Reading</div>
-			{#if selectedSkillsArray?.length == 1}
-				<div>Focus: {selectedSkillsArray[0]}</div>
-			{:else if selectedSkillsArray?.length === 10}
+			{#if skillsArray?.length == 1}
+				<div>Focus: {skillsArray[0]}</div>
+			{:else if skillsArray?.length === 10}
 				<div>All focuses selected</div>
-			{:else if selectedSkillsArray?.length > 1}
-				<div>{selectedSkillsArray.length} focuses selected</div>
+			{:else if skillsArray?.length > 1}
+				<div>{skillsArray.length} focuses selected</div>
 			{/if}
-			<a class="cursor-pointer" on:click={() => (showModal = true)}> Change Focus </a>
-			<Focus {skills} bind:showModal bind:skillsArray={selectedSkillsArray} />
+			<div class="cursor-pointer" on:click={() => (showModal = true)}>Change Focus</div>
+			<Focus {skills} bind:showModal bind:selection bind:skillsArray user={data} />
 		</div>
 	</div>
 	<div>
