@@ -1,5 +1,6 @@
 <script>
 	import Leveling from '$lib/components/Leveling.svelte';
+	import FocusDisplay from '$lib/components/FocusDisplay.svelte';
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
 	import { getLevel, gainXP } from '$lib/question/rating.js';
@@ -103,10 +104,8 @@
 				total={skillLevel?.xpNeededToNext}
 			/>
 		</div>
-		<div class="w-1/2 border border-black">
-			<div>Reading</div>
-			<div>Focus: {selection}</div>
-			<div class="cursor-pointer" on:click={() => (showModal = true)}>Change Focus</div>
+		<div class="w-1/2">
+			<FocusDisplay {selection} bind:showModal />
 			<Focus {skills} bind:showModal bind:selection bind:skillsArray user={data.user} />
 		</div>
 	</div>
