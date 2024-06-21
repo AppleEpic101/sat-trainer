@@ -13,8 +13,6 @@
 		showAnswer = true;
 		hideSubmit = true;
 	};
-
-	$: console.log(lockedAnswers);
 </script>
 
 {#each data.question.answerOptions as answerOption, i}

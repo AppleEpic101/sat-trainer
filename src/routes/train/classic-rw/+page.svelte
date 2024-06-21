@@ -3,20 +3,21 @@
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
 	import { getLevel, gainXP } from '$lib/question/rating.js';
+	import { generateSkillsArray } from '$lib/util.js';
 
 	export let data;
 
 	let showModal = false;
 
-	$: selection = data.log.focus;
-	let skillsArray;
+	$: selection = data?.user.log.focus;
+	$: skillsArray = generateSkillsArray(data.user.log.focus, 'Reading');
 
-	$: questionData = data.question;
 	let isLoading = false;
 	let showAnswer, selectedAnswer;
 
 	const fetchQuestion = async () => {
 		isLoading = true;
+
 		let res = await fetch('/api/getQuestion', {
 			method: 'POST',
 			headers: {
@@ -25,7 +26,7 @@
 			body: JSON.stringify({ section: 'Reading', focus: skillsArray })
 		});
 
-		questionData = await res.json();
+		data.question = await res.json();
 
 		await fetch('/api/log/saveLog', {
 			method: 'POST',
@@ -33,10 +34,10 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				user: data,
+				user: data.user,
 				section: 'Reading',
 				focus: selection,
-				questionID: questionData._id
+				questionID: data.question._id
 			})
 		});
 		isLoading = false;
@@ -53,17 +54,17 @@
 		'Standard English Conventions': ['Boundaries', 'Form, Structure, and Sense']
 	};
 
-	$: readingStats = data?.reading;
-	$: readingLevel = getLevel(readingStats.experience);
+	$: readingStats = data?.user?.reading;
+	$: readingLevel = getLevel(readingStats?.experience);
 
 	let domainStats, domainLevel;
 	let skillStats, skillLevel;
 
 	$: {
-		if (readingStats && questionData) {
-			domainStats = readingStats[questionData.domain];
+		if (readingStats && data.question) {
+			domainStats = readingStats[data.question.domain];
 			domainLevel = getLevel(domainStats.experience);
-			skillStats = readingStats[questionData.domain][questionData.skill];
+			skillStats = readingStats[data.question.domain][data.question.skill];
 			skillLevel = getLevel(skillStats.experience);
 		}
 	}
@@ -76,14 +77,14 @@
 			},
 			body: JSON.stringify({
 				section: 'Reading',
-				user: data,
-				question: questionData,
+				user: data.user,
+				question: data.question,
 				selectedAnswer
 			})
 		});
 
 		let obj = await res.json();
-		data = obj.user;
+		data.user = obj.user;
 	};
 	$: {
 		if (showAnswer) {
@@ -96,7 +97,7 @@
 	<div class="flex flex-row justify-between gap-4 mb-2">
 		<div class="w-1/2">
 			<Leveling
-				name={questionData?.skill}
+				name={data.question?.skill}
 				level={skillLevel?.level}
 				current={skillLevel?.currentXP}
 				total={skillLevel?.xpNeededToNext}
@@ -104,15 +105,9 @@
 		</div>
 		<div class="w-1/2 border border-black">
 			<div>Reading</div>
-			{#if skillsArray?.length == 1}
-				<div>Focus: {skillsArray[0]}</div>
-			{:else if skillsArray?.length === 10}
-				<div>All focuses selected</div>
-			{:else if skillsArray?.length > 1}
-				<div>{skillsArray.length} focuses selected</div>
-			{/if}
+			<div>Focus: {selection}</div>
 			<div class="cursor-pointer" on:click={() => (showModal = true)}>Change Focus</div>
-			<Focus {skills} bind:showModal bind:selection bind:skillsArray user={data} />
+			<Focus {skills} bind:showModal bind:selection bind:skillsArray user={data.user} />
 		</div>
 	</div>
 	<div>
@@ -121,6 +116,12 @@
 				>Continue</button
 			>
 		{/if}
-		<Question data={questionData} user={data} bind:isLoading bind:showAnswer bind:selectedAnswer />
+		<Question
+			data={data.question}
+			user={data.user}
+			bind:isLoading
+			bind:showAnswer
+			bind:selectedAnswer
+		/>
 	</div>
 </div>

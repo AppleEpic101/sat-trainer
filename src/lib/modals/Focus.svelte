@@ -17,26 +17,27 @@
 		if (!showModal) unsavedSelection = selection;
 	}
 
-	$: {
-		if (selection === 'All') {
-			skillsArray = [...READING_SKILL_LIST];
-		} else if (READING_SKILLS[selection]) {
-			skillsArray = READING_SKILLS[selection];
-		} else {
-			skillsArray = [selection];
-		}
-	}
+	// $: {
+	// 	if (selection === 'All') {
+	// 		skillsArray = [...READING_SKILL_LIST];
+	// 	} else if (READING_SKILLS[selection]) {
+	// 		skillsArray = READING_SKILLS[selection];
+	// 	} else {
+	// 		skillsArray = [selection];
+	// 	}
+	// }
 
 	const changeFocus = async () => {
 		selection = unsavedSelection;
-		const res = await fetch('/api/changeFocus', {
+
+		await fetch('/api/changeFocus', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ newFocus: selection, user })
 		});
-		invalidate('var', false);
+		invalidate('var');
 	};
 </script>
 
@@ -85,8 +86,8 @@
 			<button
 				class="bg-cyan-500 text-white p-2 rounded-md"
 				on:click={() => {
-					showModal = false;
 					changeFocus();
+					showModal = false;
 				}}
 			>
 				Save

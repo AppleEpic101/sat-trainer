@@ -7,7 +7,7 @@
 	// console.log('DEEZ', data);
 </script>
 
-<Nav cookies={data} />
+<Nav cookies={data.user} />
 
 <main class="min-h-screen">
 	<slot />

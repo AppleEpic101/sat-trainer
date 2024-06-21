@@ -7,6 +7,8 @@
 	export let isLoading;
 	export let data;
 
+	$: console.log(data.id.SAT);
+
 	export let showAnswer;
 	export let selectedAnswer;
 

@@ -13,7 +13,11 @@ export const load = async ({fetch, depends}) => {
     });
 
     const data = await res.json();
-
-    return data;
+    
+    console.log("SERVER QUESTION", data.question.id.SAT)
+    return {
+        user,
+        question: data.question,
+    };
     
 }
