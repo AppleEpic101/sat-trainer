@@ -1,5 +1,6 @@
 <script>
 	import { READING_SKILLS, READING_SKILL_LIST, MATH_SKILLS, MATH_SKILL_LIST } from '$lib/util.js';
+	import { invalidate } from '$app/navigation';
 	export let showModal; // boolean
 
 	let dialog;
@@ -9,7 +10,7 @@
 
 	export let user;
 	export let selection;
-	export let skillsArray = [];
+	export let skillsArray;
 
 	let unsavedSelection = selection;
 	$: {
@@ -35,6 +36,7 @@
 			},
 			body: JSON.stringify({ newFocus: selection, user })
 		});
+		invalidate('var', false);
 	};
 </script>
 

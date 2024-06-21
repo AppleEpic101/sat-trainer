@@ -1,4 +1,6 @@
-export const load = async ({fetch}) => {
+export const load = async ({fetch, depends}) => {
+    depends("var");
+
     const userRes = await fetch("/api/user");
     const user = await userRes.json();
 

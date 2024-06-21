@@ -1,5 +1,4 @@
 <script>
-	import { onMount } from 'svelte';
 	import Leveling from '$lib/components/Leveling.svelte';
 	import Focus from '$lib/modals/Focus.svelte';
 	import Question from '$lib/components/Question.svelte';
@@ -9,10 +8,10 @@
 
 	let showModal = false;
 
-	let selection = data.log.focus;
+	$: selection = data.log.focus;
 	let skillsArray;
 
-	let questionData = data.question;
+	$: questionData = data.question;
 	let isLoading = false;
 	let showAnswer, selectedAnswer;
 
@@ -40,7 +39,6 @@
 				questionID: questionData._id
 			})
 		});
-
 		isLoading = false;
 	};
 
