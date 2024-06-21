@@ -6,10 +6,11 @@
 	export let selectedAnswer = '';
 
 	let hideSubmit = false;
-	let lockedAnswers = [];
+
+	let correctAnswerIndex = data.question.correctAnswer.charCodeAt(0) - 'A'.charCodeAt(0);
+	$: selectedAnswerIndex = selectedAnswer.charCodeAt(0) - 'A'.charCodeAt(0);
+
 	const submit = () => {
-		let index = selectedAnswer.charCodeAt(0) - 'A'.charCodeAt(0);
-		lockedAnswers = data.question.answerOptions.map((_, i) => i).filter((i) => i !== index);
 		showAnswer = true;
 		hideSubmit = true;
 	};
@@ -22,11 +23,21 @@
 			name="r"
 			bind:group={selectedAnswer}
 			value={String.fromCharCode('A'.charCodeAt(0) + i)}
-			disabled={lockedAnswers.includes(i)}
+			disabled={showAnswer}
 			class="hidden"
 		/>
 		<div
-			class="flex items-center justify-start border-2 border-black rounded-lg min-h-16 my-2 p-1 hover:cursor-pointer"
+			class={`flex items-center justify-start border-2 rounded-lg min-h-16 my-2 p-1 hover:cursor-pointer ${
+				showAnswer
+					? correctAnswerIndex === i
+						? 'correct'
+						: selectedAnswerIndex === i && selectedAnswerIndex !== correctAnswerIndex
+							? 'incorrect'
+							: 'disabled'
+					: selectedAnswerIndex === i
+						? 'selected'
+						: 'normal'
+			}`}
 		>
 			<span class="self-center text-lg font-bold mx-2"
 				>{String.fromCharCode('A'.charCodeAt(0) + i)}
@@ -47,11 +58,23 @@
 		@apply bg-teal-400;
 	}
 
-	input[type='radio']:checked + div {
-		@apply border-teal-400 text-teal-400 shadow-md;
+	.correct {
+		@apply border-green-400 text-green-400;
 	}
 
-	input[type='radio']:disabled + div {
-		@apply border-gray-400 text-gray-400;
+	.incorrect {
+		@apply border-red-400 text-red-400;
+	}
+
+	.selected {
+		@apply border-teal-400 text-teal-400;
+	}
+
+	.disabled {
+		@apply border-gray-400 text-gray-400 shadow-md;
+	}
+
+	.normal {
+		@apply border-black text-black;
 	}
 </style>
