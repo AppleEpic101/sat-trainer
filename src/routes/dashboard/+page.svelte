@@ -1,11 +1,11 @@
 <script>
 	export let data;
 
-	const { stats, reading, math } = data.user;
+	const { stats, reading, math, username } = data.user;
 </script>
 
 <div class="bg-slate-300 border-black m-8 p-4">
-	<div class="text-4xl font-bold">Welcome {data.username}!</div>
+	<div class="text-4xl font-bold">Welcome {username}!</div>
 	<div class="text-2xl mt-4">General Stats</div>
 	<div class="flex flex-col ml-4">
 		<div>Rating: {stats.rating}</div>
