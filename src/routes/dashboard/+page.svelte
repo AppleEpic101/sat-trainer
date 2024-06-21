@@ -1,7 +1,7 @@
 <script>
 	export let data;
 
-	const { stats, reading, math } = data;
+	const { stats, reading, math } = data.user;
 </script>
 
 <div class="bg-slate-300 border-black m-8 p-4">
