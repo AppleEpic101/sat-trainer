@@ -33,10 +33,10 @@
 			class="px-4 py-2 bg-cyan-500 border-black border-x-2 border-t-2 flex flex-start justify-between"
 		>
 			<div>
-				ID: {data.id.SAT}
+				ID: {data?.id?.SAT}
 			</div>
 			<div>
-				{data.skill}
+				{data?.skill}
 			</div>
 		</div>
 
@@ -64,15 +64,15 @@
 						Your Answer: {selectedAnswer}
 					</div>
 					<div>
-						Correct Answer: {data.question.correctAnswer}
+						Correct Answer: {data?.question?.correctAnswer}
 					</div>
 					<div>
 						{#if data.questionType === 'spr'}
 							<div>
-								{@html format(data.question.rationale)}
+								{@html format(data?.question?.rationale)}
 							</div>
 						{:else}
-							{#each data.question.rationale as item}
+							{#each data?.question?.rationale as item}
 								<div>
 									{@html format(item)}
 								</div>

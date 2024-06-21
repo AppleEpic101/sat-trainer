@@ -1,5 +1,18 @@
 export const blacklist = { projection: { password: 0, email: 0, settings: 0, isAdmin: 0 }};
 
+export const generateSkillsArray = (focus, section) => {
+    const SKILLS = section === 'Reading' ? READING_SKILLS : MATH_SKILLS;
+    const SKILL_LIST = section === 'Reading' ? READING_SKILL_LIST : MATH_SKILL_LIST;
+
+    if (focus === 'All') {
+       return [...SKILL_LIST];
+    } else if (SKILLS[focus]) {
+        return SKILLS[focus];
+    } else {
+        return [focus];
+    }
+}
+
 export const READING_SKILLS = {
     'Information and Ideas': ['Central Ideas and Details', 'Inferences', 'Command of Evidence'],
     'Craft and Structure': [

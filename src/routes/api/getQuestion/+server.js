@@ -13,10 +13,10 @@ export const POST = async ({request}) => {
 
     let collection = section === "Reading" ? rw : math;
 
-    console.log(section);
+    // console.log(section);
     // let data = await collection.findOne({ skill: { $in: focus }})
     let data = await collection.aggregate([{ $match: { skill: { $in: focus }} }, { $sample: { size: 1 } }]).toArray();
 
-    console.log(data);
+    // console.log(data);
     return new Response(JSON.stringify(data[0]), { status: 201 });
 }

@@ -12,8 +12,8 @@
 	let selection = data.log.focus;
 	let skillsArray;
 
-	let questionData;
-	let isLoading = true;
+	let questionData = data.question;
+	let isLoading = false;
 	let showAnswer, selectedAnswer;
 
 	const fetchQuestion = async () => {
@@ -25,12 +25,24 @@
 			},
 			body: JSON.stringify({ section: 'Reading', focus: skillsArray })
 		});
+
 		questionData = await res.json();
+
+		await fetch('/api/log/saveLog', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				user: data,
+				section: 'Reading',
+				focus: selection,
+				questionID: questionData._id
+			})
+		});
+
 		isLoading = false;
 	};
-	onMount(() => {
-		fetchQuestion();
-	});
 
 	const skills = {
 		'Information and Ideas': ['Central Ideas and Details', 'Inferences', 'Command of Evidence'],
