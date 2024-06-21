@@ -11,6 +11,11 @@
 	export let selection;
 	export let skillsArray = [];
 
+	let unsavedSelection = selection;
+	$: {
+		if (!showModal) unsavedSelection = selection;
+	}
+
 	$: {
 		if (selection === 'All') {
 			skillsArray = [...READING_SKILL_LIST];
@@ -22,6 +27,7 @@
 	}
 
 	const changeFocus = async () => {
+		selection = unsavedSelection;
 		const res = await fetch('/api/changeFocus', {
 			method: 'POST',
 			headers: {
@@ -37,29 +43,35 @@
 	<dialog
 		class="m-auto block w-full max-w-md p-6 bg-white rounded-md shadow-lg overflow-scroll"
 		bind:this={dialog}
-		on:close={() => (showModal = false)}
+		on:close={() => {
+			showModal = false;
+		}}
 		on:click|self={() => dialog.close()}
 	>
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div class="flex flex-col items-center" on:click|stopPropagation>
 			<!-- svelte-ignore a11y-autofocus -->
-			<button autofocus on:click={() => dialog.close()}>Close</button>
+			<button
+				class="bg-cyan-500 text-white p-2 rounded-md"
+				autofocus
+				on:click={() => dialog.close()}>Close</button
+			>
 
 			<div class="m-8">
 				<p class="text-2xl">Change Reading Focus</p>
 
-				<input type="radio" bind:group={selection} value={'All'} />
+				<input type="radio" bind:group={unsavedSelection} value={'All'} />
 				<label>All Reading Topics</label>
 
 				{#each Object.keys(skills) as domain}
 					<div>
-						<input type="radio" bind:group={selection} value={domain} />
+						<input type="radio" bind:group={unsavedSelection} value={domain} />
 						<label>{domain}</label>
 
 						<div class="ml-4">
 							{#each skills[domain] as skill}
 								<div>
-									<input type="radio" bind:group={selection} value={skill} />
+									<input type="radio" bind:group={unsavedSelection} value={skill} />
 									<label>{skill}</label>
 								</div>
 							{/each}
