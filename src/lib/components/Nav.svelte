@@ -55,8 +55,8 @@
 		</Dropdown>
 	{:else}
 		<div class="flex flex-row gap-8">
-			<div class="text-lg font-semibold">Login</div>
-			<div class="text-lg font-semibold">Register</div>
+			<a href="/login" class="text-lg font-semibold">Login</a>
+			<a href="/register" class="text-lg font-semibold">Register</a>
 		</div>
 	{/if}
 </nav>
