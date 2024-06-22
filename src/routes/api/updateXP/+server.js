@@ -32,10 +32,11 @@ export const POST = async ({request}) => {
             [`log.All ${question.section} Topics.stats.correct`]: user.log[`All ${question.section} Topics`].stats.correct + 1,
             [`log.All ${question.section} Topics.stats.experience`]: user.log[`All ${question.section} Topics`].stats.experience + gainXP(user.log[`All ${question.section} Topics`].stats.correct / (user.log[`All ${question.section} Topics`].stats.correct + user.log[`All ${question.section} Topics`].stats.incorrect), question.difficulty, isCorrect, 1),
 
+            
             [`log.${question.domain}.stats.correct`]: user.log[question.domain].stats.correct + 1,
             [`log.${question.domain}.stats.experience`]: user.log[question.domain].stats.experience + gainXP(user.log[question.domain].stats.correct / (user.log[question.domain].stats.correct + user.log[question.domain].stats.incorrect), question.difficulty, isCorrect, 1),
 
-            [`log.${question.skill}.stats.correct`]: user.log[question.skill].correct + 1,
+            [`log.${question.skill}.stats.correct`]: user.log[question.skill].stats.correct + 1,
             [`log.${question.skill}.stats.experience`]: user.log[question.skill].stats.experience + gainXP(user.log[question.skill].stats.correct / (user.log[question.skill].stats.correct + user.log[question.skill].stats.incorrect), question.difficulty, isCorrect, 1),
         }});
     } else {
