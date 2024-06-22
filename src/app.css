@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.rawdog ul {
+
+.rawdog {
+    list-style: disc outside none;
+    padding-left: 1em;
+}
+
+.rawdog ul, .rawdog ol {
     list-style: inherit;
     margin-left: 15px;
 }

@@ -1,4 +1,5 @@
 <script>
+	import { mathjax } from '$lib/mathjax.js';
 	export let data;
 	import MCQ from '$lib/components/MCQ.svelte';
 	import SPR from '$lib/components/SPR.svelte';
@@ -40,7 +41,7 @@
 		</div>
 
 		<div class="border-black border-2">
-			<div class="flex flex-start">
+			<div class="flex flex-start" use:mathjax>
 				<div class="basis-1/2 p-4">
 					<div class="rawdog">
 						{@html data.question.stimulus || ''}
@@ -58,7 +59,7 @@
 				</div>
 			</div>
 			{#if showAnswer}
-				<div class="p-8 mx-5 mb-5 bg-slate-300">
+				<div class="p-8 mx-5 mb-5 bg-slate-300" use:mathjax>
 					<div>
 						Your Answer: {selectedAnswer}
 					</div>
@@ -127,6 +128,19 @@
 		justify-content: center;
 		align-items: center;
 	}
+
+	:global(.table th, .table td) {
+		border: 1px solid black;
+		padding: 4px;
+		white-space: nowrap;
+	}
+
+	:global(table th, table td) {
+		border: 1px solid black;
+		padding: 4px;
+		white-space: nowrap;
+	}
+
 	:global(.gdr th, .gdr td) {
 		text-align: center;
 		border: 1px solid black;

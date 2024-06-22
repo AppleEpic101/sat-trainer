@@ -7,6 +7,7 @@
 	import { MATH_SKILLS, generateSkillsArray } from '$lib/util.js';
 
 	export let data;
+	$: console.log(data.question);
 
 	let showModal = false;
 

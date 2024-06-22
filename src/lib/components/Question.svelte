@@ -28,7 +28,7 @@
 		<Spinner color="gray" size={8} />
 	</div>
 {:else}
-	<div class="" use:mathjax>
+	<div class="">
 		<div
 			class="px-4 py-2 bg-cyan-500 border-black border-x-2 border-t-2 flex flex-start justify-between"
 		>
@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="border-black border-2">
-			<div class="flex flex-start">
+			<div class="flex flex-start" use:mathjax>
 				<div class="basis-1/2 p-4">
 					<div class="rawdog">
 						{@html data.question.stimulus || ''}
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			{#if showAnswer}
-				<div class="p-8 mx-5 mb-5 bg-slate-300">
+				<div class="p-8 mx-5 mb-5 bg-slate-300" use:mathjax>
 					<div>
 						Your Answer: {selectedAnswer}
 					</div>
@@ -126,6 +126,19 @@
 		justify-content: center;
 		align-items: center;
 	}
+
+	:global(.table th, .table td) {
+		border: 1px solid black;
+		padding: 4px;
+		white-space: nowrap;
+	}
+
+	:global(table th, table td) {
+		border: 1px solid black;
+		padding: 4px;
+		white-space: nowrap;
+	}
+
 	:global(.gdr th, .gdr td) {
 		text-align: center;
 		border: 1px solid black;
