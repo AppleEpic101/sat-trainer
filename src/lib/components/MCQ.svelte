@@ -1,5 +1,4 @@
 <script>
-	import { format } from '$lib/parser.js';
 	export let data;
 
 	export let showAnswer;
@@ -42,7 +41,7 @@
 			<span class="self-center text-lg font-bold mx-2"
 				>{String.fromCharCode('A'.charCodeAt(0) + i)}
 			</span>
-			<span class="self-center text-md">{@html format(answerOption)} </span>
+			<span class="self-center text-md">{@html answerOption} </span>
 		</div>
 	</label>
 {/each}

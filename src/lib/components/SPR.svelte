@@ -1,6 +1,4 @@
 <script>
-	import { format } from '$lib/parser.js';
-
 	export let showAnswer = false;
 	export let selectedAnswer = '';
 </script>

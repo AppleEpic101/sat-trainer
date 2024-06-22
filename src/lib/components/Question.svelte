@@ -3,7 +3,6 @@
 	import MCQ from '$lib/components/MCQ.svelte';
 	import SPR from '$lib/components/SPR.svelte';
 	import { Spinner } from 'flowbite-svelte';
-	import { format } from '$lib/parser.js';
 
 	export let isLoading;
 	export let data;
@@ -45,12 +44,12 @@
 			<div class="flex flex-start">
 				<div class="basis-1/2 p-4">
 					<div class="rawdog">
-						{@html format(data.question.stimulus || '')}
+						{@html data.question.stimulus || ''}
 					</div>
 				</div>
 
 				<div class="basis-1/2 p-4">
-					{@html format(data.question.stem || '')}
+					{@html data.question.stem || ''}
 
 					{#if data.questionType === 'spr'}
 						<SPR bind:showAnswer bind:selectedAnswer />
@@ -70,12 +69,12 @@
 					<div>
 						{#if data.questionType === 'spr'}
 							<div class="rawdog">
-								{@html format(data?.question?.rationale)}
+								{@html data?.question?.rationale}
 							</div>
 						{:else}
 							{#each data?.question?.rationale as item}
 								<div class="rawdog">
-									{@html format(item)}
+									{@html item}
 								</div>
 							{/each}
 						{/if}
