@@ -5,7 +5,6 @@
 	import { Spinner } from 'flowbite-svelte';
 	import { format } from '$lib/parser.js';
 
-	export let user;
 	export let isLoading;
 
 	let showAnswer, selectedAnswer;
@@ -14,22 +13,6 @@
 		if (isLoading) {
 			showAnswer = false;
 			selectedAnswer = '';
-		}
-	}
-
-	$: {
-		if (showAnswer) {
-			const res = fetch('/api/updateStats', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					question: data,
-					user,
-					selectedAnswer
-				})
-			});
 		}
 	}
 </script>

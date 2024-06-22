@@ -68,12 +68,12 @@
 					</div>
 					<div>
 						{#if data.questionType === 'spr'}
-							<div>
+							<div class="rawdog">
 								{@html format(data?.question?.rationale)}
 							</div>
 						{:else}
 							{#each data?.question?.rationale as item}
-								<div>
+								<div class="rawdog">
 									{@html format(item)}
 								</div>
 							{/each}
@@ -84,3 +84,51 @@
 		</div>
 	</div>
 {/if}
+
+<style>
+	:global(.sr-only) {
+		display: none;
+	}
+
+	:global(svg) {
+		display: block;
+		margin: 0 auto;
+	}
+
+	:global(.standalone_image img, .standalone_statement img) {
+		display: block;
+		margin: 0 auto;
+	}
+
+	:global(.image-options-wrapper img) {
+		display: block;
+		margin: 0 auto 20px auto;
+	}
+
+	:global(.table_WithBorder, .tableWithBorder) {
+		border-collapse: collapse;
+		text-align: center;
+	}
+	:global(
+			.table_WithBorder,
+			.table_WithBorder th,
+			.table_WithBorder td,
+			.tableWithBorder,
+			.tableWithBorder th,
+			.tableWithBorder td
+		) {
+		border: 1px solid black;
+		padding: 4px;
+	}
+
+	:global(.table) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	:global(.gdr th, .gdr td) {
+		text-align: center;
+		border: 1px solid black;
+		padding: 4px;
+	}
+</style>

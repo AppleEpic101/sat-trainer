@@ -59,5 +59,5 @@
 		</button>
 	</div>
 
-	<NewQuestion {isLoading} user={data} data={document} />
+	<NewQuestion {isLoading} data={document} />
 </div>
