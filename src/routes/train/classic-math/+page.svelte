@@ -44,20 +44,14 @@
 		isLoading = false;
 	};
 
-	$: mathStats = data?.user?.math;
+	$: mathStats = data.user?.log['All Math Topics'].stats;
 	$: mathLevel = getLevel(mathStats?.experience);
 
-	let domainStats, domainLevel;
-	let skillStats, skillLevel;
+	$: domainStats = data.user?.log[data.question.domain].stats;
+	$: domainLevel = getLevel(domainStats?.experience);
 
-	$: {
-		if (mathStats && data.question) {
-			domainStats = mathStats[data.question.domain];
-			domainLevel = getLevel(domainStats.experience);
-			skillStats = mathStats[data.question.domain][data.question.skill];
-			skillLevel = getLevel(skillStats.experience);
-		}
-	}
+	$: skillStats = data.user?.log[data.question.skill].stats;
+	$: skillLevel = getLevel(skillStats?.experience);
 
 	const update = async () => {
 		const res = await fetch('/api/updateXP', {
