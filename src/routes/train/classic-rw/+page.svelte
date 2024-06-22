@@ -13,8 +13,6 @@
 	$: selection = data?.user.log.readingFocus;
 	$: skillsArray = generateSkillsArray(data.user.log.readingFocus, 'Reading');
 
-	$: console.log(data);
-
 	let isLoading = false;
 	let showAnswer, selectedAnswer;
 

@@ -18,13 +18,9 @@ export const POST = async ({request, fetch}) => {
     let skillsArray = generateSkillsArray(focus, section);
     
     let question;
-    console.log("FOCUS", user.log)
     if (user.log[focus].current) {
-        console.log("CURRENT QUESTION", user.log[focus].current)
         question = await collection.findOne({_id: new ObjectId(user.log[focus].current)});
-        console.log(question);
     } else {
-        console.log("NO CURRENT QUESTION")
         let questionRes = await fetch('/api/getQuestion', {
             method: 'POST',
             headers: {
@@ -33,7 +29,6 @@ export const POST = async ({request, fetch}) => {
             body: JSON.stringify({ section, focus: skillsArray })
         });
         question = await questionRes.json();
-        console.log(question)
     
         await fetch("/api/log/saveLog", {
             method: "POST",
