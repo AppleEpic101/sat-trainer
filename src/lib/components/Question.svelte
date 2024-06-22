@@ -1,4 +1,5 @@
 <script>
+	import { mathjax } from '$lib/mathjax.js';
 	import MCQ from '$lib/components/MCQ.svelte';
 	import SPR from '$lib/components/SPR.svelte';
 	import { Spinner } from 'flowbite-svelte';
@@ -28,7 +29,7 @@
 		<Spinner color="gray" size={8} />
 	</div>
 {:else}
-	<div class="">
+	<div class="" use:mathjax>
 		<div
 			class="px-4 py-2 bg-cyan-500 border-black border-x-2 border-t-2 flex flex-start justify-between"
 		>
