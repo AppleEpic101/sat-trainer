@@ -29,14 +29,14 @@ export const POST = async ({request}) => {
             "stats.correct": user.stats.correct + 1,
             "stats.experience": user.stats.experience + gainXP(user.stats.correct / (user.stats.correct + user.stats.incorrect), question.difficulty, isCorrect, 1),
 
-            [userCollection + ".correct"]: user[userCollection].correct + 1,
-            [userCollection + ".experience"]: user[userCollection].experience + gainXP(user[userCollection].correct / (user[userCollection].correct + user[userCollection].incorrect), question.difficulty, isCorrect, 1),
+            [`log.All ${question.section} Topics.stats.correct`]: user.log[`All ${question.section} Topics`].stats.correct + 1,
+            [`log.All ${question.section} Topics.stats.experience`]: user.log[`All ${question.section} Topics`].stats.experience + gainXP(user.log[`All ${question.section} Topics`].stats.correct / (user.log[`All ${question.section} Topics`].stats.correct + user.log[`All ${question.section} Topics`].stats.incorrect), question.difficulty, isCorrect, 1),
 
-            [userCollection + "."  + question.domain + ".correct"]: user[userCollection][question.domain].correct + 1,
-            [userCollection + "." + question.domain + ".experience"]: user[userCollection][question.domain].experience + gainXP(user[userCollection][question.domain].correct / (user[userCollection][question.domain].correct + user[userCollection][question.domain].incorrect), question.difficulty, isCorrect, 1),
+            [`log.${question.domain}.stats.correct`]: user.log[question.domain].stats.correct + 1,
+            [`log.${question.domain}.stats.experience`]: user.log[question.domain].stats.experience + gainXP(user.log[question.domain].stats.correct / (user.log[question.domain].stats.correct + user.log[question.domain].stats.incorrect), question.difficulty, isCorrect, 1),
 
-            [userCollection + "." + question.domain + "." + question.skill + ".correct"]: user[userCollection][question.domain][question.skill].correct + 1,
-            [userCollection + "." + question.domain + "." + question.skill + ".experience"]: user[userCollection][question.domain][question.skill].experience + gainXP(user[userCollection][question.domain][question.skill].correct / (user[userCollection][question.domain][question.skill].correct + user[userCollection][question.domain][question.skill].incorrect), question.difficulty, isCorrect, 1),
+            [`log.${question.skill}.stats.correct`]: user.log[question.skill].correct + 1,
+            [`log.${question.skill}.stats.experience`]: user.log[question.skill].stats.experience + gainXP(user.log[question.skill].stats.correct / (user.log[question.skill].stats.correct + user.log[question.skill].stats.incorrect), question.difficulty, isCorrect, 1),
         }});
     } else {
         await collection.updateOne({ _id: new ObjectId(question._id) }, { $set: {
@@ -44,9 +44,10 @@ export const POST = async ({request}) => {
         }});
         await users.updateOne({ _id: new ObjectId(user._id) }, { $set: {
             "stats.incorrect": user.stats.incorrect + 1,
-            [userCollection + ".incorrect"]: user[userCollection].incorrect + 1,
-            [userCollection + "." + question.domain + ".incorrect"]: user[userCollection][question.domain].incorrect + 1,
-            [userCollection + "." + question.domain + "." + question.skill + ".incorrect"]: user[userCollection][question.domain][question.skill].incorrect + 1,
+
+            [`log.All ${question.section} Topics.stats.incorrect`]: user.log[`All ${question.section} Topics`].stats.incorrect + 1,
+            [`log.${question.domain}.stats.incorrect`]: user.log[question.domain].stats.incorrect + 1,
+            [`log.${question.skill}.stats.incorrect`]: user.log[question.skill].stats.incorrect + 1,
         }});
     }
   
