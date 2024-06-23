@@ -2,9 +2,26 @@
 	import Select from '$lib/components/Select.svelte';
 	import InputText from '$lib/components/InputText.svelte';
 	export let data;
+	export let user;
 	$: console.log(data);
 
 	export let copy;
+
+	const postReview = async () => {
+		const res = await fetch('/api/review/postReview', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				oldData: copy,
+				newData: data,
+				user
+			})
+		});
+
+		let { message } = await res.json();
+	};
 </script>
 
 <div class="bg-red-300 p-4 my-4">
@@ -45,4 +62,6 @@
 	<InputText bind:selectedValue={data.question.rationale[1]} />
 	<InputText bind:selectedValue={data.question.rationale[2]} />
 	<InputText bind:selectedValue={data.question.rationale[3]} />
+
+	<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>
 </div>
