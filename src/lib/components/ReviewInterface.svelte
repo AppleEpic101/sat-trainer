@@ -3,9 +3,14 @@
 	import InputText from '$lib/components/InputText.svelte';
 	export let data;
 	export let user;
-	$: console.log(data);
 
 	export let copy;
+
+	const equals = (obj1, obj2) => {
+		return JSON.stringify(obj1) === JSON.stringify(obj2);
+	};
+
+	$: change = equals(data, copy);
 
 	const postReview = async () => {
 		const res = await fetch('/api/review/postReview', {
@@ -56,12 +61,18 @@
 	<InputText bind:selectedValue={data.question.answerOptions[2]} />
 	<InputText bind:selectedValue={data.question.answerOptions[3]} />
 
-	<InputText label={'Correct Answer'} bind:selectedValue={data.question.correctAnswer} />
+	<Select
+		label={'Correct Answer'}
+		options={['A', 'B', 'C', 'D']}
+		bind:selectedValue={data.question.correctAnswer}
+	/>
 
 	<InputText label={'Rationale'} bind:selectedValue={data.question.rationale[0]} />
 	<InputText bind:selectedValue={data.question.rationale[1]} />
 	<InputText bind:selectedValue={data.question.rationale[2]} />
 	<InputText bind:selectedValue={data.question.rationale[3]} />
 
-	<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>
+	{#if !change}
+		<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>
+	{/if}
 </div>

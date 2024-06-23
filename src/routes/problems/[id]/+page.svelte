@@ -6,12 +6,9 @@
 
 	const { question, user } = data;
 
-	let copy = { ...data }; // copy
+	const copy = JSON.parse(JSON.stringify(data.question)); //copy
 
 	let showModal = false;
-	$: console.log(data);
-
-	export let form;
 </script>
 
 <div class="m-4">
