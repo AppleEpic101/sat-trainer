@@ -1,5 +1,6 @@
 <script>
 	import Unsaved from '$lib/modals/Unsaved.svelte';
+	import StaticQuestion from '$lib/components/StaticQuestion.svelte';
 	export let data;
 
 	const { question, user } = data;
@@ -12,15 +13,7 @@
 </script>
 
 <div class="m-4">
-	<div class="bg-slate-300 px-8 py-2">
-		<div class="text-lg">ID: {data.question.id.SAT}</div>
-		<div class="text-lg">Section: {data.question.section}</div>
-		<div class="text-lg">Level {data.question.difficulty}</div>
-		<div class="rawdog">
-			{@html data.question.question.stimulus}
-			{@html data.question.question.stem}
-		</div>
-	</div>
+	<StaticQuestion data={data.question} />
 
 	{#if data.user.isAdmin}
 		<form method="POST" class="bg-red-300 p-8 my-4">
