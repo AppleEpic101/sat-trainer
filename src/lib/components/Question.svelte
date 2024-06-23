@@ -133,12 +133,6 @@
 		white-space: nowrap;
 	}
 
-	:global(table th, table td) {
-		border: 1px solid black;
-		padding: 4px;
-		white-space: nowrap;
-	}
-
 	:global(.gdr th, .gdr td) {
 		text-align: center;
 		border: 1px solid black;
