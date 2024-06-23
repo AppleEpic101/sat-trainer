@@ -1,0 +1,48 @@
+<script>
+	import Select from '$lib/components/Select.svelte';
+	import InputText from '$lib/components/InputText.svelte';
+	export let data;
+	$: console.log(data);
+
+	export let copy;
+</script>
+
+<div class="bg-red-300 p-4 my-4">
+	<div class="text-xl">Admin Panel</div>
+	<div class="text-lg">Metadata</div>
+
+	<InputText label={'ID'} selectedValue={data.id.SAT} />
+	<Select
+		label={'Status'}
+		options={['active', 'inactive', 'pending']}
+		selectedValue={data.status}
+	/>
+	<Select
+		label={'Source'}
+		options={['College Board', 'Sigma SAT']}
+		bind:selectedValue={data.source}
+	/>
+	<Select label={'Section'} options={['Reading', 'Math']} bind:selectedValue={data.section} />
+	<Select label={'Type'} options={['mcq', 'spr']} bind:selectedValue={data.questionType} />
+	<Select
+		label={'Difficulty'}
+		options={[1, 2, 3, 4, 5, 6, 7]}
+		bind:selectedValue={data.difficulty}
+	/>
+
+	<div class="text-lg">Question</div>
+	<InputText label={'Stimulus (HTML)'} bind:selectedValue={data.question.stimulus} />
+	<InputText label={'Stem (HTML)'} bind:selectedValue={data.question.stem} />
+
+	<InputText label={'Answer Options'} bind:selectedValue={data.question.answerOptions[0]} />
+	<InputText bind:selectedValue={data.question.answerOptions[1]} />
+	<InputText bind:selectedValue={data.question.answerOptions[2]} />
+	<InputText bind:selectedValue={data.question.answerOptions[3]} />
+
+	<InputText label={'Correct Answer'} bind:selectedValue={data.question.correctAnswer} />
+
+	<InputText label={'Rationale'} bind:selectedValue={data.question.rationale[0]} />
+	<InputText bind:selectedValue={data.question.rationale[1]} />
+	<InputText bind:selectedValue={data.question.rationale[2]} />
+	<InputText bind:selectedValue={data.question.rationale[3]} />
+</div>
