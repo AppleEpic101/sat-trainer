@@ -23,7 +23,8 @@
 			body: JSON.stringify({
 				oldData: copy,
 				newData: data,
-				user
+				user,
+				comments: reviewComment
 			})
 		});
 

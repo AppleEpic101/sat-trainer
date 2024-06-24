@@ -13,6 +13,15 @@ export const generateSkillsArray = (focus, section) => {
     }
 }
 
+export const formatDate = (input) => {
+    let date = new Date(input);
+    if (isNaN(date)) {
+        throw new Error('Invalid date');
+    }
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
+}
+
 export const READING_SKILLS = {
     'Information and Ideas': ['Central Ideas and Details', 'Inferences', 'Command of Evidence'],
     'Craft and Structure': [
