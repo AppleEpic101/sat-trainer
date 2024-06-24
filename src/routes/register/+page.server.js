@@ -18,7 +18,7 @@ export const actions = {
 		if (error) {
 			return fail(400, { error });
 		} else {
-            throw redirect(301, "/");
+            throw redirect(301, "/login");
 			// return { message: "Registration successful! You can now login." };
 		}
     }
