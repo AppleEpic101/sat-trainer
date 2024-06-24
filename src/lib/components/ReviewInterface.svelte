@@ -6,6 +6,8 @@
 
 	export let copy;
 
+	let reviewComment = '';
+
 	const equals = (obj1, obj2) => {
 		return JSON.stringify(obj1) === JSON.stringify(obj2);
 	};
@@ -74,5 +76,6 @@
 
 	{#if !change}
 		<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>
+		<InputText label={'Explain what you changed'} bind:selectedValue={reviewComment} />
 	{/if}
 </div>

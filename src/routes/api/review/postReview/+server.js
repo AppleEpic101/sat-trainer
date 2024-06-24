@@ -8,29 +8,34 @@ const review = questions.collection("review-board");
 export const POST = async ({request}) => {
     const res = await request.json();
 
-    let { oldData, newData, user } = res;
+    let { oldData, newData, user, comments } = res;
+
+    let date = new Date();
+
+    if(comments === '') {
+        comments = "None";
+    }
+
+    const meta = {
+        decision: "pending", 
+        type: "review", 
+        comments: comments,
+        date: date,
+        questionID: oldData.id.SAT,
+    }
 
     try { 
         await review.insertOne({
             user: user,
             oldData: oldData,
-            newData: newData
+            newData: newData,
+            meta: meta,
 
         });
 
-        return {
-            status: 200, 
-            body: {
-                message: "Successfully posted to review board"
-            }
-        }
+        return new Response(JSON.stringify({message: "Review posted"}), { status: 200 });
     } catch (error) {
-        return {
-            status: 500,
-            body: {
-                message: "Error posting to review board"
-            }
-        }
+        return new Response(JSON.stringify({message: "Review failed"}), { status: 500 });
     }
 
 
