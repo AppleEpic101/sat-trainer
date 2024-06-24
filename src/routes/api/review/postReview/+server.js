@@ -37,6 +37,18 @@ export const POST = async ({request}) => {
     } catch (error) {
         return new Response(JSON.stringify({message: "Review failed"}), { status: 500 });
     }
+}
 
+export const DELETE = async ({request}) => {
 
+    const res = await request.json();
+    let { _id } = res;
+
+    console.log(_id);
+    try {
+        await review.deleteOne({ _id: new ObjectId(_id) });
+        return new Response(JSON.stringify({message: "Review deleted"}), { status: 200 });
+    } catch (error) {
+        return new Response(JSON.stringify({message: "Review failed"}), { status: 500 });
+    }
 }

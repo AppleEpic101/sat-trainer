@@ -1,6 +1,7 @@
 <script>
 	import Select from '$lib/components/Select.svelte';
 	import InputText from '$lib/components/InputText.svelte';
+	import { goto } from '$app/navigation';
 	export let data;
 	export let user;
 
@@ -15,6 +16,7 @@
 	$: change = equals(data, copy);
 
 	const postReview = async () => {
+		goto('/review');
 		const res = await fetch('/api/review/postReview', {
 			method: 'POST',
 			headers: {
