@@ -59,7 +59,7 @@
 				</div>
 			</div>
 			{#if showAnswer}
-				<div class="p-8 mx-5 mb-5 bg-slate-300" use:mathjax>
+				<div class="p-2 mx-5 mb-5 bg-slate-300" use:mathjax>
 					<div>
 						Your Answer: {selectedAnswer}
 					</div>
@@ -73,12 +73,16 @@
 							</div>
 						{:else}
 							{#each data?.question?.rationale as item}
-								<div class="rawdog">
+								<div class="my-2">
 									{@html item}
 								</div>
 							{/each}
 						{/if}
 					</div>
+				</div>
+
+				<div>
+					{data.stats.incorrect}
 				</div>
 			{/if}
 		</div>
@@ -130,7 +134,6 @@
 	:global(.table th, .table td) {
 		border: 1px solid black;
 		padding: 4px;
-		white-space: nowrap;
 	}
 
 	:global(.gdr th, .gdr td) {

@@ -15,8 +15,10 @@
 
 	$: change = equals(data, copy);
 
+	let showButton = true;
+
 	const postReview = async () => {
-		goto('/review');
+		showButton = false;
 		const res = await fetch('/api/review/postReview', {
 			method: 'POST',
 			headers: {
@@ -29,6 +31,7 @@
 				comments: reviewComment
 			})
 		});
+		goto('/review');
 
 		let { message } = await res.json();
 	};
@@ -77,7 +80,7 @@
 	<InputText bind:selectedValue={data.question.rationale[2]} />
 	<InputText bind:selectedValue={data.question.rationale[3]} />
 
-	{#if !change}
+	{#if !change && showButton}
 		<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>
 		<InputText label={'Explain what you changed'} bind:selectedValue={reviewComment} />
 	{/if}
