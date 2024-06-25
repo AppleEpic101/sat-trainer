@@ -18,7 +18,7 @@ export const POST = async ({request}) => {
 
     const meta = {
         decision: "pending", 
-        type: "review", 
+        type: "edit", 
         comments: comments,
         date: date,
         questionID: oldData.id.SAT,
