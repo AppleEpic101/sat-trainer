@@ -20,7 +20,9 @@ export const POST = async ({request, fetch}) => {
     let question;
     if (user.log[focus].current) {
         question = await collection.findOne({_id: new ObjectId(user.log[focus].current)});
-    } else {
+    } 
+    
+    if(!question) { // generate new question
         let questionRes = await fetch('/api/getQuestion', {
             method: 'POST',
             headers: {

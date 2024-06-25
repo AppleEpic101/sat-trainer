@@ -8,8 +8,6 @@
 
 	export let data;
 
-	$: console.log(data);
-
 	let showModal = false;
 
 	$: selection = data?.user.log.readingFocus;

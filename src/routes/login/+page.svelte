@@ -6,7 +6,6 @@
 	let username = '';
 
 	export let form;
-	$: console.log(form);
 </script>
 
 <form method="POST" use:enhance class="flex justify-center items-center">
