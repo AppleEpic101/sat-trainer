@@ -81,9 +81,9 @@
 					</div>
 				</div>
 
-				<div>
+				<!-- <div>
 					{data.stats.incorrect}
-				</div>
+				</div> -->
 			{/if}
 		</div>
 	</div>
