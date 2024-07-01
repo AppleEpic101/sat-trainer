@@ -1,9 +1,37 @@
 <script>
+	import {
+		READING_SKILLS,
+		READING_DOMAIN_LIST,
+		READING_SKILL_LIST,
+		MATH_SKILLS,
+		MATH_DOMAIN_LIST,
+		MATH_SKILL_LIST
+	} from '$lib/util.js';
 	import InputText from '$lib/components/InputText.svelte';
 	import Select from '$lib/components/Select.svelte';
 	export let data;
 
 	$: {
+		if (data.section === 'Reading') {
+			data.questionType = 'mcq';
+		}
+
+		if (data.section === 'Reading' && !READING_DOMAIN_LIST.includes(data.domain)) {
+			data.domain = READING_DOMAIN_LIST[0];
+		}
+
+		if (data.section === 'Reading' && !READING_SKILLS[data.domain].includes(data.skill)) {
+			data.skill = READING_SKILLS[data.domain][0];
+		}
+
+		if (data.section === 'Math' && !MATH_DOMAIN_LIST.includes(data.domain)) {
+			data.domain = MATH_DOMAIN_LIST[0];
+		}
+
+		if (data.section === 'Math' && !MATH_SKILLS[data.domain].includes(data.skill)) {
+			data.skill = MATH_SKILLS[data.domain][0];
+		}
+
 		if (data.questionType === 'mcq' && typeof data.question.answerOptions === 'string') {
 			data.question.answerOptions = ['', '', '', ''];
 		}
@@ -20,13 +48,30 @@
 			data.question.rationale = '';
 		}
 	}
+
+	$: isMCQ = data.questionType === 'mcq';
+	$: skills = data.section === 'Reading' ? READING_SKILLS : MATH_SKILLS;
+	$: DOMAIN_LIST = data.section === 'Reading' ? READING_DOMAIN_LIST : MATH_DOMAIN_LIST;
+
+	let showButton = true;
+
+	const submit = async () => {
+		showButton = false;
+
+		const res = await fetch('/api/review/create', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ data })
+		});
+	};
 </script>
 
 <div class="bg-red-300 p-4 my-4">
 	<div class="text-xl">Admin Panel</div>
 	<div class="text-lg">Metadata</div>
 
-	<InputText label={'ID'} selectedValue={data.id.SAT} />
 	<Select
 		label={'Status'}
 		options={['active', 'inactive', 'pending']}
@@ -37,7 +82,11 @@
 		options={['College Board', 'Sigma SAT']}
 		bind:selectedValue={data.source}
 	/>
+
 	<Select label={'Section'} options={['Reading', 'Math']} bind:selectedValue={data.section} />
+	<Select label={'Domain'} options={DOMAIN_LIST} bind:selectedValue={data.domain} />
+	<Select label={'Skill'} options={skills[data.domain]} bind:selectedValue={data.skill} />
+
 	<Select label={'Type'} options={['mcq', 'spr']} bind:selectedValue={data.questionType} />
 	<Select
 		label={'Difficulty'}
@@ -49,14 +98,14 @@
 	<InputText label={'Stimulus (HTML)'} bind:selectedValue={data.question.stimulus} />
 	<InputText label={'Stem (HTML)'} bind:selectedValue={data.question.stem} />
 
-	{#if data.questionType === 'mcq'}
+	{#if isMCQ}
 		<InputText label={'Answer Options'} bind:selectedValue={data.question.answerOptions[0]} />
 		<InputText bind:selectedValue={data.question.answerOptions[1]} />
 		<InputText bind:selectedValue={data.question.answerOptions[2]} />
 		<InputText bind:selectedValue={data.question.answerOptions[3]} />
 	{/if}
 
-	{#if data.questionType === 'mcq'}
+	{#if isMCQ}
 		<Select
 			label={'Correct Answer'}
 			options={['A', 'B', 'C', 'D']}
@@ -66,7 +115,7 @@
 		<InputText label={'Correct Answer'} bind:selectedValue={data.question.correctAnswer} />
 	{/if}
 
-	{#if data.questionType === 'mcq'}
+	{#if isMCQ}
 		<InputText label={'Rationale'} bind:selectedValue={data.question.rationale[0]} />
 		<InputText bind:selectedValue={data.question.rationale[1]} />
 		<InputText bind:selectedValue={data.question.rationale[2]} />
@@ -74,4 +123,6 @@
 	{:else}
 		<InputText label={'Rationale'} bind:selectedValue={data.question.rationale} />
 	{/if}
+
+	<button on:click={() => console.log(data)}>Submit</button>
 </div>
