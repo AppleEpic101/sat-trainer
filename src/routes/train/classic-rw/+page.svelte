@@ -19,12 +19,13 @@
 	const fetchQuestion = async () => {
 		isLoading = true;
 
+		let query = { skill: skillsArray };
 		let res = await fetch('/api/getQuestion', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ section: 'Reading', focus: skillsArray })
+			body: JSON.stringify({ section: 'Reading', query })
 		});
 
 		data.question = await res.json();

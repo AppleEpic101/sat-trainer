@@ -13,19 +13,16 @@
 	let document, count;
 	const fetchData = async () => {
 		isLoading = true;
-		try {
-			const res = await fetch(`/api/questions?program=math&q=${JSON.stringify(q)}`);
-			if (res.ok) {
-				let data = await res.json();
-				document = data.document;
-			} else {
-				console.error('Error fetching data:', res.status, res.statusText);
-			}
-		} catch (e) {
-			console.log(e);
-		} finally {
-			isLoading = false;
-		}
+		const res = await fetch('/api/getQuestion', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ section: 'Math', query: q })
+		});
+
+		document = await res.json();
+		isLoading = false;
 	};
 
 	const countDocs = async () => {

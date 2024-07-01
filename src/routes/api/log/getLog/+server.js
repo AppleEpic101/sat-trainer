@@ -23,12 +23,13 @@ export const POST = async ({request, fetch}) => {
     } 
     
     if(!question) { // generate new question
+        let query = { skill: skillsArray };
         let questionRes = await fetch('/api/getQuestion', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ section, focus: skillsArray })
+            body: JSON.stringify({ section, query})
         });
         question = await questionRes.json();
     
