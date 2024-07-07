@@ -2,7 +2,7 @@
 	import { formatDate, capitalizeFirstLetter } from '$lib/util.js';
 	export let data;
 
-	const { reviews, user } = data;
+	const { reviews } = data;
 
 	const deleteReview = async (id) => {
 		const res = await fetch('/api/review/postReview', {
@@ -26,10 +26,12 @@
 		{#each reviews as review}
 			<a href={`/review/${review._id}`}>
 				<div class="bg-slate-300 w-96 p-4 hover:bg-slate-400 cursor-pointer">
-					<div class="text-2xl">{capitalizeFirstLetter(review.meta.type)} by {user.username}</div>
+					<div class="text-2xl">
+						{capitalizeFirstLetter(review.meta.type)} by {review.meta.user.username}
+					</div>
 					<div>{formatDate(review.meta.date)}</div>
 					<div>Question ID: {review.meta.questionID}</div>
-					<div>Status: {capitalizeFirstLetter(review.meta.decision)}</div>
+					<div>Status: {capitalizeFirstLetter(review.meta.state)}</div>
 					<div>Description: {review.meta.comments}</div>
 				</div></a
 			><button

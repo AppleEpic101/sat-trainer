@@ -7,7 +7,7 @@
 
 	export let copy;
 
-	let reviewComment = '';
+	let comments = '';
 
 	const equals = (obj1, obj2) => {
 		return JSON.stringify(obj1) === JSON.stringify(obj2);
@@ -19,16 +19,37 @@
 
 	const postReview = async () => {
 		showButton = false;
+
+		let date = new Date();
+
+		if (comments === '') {
+			comments = 'None';
+		}
+
+		let oldData = copy;
+		let newData = data;
+
 		const res = await fetch('/api/review/postReview', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				oldData: copy,
-				newData: data,
-				user,
-				comments: reviewComment
+				versions: [
+					{
+						oldData,
+						newData,
+						user
+					}
+				],
+				meta: {
+					state: 'open',
+					type: 'edit',
+					comments: comments,
+					date: date,
+					questionID: oldData.id.SAT,
+					user
+				}
 			})
 		});
 		goto('/review');
@@ -82,6 +103,6 @@
 
 	{#if !change && showButton}
 		<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>
-		<InputText label={'Explain what you changed'} bind:selectedValue={reviewComment} />
+		<InputText label={'Explain what you changed'} bind:selectedValue={comments} />
 	{/if}
 </div>
