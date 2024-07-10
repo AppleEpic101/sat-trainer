@@ -9,6 +9,7 @@
 	} from '$lib/util.js';
 	import InputText from '$lib/components/InputText.svelte';
 	import Select from '$lib/components/Select.svelte';
+	import { goto } from '$app/navigation';
 	export let data;
 	export let user;
 
@@ -55,6 +56,7 @@
 	$: DOMAIN_LIST = data.section === 'Reading' ? READING_DOMAIN_LIST : MATH_DOMAIN_LIST;
 
 	let showButton = true;
+	let comments = '';
 
 	const submit = async () => {
 		showButton = false;
@@ -89,6 +91,7 @@
 				}
 			})
 		});
+		goto('/review');
 	};
 </script>
 
@@ -143,5 +146,8 @@
 		<InputText label={'Rationale'} bind:selectedValue={data.question.rationale} />
 	{/if}
 
-	<button button class="bg-green-400 w-full p-2" on:click={submit}>Submit</button>
+	{#if showButton}
+		<button button class="bg-green-400 w-full p-2" on:click={submit}>Submit</button>
+		<InputText label={'Explain what you changed'} bind:selectedValue={comments} />
+	{/if}
 </div>
