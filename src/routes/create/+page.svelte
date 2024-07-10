@@ -1,8 +1,10 @@
 <script>
 	import Question from '$lib/components/Question.svelte';
 	import CreateInterface from '$lib/components/CreateInterface.svelte';
+	export let data;
+	let { user } = data;
 
-	let data = {
+	let qData = {
 		status: 'pending',
 		source: 'Sigma SAT',
 		program: ['SAT'],
@@ -32,7 +34,7 @@
 </script>
 
 <div class="m-4">
-	<Question {data} showAnswer={false} />
+	<Question data={qData} showAnswer={false} />
 
-	<CreateInterface bind:data />
+	<CreateInterface bind:data={qData} {user} />
 </div>

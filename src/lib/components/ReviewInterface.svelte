@@ -39,7 +39,9 @@
 					{
 						oldData,
 						newData,
-						user
+						user,
+						date,
+						comments
 					}
 				],
 				meta: {

@@ -10,6 +10,7 @@
 	import InputText from '$lib/components/InputText.svelte';
 	import Select from '$lib/components/Select.svelte';
 	export let data;
+	export let user;
 
 	$: {
 		if (data.section === 'Reading') {
@@ -58,12 +59,35 @@
 	const submit = async () => {
 		showButton = false;
 
-		const res = await fetch('/api/review/create', {
+		let date = new Date();
+
+		if (comments === '') {
+			comments = 'None';
+		}
+
+		const res = await fetch('/api/review/postReview', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ data })
+			body: JSON.stringify({
+				versions: [
+					{
+						oldData: null,
+						newData: data,
+						user,
+						date,
+						comments: comments
+					}
+				],
+				meta: {
+					state: 'open',
+					type: 'create',
+					comments: comments,
+					date: date,
+					user
+				}
+			})
 		});
 	};
 </script>
@@ -72,11 +96,6 @@
 	<div class="text-xl">Admin Panel</div>
 	<div class="text-lg">Metadata</div>
 
-	<Select
-		label={'Status'}
-		options={['active', 'inactive', 'pending']}
-		selectedValue={data.status}
-	/>
 	<Select
 		label={'Source'}
 		options={['College Board', 'Sigma SAT']}
@@ -124,5 +143,5 @@
 		<InputText label={'Rationale'} bind:selectedValue={data.question.rationale} />
 	{/if}
 
-	<button on:click={() => console.log(data)}>Submit</button>
+	<button button class="bg-green-400 w-full p-2" on:click={submit}>Submit</button>
 </div>
