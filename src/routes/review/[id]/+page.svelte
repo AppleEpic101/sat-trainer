@@ -20,8 +20,8 @@
 		<div>Description: {meta.comments}</div>
 	</div>
 
-	{#each data.messageLog as message, i}
-		<div class="border border-back p-4 m-4">
+	<div class="border border-back p-4 m-4">
+		{#each data.messageLog as message, i}
 			{#if message.meta.type === 'Version Initial'}
 				<CreateDifferences newData={message.newData} />
 			{:else if message.meta.type === 'Version'}
@@ -29,8 +29,8 @@
 			{:else if message.meta.type === 'Comment'}
 				<Comment {message} />
 			{/if}
-		</div>
-	{/each}
+		{/each}
+	</div>
 
 	<div class="m-4">
 		<MessageInput review={data} />

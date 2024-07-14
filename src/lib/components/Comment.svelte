@@ -8,7 +8,9 @@
 	<img class="w-8 h-8 rounded-full" src="/pfp.jpg" />
 	<div class="flex flex-col gap-1 w-full max-w-[320px]">
 		<div class="flex items-center space-x-2 rtl:space-x-reverse">
-			<span class="text-sm font-semibold text-gray-900 dark:text-white"></span>
+			<span class="text-sm font-semibold text-gray-900 dark:text-white"
+				>{message.meta.user.username}</span
+			>
 			<span class="text-sm font-normal text-gray-500 dark:text-gray-400"
 				>{formatDate(message.meta.date)}</span
 			>
@@ -20,7 +22,6 @@
 				{message.comment}
 			</p>
 		</div>
-		<span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
 	</div>
 	<button
 		id="dropdownMenuIconButton"
