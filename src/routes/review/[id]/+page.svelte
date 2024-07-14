@@ -41,13 +41,10 @@
 		// Return the difference object.
 		return diff;
 	};
-
-	$: console.log(data);
-	$: console.log(deepDiff(data.versions[0].oldData, data.versions[0].newData));
 </script>
 
 <div class="">
-	<div class="bg-slate-300 w-96 p-4 my-2 hover:bg-slate-400 cursor-pointer">
+	<div class="bg-slate-300 w-full p-4 m-4 cursor-pointer">
 		<div class="text-2xl">{capitalizeFirstLetter(meta.type)} by {meta.user.username}</div>
 		<div>{formatDate(meta.date)}</div>
 		<div>Question ID: {meta.questionID}</div>
@@ -57,7 +54,9 @@
 
 	{#each data.versions as version, i}
 		<div class="border border-back p-4 m-4">
-			Version {i + 1}
+			<div>Version {i + 1}</div>
+			<div>Authored by {version.user.username}</div>
+			<div>{formatDate(version.date)}</div>
 			<EditDifferences diffObj={deepDiff(version.oldData, version.newData)} />
 		</div>
 	{/each}
