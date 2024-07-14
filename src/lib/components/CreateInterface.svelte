@@ -84,8 +84,8 @@
 				],
 				messageLog: [
 					{
-						oldData,
-						newData,
+						oldData: null,
+						newData: data,
 						meta: {
 							type: 'Version Initial',
 							user,
