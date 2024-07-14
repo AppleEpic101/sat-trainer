@@ -11,5 +11,8 @@ export const load = async ( {fetch, params} ) => {
 
     let review = await res.json();
 
-    return review;
+    return {
+        _id: params.id,
+        ...review
+    };
 }

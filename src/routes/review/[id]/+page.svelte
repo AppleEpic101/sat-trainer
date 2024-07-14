@@ -3,9 +3,12 @@
 	import Question from '$lib/components/Question.svelte';
 	import CreateDifferences from '$lib/components/CreateDifferences.svelte';
 	import EditDifferences from '$lib/components/EditDifferences.svelte';
+	import MessageInput from '$lib/components/MessageInput.svelte';
+	import Comment from '$lib/components/Comment.svelte';
 	export let data;
 
 	let { meta } = data;
+	// $: console.log(data);
 </script>
 
 <div class="">
@@ -19,17 +22,19 @@
 
 	{#each data.messageLog as message, i}
 		<div class="border border-back p-4 m-4">
-			<div>Version {i + 1}</div>
-			<div>Authored by {message.meta.user.username}</div>
-			<div>{formatDate(message.meta.date)}</div>
-
 			{#if message.meta.type === 'Version Initial'}
 				<CreateDifferences newData={message.newData} />
 			{:else if message.meta.type === 'Version'}
 				<EditDifferences {message} index={i} />
+			{:else if message.meta.type === 'Comment'}
+				<Comment {message} />
 			{/if}
 		</div>
 	{/each}
+
+	<div class="m-4">
+		<MessageInput review={data} />
+	</div>
 
 	{#if data.user.isAdmin}
 		<button on:submit={() => {}}>Approve</button>
