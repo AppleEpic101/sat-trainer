@@ -23,13 +23,11 @@
 		<div class="flex -mx-3">
 			<div class="w-full px-3 mb-6 md:w-1/3">
 				<div class="">
-					<!-- Display obj1 -->
 					<p>Obj1: {value.obj1}</p>
 				</div>
 			</div>
 			<div class="w-full px-3 mb-6 md:w-1/3">
 				<div class="">
-					<!-- Display obj2 -->
 					<p>Obj2: {value.obj2}</p>
 				</div>
 			</div>

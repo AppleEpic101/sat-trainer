@@ -1,6 +1,7 @@
 <script>
 	import { formatDate, capitalizeFirstLetter } from '$lib/util.js';
 	import Question from '$lib/components/Question.svelte';
+	import CreateDifferences from '$lib/components/CreateDifferences.svelte';
 	import EditDifferences from '$lib/components/EditDifferences.svelte';
 	export let data;
 
@@ -57,7 +58,12 @@
 			<div>Version {i + 1}</div>
 			<div>Authored by {version.user.username}</div>
 			<div>{formatDate(version.date)}</div>
-			<EditDifferences diffObj={deepDiff(version.oldData, version.newData)} />
+
+			{#if meta.type === 'create' && i === 0}
+				<CreateDifferences newData={version.newData} />
+			{:else}
+				<EditDifferences diffObj={deepDiff(version.oldData, version.newData)} />
+			{/if}
 		</div>
 	{/each}
 </div>
