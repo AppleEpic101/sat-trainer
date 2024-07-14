@@ -82,6 +82,18 @@
 						comments: comments
 					}
 				],
+				messageLog: [
+					{
+						oldData,
+						newData,
+						meta: {
+							type: 'Version Initial',
+							user,
+							date,
+							comments
+						}
+					}
+				],
 				meta: {
 					state: 'open',
 					type: 'create',

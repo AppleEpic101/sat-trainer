@@ -44,6 +44,18 @@
 						comments
 					}
 				],
+				messageLog: [
+					{
+						oldData,
+						newData,
+						meta: {
+							type: 'Version',
+							user,
+							date,
+							comments
+						}
+					}
+				],
 				meta: {
 					state: 'open',
 					type: 'edit',
