@@ -54,31 +54,21 @@
 	});
 </script>
 
-<div>Version {index + 1}</div>
-<div>Authored by {message.meta.user.username}</div>
-<div>{formatDate(message.meta.date)}</div>
-
-<div class="flex items-start gap-2.5">
+<div class="flex items-center gap-2.5">
 	<img class="w-8 h-8 rounded-full" src="/pfp.jpg" />
-	<div class="flex flex-col gap-1 w-full max-w-[320px]">
-		<div class="flex items-center space-x-2 rtl:space-x-reverse">
-			<span class="text-sm font-semibold text-gray-900 dark:text-white"
-				>{message.meta.user.username}</span
-			>
-			<span class="text-sm font-normal text-gray-500 dark:text-gray-400"
-				>{formatDate(message.meta.date)}</span
-			>
-		</div>
-		<div
-			class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
+	<div>
+		<span class="text-sm font-semibold text-gray-900 dark:text-white"
+			>{message.meta.user.username}</span
 		>
-			<p class="text-sm font-normal text-gray-900 dark:text-white">
-				{message.comment}
-			</p>
-		</div>
+		created a new question (Version {index + 1}) on
+		<span class="text-sm font-normal text-gray-500 dark:text-gray-400"
+			>{formatDate(message.meta.date)}</span
+		>
 	</div>
 </div>
-<div class="flex flex-col">
+<div
+	class="ml-11 flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
+>
 	{#each Object.entries(diffs) as [key, value]}
 		<h3 class="text-lg font-semibold">{key}</h3>
 		<div class="flex -mx-3">

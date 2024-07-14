@@ -25,8 +25,8 @@
 <div class="flex items-center gap-2.5">
 	<img class="w-8 h-8 rounded-full" src="/pfp.jpg" />
 	<div>
-		<span class="text-sm font-semibold text-gray-900 dark:text-white">Username</span> authored
-		Version X on
+		<span class="text-sm font-semibold text-gray-900 dark:text-white">Username</span> created a new
+		question (Version X) on
 		<span class="text-sm font-normal text-gray-500 dark:text-gray-400">Date</span>
 	</div>
 </div>
