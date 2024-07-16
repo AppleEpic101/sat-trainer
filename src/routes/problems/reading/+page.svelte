@@ -1,5 +1,8 @@
 <script>
 	import { goto } from '$app/navigation';
+	import ReadingTags from '$lib/components/ReadingTags.svelte';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	export let data;
 
 	let currentQuery = data.query;
@@ -13,9 +16,58 @@
 			currentQuery = query;
 		}
 	};
+
+	let q = {};
+	$: console.log(q);
+	let count;
+
+	const fetchData = async () => {
+		console.log('LOADING');
+		const res = await fetch('/api/questionTextSearch', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				query: currentQuery,
+				section: 'Reading',
+				tags: q
+			})
+		});
+
+		data.questions = await res.json();
+		console.log('PENIS', data.questions);
+	};
+
+	const countDocs = async () => {
+		const res = await fetch(`/api/countDocs?program=rw&query=${JSON.stringify(q)}`);
+		const data = await res.json();
+
+		count = data.count;
+	};
+
+	// onMount(() => {
+	// 	if (browser) {
+	// 		fetchData();
+	// 		countDocs();
+	// 	}
+	// });
+	// Reactively call fetchData and countDocs when `q` changes, but only in the browser
+	let init = true;
+	onMount(() => {
+		init = false;
+	});
+	$: if (q && browser && !init) {
+		fetchData();
+		countDocs();
+	}
+
+	// $: q, browser && fetchData();
+	// $: q, browser && countDocs();
 </script>
 
 <div class="mx-24 my-8">
+	<ReadingTags bind:tags={q} />
 	<input
 		type="text"
 		placeholder="Search..."
@@ -24,7 +76,7 @@
 		on:keydown={handleKeyDown}
 	/>
 	<div>Query: {currentQuery}</div>
-	<div class="text-xl">Questions</div>
+	<div class="text-xl">Questions ({data?.questions?.length} questions in database)</div>
 
 	<table class="table-fixed w-full">
 		<thead>

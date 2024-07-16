@@ -9,10 +9,20 @@ const math = questions.collection("math");
 
 export const POST = async ({request}) => {
     const res = await request.json();
-    const { limit, section } = res;
+    const { limit, section, query } = res;
+
+    let match = {};
+    for (let key in query) {
+        if (Array.isArray(query[key]) && query[key].length !== 0) {
+            query[key] = query[key].flat();
+            match[key] = { $in: query[key] };
+        } else if (query[key].length !== 0) {
+            match[key] = query[key];
+        }
+    }
 
     let collection = section === "Reading" ? rw : math;
 
-    let data = await collection.find({}).toArray();
+    let data = await collection.find({ $match: match }).toArray();
     return new Response(JSON.stringify(data), { status: 201 });
 }
