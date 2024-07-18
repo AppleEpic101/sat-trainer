@@ -39,13 +39,6 @@
 		console.log('PENIS', data.questions);
 	};
 
-	const countDocs = async () => {
-		const res = await fetch(`/api/countDocs?program=rw&query=${JSON.stringify(q)}`);
-		const data = await res.json();
-
-		count = data.count;
-	};
-
 	// onMount(() => {
 	// 	if (browser) {
 	// 		fetchData();
@@ -59,7 +52,6 @@
 	});
 	$: if (q && browser && !init) {
 		fetchData();
-		countDocs();
 	}
 
 	// $: q, browser && fetchData();
