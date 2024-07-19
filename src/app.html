@@ -12,11 +12,33 @@
 		<link rel="icon" href="%sveltekit.assets%/logo.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<!-- MATHJAX SCRIPT -->
-		<script
+		<!-- MATHJAX SCRIPT (MATHML)-->
+		<!-- <script
 			id="MathJax-script"
 			async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"
+		></script> -->
+
+		<!-- MATHJAX SCRIPT (LATEX)-->
+		<!-- <script>
+			MathJax = {
+				tex: {
+					inlineMath: [
+						['$', '$'],
+						['\\(', '\\)']
+					]
+				},
+				svg: {
+					fontCache: 'global'
+				}
+			};
+		</script> -->
+		<!--<script id="MathJax" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script> -->
+		<script
+			type="text/javascript"
+			id="MathJax-script"
+			async
+			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 		></script>
 		%sveltekit.head%
 	</head>

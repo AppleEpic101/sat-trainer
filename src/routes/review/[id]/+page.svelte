@@ -5,10 +5,13 @@
 	import EditDifferences from '$lib/components/EditDifferences.svelte';
 	import MessageInput from '$lib/components/MessageInput.svelte';
 	import Comment from '$lib/components/Comment.svelte';
+	import Approve from '$lib/modals/Approve.svelte';
 	export let data;
 
 	let { meta } = data;
 	// $: console.log(data);
+
+	let showApproveModal = false;
 </script>
 
 <div class="">
@@ -37,7 +40,15 @@
 	</div>
 
 	{#if data.user.isAdmin}
-		<button on:submit={() => {}}>Approve</button>
-		<button on:submit={() => {}}>Reject</button>
+		<div class="flex flex-col gap-4 mx-4 mb-4">
+			<button
+				class="w-full h-10 bg-green-400"
+				on:click={() => {
+					showApproveModal = true;
+				}}>Approve</button
+			>
+			<Approve review={data} bind:showModal={showApproveModal} />
+			<button class="w-full h-10 bg-red-400" on:submit={() => {}}>Reject</button>
+		</div>
 	{/if}
 </div>
