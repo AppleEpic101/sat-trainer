@@ -18,7 +18,8 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				reviewID: review._id
+				reviewID: review._id,
+				selectedVersion
 			})
 		});
 	};
@@ -40,13 +41,17 @@
 			This question will be added to the question database. The current thread will now be closed.
 			This action cannot be undone. Are you sure you want to do this?
 		</div>
-		<Select label={'Select the version'} options={['Version 1']} />
+		<Select
+			label={'Select the version'}
+			options={Array.from({ length: review.versions.length }, (_, i) => `Version ${i + 1}`)}
+			bind:selectedValue={selectedVersion}
+		/>
 
 		<button
 			class="w-full bg-green-400 my-2"
 			on:click={() => {
-				approveQuestion();
 				dialog.close();
+				approveQuestion();
 			}}>Yes</button
 		>
 		<button class="w-full bg-red-400" on:click={() => dialog.close()}>No</button>
