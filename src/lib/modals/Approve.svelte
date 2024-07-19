@@ -22,6 +22,8 @@
 			})
 		});
 	};
+
+	let selectedVersion = 'Version 1';
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
@@ -38,7 +40,8 @@
 			This question will be added to the question database. The current thread will now be closed.
 			This action cannot be undone. Are you sure you want to do this?
 		</div>
-		<Select label={'Select the version'} />
+		<Select label={'Select the version'} options={['Version 1']} />
+
 		<button
 			class="w-full bg-green-400 my-2"
 			on:click={() => {

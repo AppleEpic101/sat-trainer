@@ -1,5 +1,6 @@
 <script>
 	import { mathjax } from '$lib/mathjax.js';
+	import MathJax from '$lib/components/MathJax.svelte';
 	import MCQ from '$lib/components/MCQ.svelte';
 	import SPR from '$lib/components/SPR.svelte';
 	import { Spinner } from 'flowbite-svelte';
@@ -16,6 +17,8 @@
 			selectedAnswer = '';
 		}
 	}
+
+	$: console.log(data);
 </script>
 
 {#if isLoading}
@@ -43,13 +46,25 @@
 		<div class="border-black border-2">
 			<div class="flex flex-start" use:mathjax>
 				<div class="basis-1/2 p-4">
-					<div class="rawdog">
-						{@html data.question.stimulus || ''}
+					<div class="rawdog" use:mathjax>
+						{#if data.notation === 'LaTeX'}
+							{#key data.question.stimulus}
+								<MathJax math={data.question.stimulus || ''} />
+							{/key}
+						{:else}
+							{@html data.question.stimulus || ''}
+						{/if}
 					</div>
 				</div>
 
-				<div class="basis-1/2 p-4">
-					{@html data.question.stem || ''}
+				<div class="basis-1/2 p-4" use:mathjax>
+					<div use:mathjax>
+						{#if data.notation === 'LaTeX'}
+							<MathJax math={data.question.stem || ''} />
+						{:else}
+							{@html data.question.stem || ''}
+						{/if}
+					</div>
 
 					{#if data.questionType === 'spr'}
 						<SPR bind:showAnswer bind:selectedAnswer />

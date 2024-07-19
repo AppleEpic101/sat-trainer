@@ -17,6 +17,7 @@
 			correctAnswer: 'A',
 			rationale: ['', '', '', '']
 		},
+		notation: 'LaTeX',
 		isLive: false,
 		stats: {
 			probability: 0,
