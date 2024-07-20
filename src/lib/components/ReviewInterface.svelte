@@ -2,10 +2,11 @@
 	import Select from '$lib/components/Select.svelte';
 	import InputText from '$lib/components/InputText.svelte';
 	import { goto } from '$app/navigation';
-	export let data;
+
+	export let newData;
 	export let user;
 
-	export let copy;
+	export let oldData;
 
 	let comments = '';
 
@@ -13,7 +14,7 @@
 		return JSON.stringify(obj1) === JSON.stringify(obj2);
 	};
 
-	$: change = equals(data, copy);
+	$: change = equals(newData, oldData);
 
 	let showButton = true;
 
@@ -25,9 +26,6 @@
 		if (comments === '') {
 			comments = 'None';
 		}
-
-		let oldData = copy;
-		let newData = data;
 
 		const res = await fetch('/api/review/postReview', {
 			method: 'POST',
@@ -79,44 +77,44 @@
 	<div class="text-xl">Admin Panel</div>
 	<div class="text-lg">Metadata</div>
 
-	<InputText label={'ID'} selectedValue={data.id.SAT} />
+	<InputText label={'ID'} selectedValue={newData.id.SAT} />
 	<Select
 		label={'Status'}
 		options={['active', 'inactive', 'pending']}
-		selectedValue={data.status}
+		selectedValue={newData.status}
 	/>
 	<Select
 		label={'Source'}
 		options={['College Board', 'Sigma SAT']}
-		bind:selectedValue={data.source}
+		bind:selectedValue={newData.source}
 	/>
-	<Select label={'Section'} options={['Reading', 'Math']} bind:selectedValue={data.section} />
-	<Select label={'Type'} options={['mcq', 'spr']} bind:selectedValue={data.questionType} />
+	<Select label={'Section'} options={['Reading', 'Math']} bind:selectedValue={newData.section} />
+	<Select label={'Type'} options={['mcq', 'spr']} bind:selectedValue={newData.questionType} />
 	<Select
 		label={'Difficulty'}
 		options={[1, 2, 3, 4, 5, 6, 7]}
-		bind:selectedValue={data.difficulty}
+		bind:selectedValue={newData.difficulty}
 	/>
 
 	<div class="text-lg">Question</div>
-	<InputText label={'Stimulus (HTML)'} bind:selectedValue={data.question.stimulus} />
-	<InputText label={'Stem (HTML)'} bind:selectedValue={data.question.stem} />
+	<InputText label={'Stimulus (HTML)'} bind:selectedValue={newData.question.stimulus} />
+	<InputText label={'Stem (HTML)'} bind:selectedValue={newData.question.stem} />
 
-	<InputText label={'Answer Options'} bind:selectedValue={data.question.answerOptions[0]} />
-	<InputText bind:selectedValue={data.question.answerOptions[1]} />
-	<InputText bind:selectedValue={data.question.answerOptions[2]} />
-	<InputText bind:selectedValue={data.question.answerOptions[3]} />
+	<InputText label={'Answer Options'} bind:selectedValue={newData.question.answerOptions[0]} />
+	<InputText bind:selectedValue={newData.question.answerOptions[1]} />
+	<InputText bind:selectedValue={newData.question.answerOptions[2]} />
+	<InputText bind:selectedValue={newData.question.answerOptions[3]} />
 
 	<Select
 		label={'Correct Answer'}
 		options={['A', 'B', 'C', 'D']}
-		bind:selectedValue={data.question.correctAnswer}
+		bind:selectedValue={newData.question.correctAnswer}
 	/>
 
-	<InputText label={'Rationale'} bind:selectedValue={data.question.rationale[0]} />
-	<InputText bind:selectedValue={data.question.rationale[1]} />
-	<InputText bind:selectedValue={data.question.rationale[2]} />
-	<InputText bind:selectedValue={data.question.rationale[3]} />
+	<InputText label={'Rationale'} bind:selectedValue={newData.question.rationale[0]} />
+	<InputText bind:selectedValue={newData.question.rationale[1]} />
+	<InputText bind:selectedValue={newData.question.rationale[2]} />
+	<InputText bind:selectedValue={newData.question.rationale[3]} />
 
 	{#if !change && showButton}
 		<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>

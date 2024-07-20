@@ -15,6 +15,6 @@
 	<StaticQuestion bind:data={data.question} />
 
 	{#if data.user.isAdmin}
-		<ReviewInterface bind:data={data.question} {user} {copy} />
+		<ReviewInterface bind:newData={data.question} {user} oldData={copy} />
 	{/if}
 </div>
