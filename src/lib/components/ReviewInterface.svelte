@@ -39,9 +39,12 @@
 					{
 						oldData,
 						newData,
-						user,
-						date,
-						comments
+						meta: {
+							type: 'Version',
+							user,
+							date,
+							comments
+						}
 					}
 				],
 				messageLog: [

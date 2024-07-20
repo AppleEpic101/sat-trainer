@@ -77,9 +77,12 @@
 					{
 						oldData: null,
 						newData: data,
-						user,
-						date,
-						comments: comments
+						meta: {
+							type: 'Version Initial',
+							user,
+							date,
+							comments
+						}
 					}
 				],
 				messageLog: [
