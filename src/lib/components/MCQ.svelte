@@ -1,8 +1,10 @@
 <script>
+	import { mathjax } from '$lib/mathjax.js';
 	export let data;
 
 	export let showAnswer;
 	export let selectedAnswer = '';
+	export let notation = 'MathML';
 
 	let hideSubmit = false;
 
@@ -41,7 +43,17 @@
 			<span class="self-center text-lg font-bold mx-2"
 				>{String.fromCharCode('A'.charCodeAt(0) + i)}
 			</span>
-			<span class="self-center text-md">{@html answerOption} </span>
+			<span class="self-center text-md" use:mathjax>
+				{#if notation === 'LaTeX'}
+					{#key answerOption}
+						<div use:mathjax>
+							{answerOption || ''}
+						</div>
+					{/key}
+				{:else}
+					{@html answerOption}
+				{/if}
+			</span>
 		</div>
 	</label>
 {/each}

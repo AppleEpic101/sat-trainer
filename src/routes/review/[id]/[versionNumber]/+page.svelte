@@ -30,7 +30,8 @@
 	>
 </div>
 <div class="border border-black mx-4">
-	{#if activeTab === 'old'}
+	<Question data={version.newData} showAnswer={true} />
+	<!-- {#if activeTab === 'old'}
 		<div class="p-2 shadow-lg rounded-lg bg-gray-100">
 			{#if version.oldData}
 				<Question data={version.oldData} showAnswer={true} />
@@ -42,5 +43,5 @@
 		<div class="p-2 shadow-lg rounded-lg bg-gray-100">
 			<Question data={version.newData} showAnswer={true} />
 		</div>
-	{/if}
+	{/if} -->
 </div>

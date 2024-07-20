@@ -46,24 +46,25 @@
 		<div class="border-black border-2">
 			<div class="flex flex-start">
 				<div class="basis-1/2 p-4">
-					<div class="rawdog">
+					<div class="rawdog" use:mathjax>
 						{#if data.notation === 'LaTeX'}
 							{#key data.question.stimulus}
-								<MathJax math={data.question.stimulus} />
+								<div use:mathjax>
+									{data.question.stimulus || ''}
+								</div>
 							{/key}
 						{:else}
 							{@html data.question.stimulus || ''}
 						{/if}
-						<!-- {@html data.question.stimulus || ''} -->
 					</div>
 				</div>
 
 				<div class="basis-1/2 p-4">
 					<div>
 						{#if data.notation === 'LaTeX'}
-							<!-- {#key data.question.stem}
-								<MathJax math={data.question.stem} />
-							{/key} -->
+							{#key data.question.stem}
+								<div use:mathjax>{data.question.stem || ''}</div>
+							{/key}
 						{:else}
 							{@html data.question.stem || ''}
 						{/if}
@@ -72,7 +73,7 @@
 					{#if data.questionType === 'spr'}
 						<SPR bind:showAnswer bind:selectedAnswer />
 					{:else}
-						<MCQ {data} bind:showAnswer bind:selectedAnswer />
+						<MCQ {data} notation={data.notation} bind:showAnswer bind:selectedAnswer />
 					{/if}
 				</div>
 			</div>
@@ -88,9 +89,9 @@
 						{#if data.questionType === 'spr'}
 							<div class="rawdog">
 								{#if data.notation === 'LaTeX'}
-									<!-- {#key data.question.rationale}
-										<MathJax math={data.question.rationale} />
-									{/key} -->
+									{#key data.question.rationale}
+										<div use:mathjax>{data.question.rationale}</div>
+									{/key}
 								{:else}
 									{@html data.question.rationale}
 								{/if}
@@ -99,9 +100,9 @@
 							{#each data?.question?.rationale as item}
 								<div class="my-2">
 									{#if data.notation === 'LaTeX'}
-										<!-- {#key item}
-											<MathJax math={item} />
-										{/key} -->
+										{#key item}
+											<div use:mathjax>{item}</div>
+										{/key}
 									{:else}
 										{@html item}
 									{/if}
