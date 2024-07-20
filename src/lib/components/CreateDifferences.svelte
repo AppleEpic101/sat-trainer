@@ -35,11 +35,16 @@
 </div>
 <div class="flex flex-col gap-1 w-full mr-16">
 	<div
-		class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
+		class="flex flex-col leading-1.5 p-4 mt-4 gap-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
 	>
-		<a href={`/review/${_id}/1`}
-			><button class="bg-green-300 text-center w-full h-8">Edit This Version (Version 1)</button></a
+		<a href={`/review/${_id}/view/1`}
+			><button class="bg-green-300 text-center w-full h-8">View This Version (Version 1)</button></a
 		>
+		<a href={`/review/${_id}/edit/1`}
+			><button class="bg-teal-300 text-center w-full h-8">Modify This Version (Version 1)</button
+			></a
+		>
+
 		<div class="w-full px-3 mb-6 md:w-1/2">
 			<div class="">
 				{#each Object.keys(flat) as key}

@@ -35,7 +35,9 @@
 			{#if version.oldData}
 				<Question data={version.oldData} showAnswer={true} />
 			{:else}
-				Question created by {version.meta.user.username}. Previous version does not exist.
+				<div class="text-center">
+					Question created by {version.meta.user.username}. A previous version does not exist.
+				</div>
 			{/if}
 		</div>
 	{:else if activeTab === 'new'}
