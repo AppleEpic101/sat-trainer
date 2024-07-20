@@ -18,7 +18,7 @@
 		}
 	}
 
-	$: console.log(data);
+	// $: console.log(data);
 </script>
 
 {#if isLoading}
@@ -44,23 +44,26 @@
 		</div>
 
 		<div class="border-black border-2">
-			<div class="flex flex-start" use:mathjax>
+			<div class="flex flex-start">
 				<div class="basis-1/2 p-4">
-					<div class="rawdog" use:mathjax>
+					<div class="rawdog">
 						{#if data.notation === 'LaTeX'}
 							{#key data.question.stimulus}
-								<MathJax math={data.question.stimulus || ''} />
+								<MathJax math={data.question.stimulus} />
 							{/key}
 						{:else}
 							{@html data.question.stimulus || ''}
 						{/if}
+						<!-- {@html data.question.stimulus || ''} -->
 					</div>
 				</div>
 
-				<div class="basis-1/2 p-4" use:mathjax>
-					<div use:mathjax>
+				<div class="basis-1/2 p-4">
+					<div>
 						{#if data.notation === 'LaTeX'}
-							<MathJax math={data.question.stem || ''} />
+							<!-- {#key data.question.stem}
+								<MathJax math={data.question.stem} />
+							{/key} -->
 						{:else}
 							{@html data.question.stem || ''}
 						{/if}
@@ -74,7 +77,7 @@
 				</div>
 			</div>
 			{#if showAnswer}
-				<div class="p-2 mx-5 mb-5 bg-slate-300" use:mathjax>
+				<div class="p-2 mx-5 mb-5 bg-slate-300">
 					<div>
 						Your Answer: {selectedAnswer}
 					</div>
@@ -84,12 +87,24 @@
 					<div>
 						{#if data.questionType === 'spr'}
 							<div class="rawdog">
-								{@html data?.question?.rationale}
+								{#if data.notation === 'LaTeX'}
+									<!-- {#key data.question.rationale}
+										<MathJax math={data.question.rationale} />
+									{/key} -->
+								{:else}
+									{@html data.question.rationale}
+								{/if}
 							</div>
 						{:else}
 							{#each data?.question?.rationale as item}
 								<div class="my-2">
-									{@html item}
+									{#if data.notation === 'LaTeX'}
+										<!-- {#key item}
+											<MathJax math={item} />
+										{/key} -->
+									{:else}
+										{@html item}
+									{/if}
 								</div>
 							{/each}
 						{/if}

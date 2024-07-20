@@ -1,5 +1,8 @@
 <script>
-	export let newData;
+	export let message;
+	export let _id;
+
+	const { newData } = message;
 
 	const flattenObject = (obj, prefix = '') => {
 		if (typeof obj !== 'object' || obj === null) {
@@ -26,7 +29,7 @@
 	<img class="w-8 h-8 rounded-full" src="/pfp.jpg" />
 	<div>
 		<span class="text-sm font-semibold text-gray-900 dark:text-white">Username</span> created a new
-		question (Version X) on
+		question (Version 1) on
 		<span class="text-sm font-normal text-gray-500 dark:text-gray-400">Date</span>
 	</div>
 </div>
@@ -34,6 +37,9 @@
 	<div
 		class="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
 	>
+		<a href={`/review/${_id}/1`}
+			><button class="bg-green-300 text-center w-full h-8">Edit This Version (Version 1)</button></a
+		>
 		<div class="w-full px-3 mb-6 md:w-1/2">
 			<div class="">
 				{#each Object.keys(flat) as key}

@@ -26,7 +26,7 @@
 	<div class="border border-back p-4 m-4">
 		{#each data.messageLog as message, i}
 			{#if message.meta.type === 'Version Initial'}
-				<CreateDifferences newData={message.newData} />
+				<CreateDifferences {message} _id={data._id} />
 			{:else if message.meta.type === 'Version'}
 				<EditDifferences {message} index={i} />
 			{:else if message.meta.type === 'Comment'}

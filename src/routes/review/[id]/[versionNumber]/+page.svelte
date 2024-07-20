@@ -2,10 +2,8 @@
 	import { formatDate } from '$lib/util.js';
 	import Question from '$lib/components/Question.svelte';
 	export let data;
+
 	const { version, versionNumber } = data;
-
-	$: console.log(version);
-
 	let activeTab = 'new';
 </script>
 
@@ -37,7 +35,7 @@
 			{#if version.oldData}
 				<Question data={version.oldData} showAnswer={true} />
 			{:else}
-				Question created by
+				Question created by {version.meta.user.username}. Previous version does not exist.
 			{/if}
 		</div>
 	{:else if activeTab === 'new'}
