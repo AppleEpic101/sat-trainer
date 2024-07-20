@@ -11,20 +11,22 @@
 	let dialog;
 	$: if (dialog && showModal) dialog.showModal();
 
+	let selectedVersion = 'Version 1';
+	$: versionIndex = parseInt(selectedVersion.split(' ')[1]) - 1;
+
 	const approveQuestion = async () => {
+		dialog.close();
 		const res = await fetch('/api/review/approve', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				reviewID: review._id,
-				selectedVersion
+				data: review,
+				versionIndex
 			})
 		});
 	};
-
-	let selectedVersion = 'Version 1';
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
@@ -50,7 +52,6 @@
 		<button
 			class="w-full bg-green-400 my-2"
 			on:click={() => {
-				dialog.close();
 				approveQuestion();
 			}}>Yes</button
 		>

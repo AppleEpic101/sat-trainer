@@ -78,11 +78,7 @@
 	<div class="text-lg">Metadata</div>
 
 	<InputText label={'ID'} selectedValue={newData.id.SAT} />
-	<Select
-		label={'Status'}
-		options={['active', 'inactive', 'pending']}
-		selectedValue={newData.status}
-	/>
+	<Select label={'Status'} options={['active', 'inactive']} selectedValue={newData.status} />
 	<Select
 		label={'Source'}
 		options={['College Board', 'Sigma SAT']}

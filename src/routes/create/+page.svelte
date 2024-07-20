@@ -5,7 +5,7 @@
 	let { user } = data;
 
 	let qData = {
-		status: 'pending',
+		status: 'active',
 		source: 'Sigma SAT',
 		program: ['SAT'],
 		section: 'Reading',

@@ -571,6 +571,8 @@ export const register = async (data) => {
         },
 
         isAdmin: false,
+        isReviewer: false,
+        editLog: [],
         settings: {
             darkMode: false,
             hideProfile: false,
