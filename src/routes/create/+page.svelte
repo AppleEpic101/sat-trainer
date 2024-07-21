@@ -25,6 +25,7 @@
 			incorrect: 0,
 			skipped: 0
 		},
+		editLog: [],
 		id: {
 			SAT: 'TBD'
 		},
