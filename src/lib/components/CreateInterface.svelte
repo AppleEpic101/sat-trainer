@@ -79,6 +79,7 @@
 						newData: data,
 						meta: {
 							type: 'Version Initial',
+							versionNumber: 1,
 							user,
 							date,
 							comments
@@ -91,6 +92,7 @@
 						newData: data,
 						meta: {
 							type: 'Version Initial',
+							versionNumber: 1,
 							user,
 							date,
 							comments

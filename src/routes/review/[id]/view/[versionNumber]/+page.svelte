@@ -3,12 +3,12 @@
 	import Question from '$lib/components/Question.svelte';
 	export let data;
 
-	const { version, versionNumber } = data;
+	const { version } = data;
 	let activeTab = 'new';
 </script>
 
 <div class="ml-4">
-	<div class="text-2xl">Version {versionNumber}</div>
+	<div class="text-2xl">Version {version.meta.versionNumber}</div>
 	<div class="text-lg">By {version.meta.user.username}, {formatDate(version.meta.date)}</div>
 	<div class="text-lg">Comments: {version.meta.comments}</div>
 </div>
@@ -26,7 +26,8 @@
 		'new'
 			? 'bg-blue-800 border-black border-2'
 			: 'bg-blue-400'}"
-		on:click={() => (activeTab = 'new')}>Proposed Version (Version {versionNumber})</button
+		on:click={() => (activeTab = 'new')}
+		>Proposed Version (Version {version.meta.versionNumber})</button
 	>
 </div>
 <div class="border border-black mx-4">

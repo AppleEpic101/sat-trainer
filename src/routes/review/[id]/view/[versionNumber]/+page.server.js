@@ -14,6 +14,5 @@ export const load = async ( {fetch, params} ) => {
 
     return {
         version: review.versions[versionNumber - 1],
-        versionNumber
     }
 }

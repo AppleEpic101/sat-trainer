@@ -6,12 +6,12 @@
 
 	let copy = JSON.parse(JSON.stringify(data.version.newData)); //copy
 
-	const { version, versionNumber, user } = data;
+	const { version, user } = data;
 	let activeTab = 'new';
 </script>
 
 <div class="ml-4">
-	<div class="text-2xl">Version {versionNumber}</div>
+	<div class="text-2xl">Version {version.meta.versionNumber}</div>
 	<div class="text-lg">By {version.meta.user.username}, {formatDate(version.meta.date)}</div>
 	<div class="text-lg">Comments: {version.meta.comments}</div>
 </div>

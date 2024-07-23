@@ -27,47 +27,12 @@
 			comments = 'None';
 		}
 
-		const res = await fetch('/api/review/postReview', {
+		const res = await fetch('/api/review/addVersion', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({
-				versions: [
-					{
-						oldData,
-						newData,
-						meta: {
-							type: 'Version',
-							versionNumber: 1,
-							user,
-							date,
-							comments
-						}
-					}
-				],
-				messageLog: [
-					{
-						oldData,
-						newData,
-						meta: {
-							type: 'Version',
-							versionNumber: 1,
-							user,
-							date,
-							comments
-						}
-					}
-				],
-				meta: {
-					state: 'open',
-					type: 'edit',
-					comments: comments,
-					date: date,
-					questionID: oldData.id.SAT,
-					user
-				}
-			})
+			body: JSON.stringify
 		});
 		goto('/review');
 
@@ -115,7 +80,7 @@
 	<InputText bind:selectedValue={newData.question.rationale[3]} />
 
 	{#if !change && showButton}
-		<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to Review Board</button>
+		<button class="bg-green-400 w-full p-2" on:click={postReview}>Post to New Version</button>
 		<InputText label={'Explain what you changed'} bind:selectedValue={comments} />
 	{/if}
 </div>
