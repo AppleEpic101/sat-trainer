@@ -29,6 +29,7 @@ export const POST = async ({request}) => {
         messageLog: { 
             meta: {
                 type: "approve",
+                versionNumber: versionIndex + 1,
                 date,
                 user: data.user,
             }
@@ -37,14 +38,16 @@ export const POST = async ({request}) => {
     });
     await users.updateOne({ _id: new ObjectId(data.meta.user._id) }, { $push: { 
         editLog: {
+            _id: data._id,
             type: data.meta.type,
             date: data.meta.date, // date of review creation
             user: data.meta.user,
             comments: data.meta.comments
         }
     }});
-    await collection.updateOne({_id: insertResult.insertedId}, { $push: { editLog: 
-        {
+    await collection.updateOne({_id: insertResult.insertedId}, { $push: { 
+        editLog: {
+            _id: data._id,
             type: data.meta.type,
             date: data.meta.date, // date of review creation
             user: data.meta.user,
