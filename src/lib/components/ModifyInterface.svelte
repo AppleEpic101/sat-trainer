@@ -5,7 +5,7 @@
 
 	export let newData;
 	export let user;
-
+	export let version;
 	export let oldData;
 
 	let comments = '';
@@ -32,7 +32,20 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify
+			body: JSON.stringify({
+				_id: version._id,
+				version: {
+					oldData,
+					newData,
+					meta: {
+						type: 'Version',
+						versionNumber: version.meta.versionNumber + 1,
+						user,
+						date,
+						comments
+					}
+				}
+			})
 		});
 		goto('/review');
 

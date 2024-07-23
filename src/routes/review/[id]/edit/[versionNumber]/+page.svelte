@@ -1,7 +1,7 @@
 <script>
 	import { formatDate } from '$lib/util.js';
 	import Question from '$lib/components/Question.svelte';
-	import ReviewInterface from '$lib/components/ReviewInterface.svelte';
+	import ModifyInterface from '$lib/components/ModifyInterface.svelte';
 	export let data;
 
 	let copy = JSON.parse(JSON.stringify(data.version.newData)); //copy
@@ -21,5 +21,5 @@
 </div>
 
 <div class="m-4">
-	<ReviewInterface bind:newData={version.newData} {user} oldData={copy} />
+	<ModifyInterface bind:newData={version.newData} {version} {user} oldData={copy} />
 </div>
