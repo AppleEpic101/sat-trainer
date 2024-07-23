@@ -24,17 +24,23 @@
 	<div class="text-3xl my-4">Review Board</div>
 	<div class="flex flex-row flex-wrap gap-2">
 		{#each reviews as review}
-			<a href={`/review/${review._id}`}>
-				<div class="bg-slate-300 w-96 p-4 hover:bg-slate-400 cursor-pointer">
-					<div class="text-2xl">
-						{capitalizeFirstLetter(review.meta.type)} by {review.meta.user.username}
-					</div>
+			<a
+				href={`/review/${review._id}`}
+				class="block w-72 min-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+			>
+				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+					{capitalizeFirstLetter(review.meta.type)} by {review.meta.user.username}
+				</h5>
+				<div class="font-normal text-gray-700 dark:text-gray-400">
 					<div>{formatDate(review.meta.date)}</div>
-					<div>Question ID: {review.meta.questionID}</div>
+					{#if review.meta.questionID}
+						<div>Question ID: {review.meta.questionID}</div>
+					{/if}
 					<div>Status: {capitalizeFirstLetter(review.meta.state)}</div>
 					<div>Description: {review.meta.comments}</div>
-				</div></a
-			><button
+				</div>
+			</a>
+			<button
 				class="bg-blue-300 hover:bg-blue-400"
 				on:click={() => {
 					deleteReview(review._id);

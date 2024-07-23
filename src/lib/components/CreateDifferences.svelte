@@ -1,4 +1,6 @@
 <script>
+	import { formatDate } from '$lib/util.js';
+	export let data;
 	export let message;
 	export let _id;
 
@@ -28,9 +30,13 @@
 <div class="flex items-center gap-2.5">
 	<img class="w-8 h-8 rounded-full" src="/pfp.jpg" />
 	<div>
-		<span class="text-sm font-semibold text-gray-900 dark:text-white">Username</span> created a new
-		question (Version 1) on
-		<span class="text-sm font-normal text-gray-500 dark:text-gray-400">Date</span>
+		<span class="text-sm font-semibold text-gray-900 dark:text-white"
+			>{message.meta.user.username}</span
+		>
+		created a new question (Version 1) on
+		<span class="text-sm font-normal text-gray-500 dark:text-gray-400"
+			>{formatDate(message.meta.date)}</span
+		>
 	</div>
 </div>
 <div class="flex flex-col gap-1 w-full mr-16">
