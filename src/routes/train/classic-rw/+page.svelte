@@ -16,9 +16,8 @@
 	let isLoading = false;
 	let showAnswer, selectedAnswer;
 
+	let newQuestion = data.question;
 	const fetchQuestion = async () => {
-		isLoading = true;
-
 		let query = { skill: skillsArray };
 		let res = await fetch('/api/getQuestion', {
 			method: 'POST',
@@ -28,7 +27,7 @@
 			body: JSON.stringify({ section: 'Reading', query })
 		});
 
-		data.question = await res.json();
+		newQuestion = await res.json();
 
 		await fetch('/api/log/saveLog', {
 			method: 'POST',
@@ -39,11 +38,9 @@
 				user: data.user,
 				section: 'Reading',
 				focus: selection,
-				questionID: data.question._id
+				questionID: newQuestion._id
 			})
 		});
-
-		isLoading = false;
 	};
 
 	$: readingStats = data.user?.log['All Reading Topics'].stats;
@@ -74,7 +71,7 @@
 	};
 	$: {
 		if (showAnswer) {
-			update();
+			fetchQuestion();
 		}
 	}
 </script>
@@ -103,8 +100,15 @@
 	</div>
 	<div>
 		{#if showAnswer}
-			<button class="bg-cyan-500 w-full my-1 p-2 rounded-md" on:click={fetchQuestion}
-				>Continue</button
+			<button
+				class="bg-cyan-500 w-full my-1 p-2 rounded-md"
+				on:click={async () => {
+					// fetchQuestion();
+					isLoading = true; //clean slate
+					data.question = newQuestion;
+					await update();
+					isLoading = false;
+				}}>Continue</button
 			>
 		{/if}
 		<Question
