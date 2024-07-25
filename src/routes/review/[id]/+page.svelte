@@ -35,13 +35,15 @@
 
 	<div class="border border-back p-4">
 		{#each data.messageLog as message, i}
-			{#if message.meta.type === 'Version Initial'}
-				<CreateDifferences {data} {message} _id={data._id} />
-			{:else if message.meta.type === 'Version'}
-				<EditDifferences {message} index={i} />
-			{:else if message.meta.type === 'Comment'}
-				<Comment {message} />
-			{/if}
+			<div class="my-4">
+				{#if message.meta.type === 'Version Initial'}
+					<CreateDifferences {data} {message} _id={data._id} />
+				{:else if message.meta.type === 'Version'}
+					<EditDifferences {message} _id={data._id} index={i} />
+				{:else if message.meta.type === 'Comment'}
+					<Comment {message} />
+				{/if}
+			</div>
 		{/each}
 	</div>
 

@@ -5,6 +5,7 @@
 
 	export let message;
 	export let index;
+	export let _id;
 
 	const deepDiff = (obj1, obj2, path = '') => {
 		if (obj1 === obj2) {
@@ -67,8 +68,18 @@
 	</div>
 </div>
 <div
-	class="ml-11 flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
+	class="flex flex-col gap-4 leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700"
 >
+	<a href={`/review/${_id}/view/1`}
+		><button class="bg-green-300 text-center w-full h-8"
+			>View This Version (Version {index + 1})</button
+		></a
+	>
+	<a href={`/review/${_id}/edit/1`}
+		><button class="bg-teal-300 text-center w-full h-8"
+			>Modify This Version (Version {index + 1})</button
+		></a
+	>
 	{#each Object.entries(diffs) as [key, value]}
 		<h3 class="text-lg font-semibold">{key}</h3>
 		<div class="flex -mx-3">

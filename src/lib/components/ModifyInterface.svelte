@@ -4,10 +4,12 @@
 	import { goto } from '$app/navigation';
 
 	export let newData;
-	export let user;
 	export let reviewID;
 	export let version;
 	export let oldData;
+
+	import { userBasic } from '$lib/stores/user.js';
+	$: user = $userBasic;
 
 	let comments = '';
 
