@@ -1,7 +1,7 @@
 <script>
-	export let data;
+	import { user } from '$lib/stores/user.js';
 
-	const { stats, log, username } = data.user;
+	const { stats, log, username } = $user;
 
 	const reading = log['All Reading Topics'].stats;
 	const math = log['All Math Topics'].stats;

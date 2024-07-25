@@ -11,11 +11,9 @@
 		DropdownHeader,
 		DropdownDivider
 	} from 'flowbite-svelte';
-	import { getContext } from 'svelte';
+	import { userEmail } from '$lib/stores/user.js';
 
-	const user = getContext('userEmail');
-
-	$: loggedIn = $user._id;
+	$: loggedIn = $userEmail?._id;
 </script>
 
 <nav class="bg-cyan-500 flex flex-row justify-between items-center h-20">
@@ -41,8 +39,8 @@
 		</div>
 		<Dropdown placement="bottom" triggeredBy="#avatar-menu">
 			<DropdownHeader>
-				<span class="block text-sm">{$user.username}</span>
-				<span class="block truncate text-sm font-medium">{$user.email}</span>
+				<span class="block text-sm">{$userEmail.username}</span>
+				<span class="block truncate text-sm font-medium">{$userEmail.email}</span>
 			</DropdownHeader>
 			<DropdownItem href="/dashboard">Dashboard</DropdownItem>
 			<DropdownItem href="/settings">Settings</DropdownItem>
