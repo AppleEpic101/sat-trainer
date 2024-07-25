@@ -1,6 +1,5 @@
 <script>
 	import { formatDate } from '$lib/util.js';
-	export let data;
 	export let message;
 	export let _id;
 
