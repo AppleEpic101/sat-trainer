@@ -4,7 +4,29 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	export let data;
-	// console.log('DEEZ', data);
+
+	import { setContext } from 'svelte';
+	import { writable } from 'svelte/store';
+
+	const user = writable();
+	const userEmail = writable();
+	const userBasic = writable();
+
+	$: user.set(data);
+	$: userEmail.set({
+		_id: data.user._id,
+		username: data.user.username,
+		email: data.user.email
+	});
+	$: userBasic.set({
+		_id: data.user._id,
+		username: data.user.username,
+		meta: data.user.meta
+	});
+
+	setContext('user', user);
+	setContext('userEmail', userEmail);
+	setContext('userBasic', userBasic);
 </script>
 
 <Nav cookies={data.user} />

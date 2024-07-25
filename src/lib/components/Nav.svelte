@@ -11,10 +11,11 @@
 		DropdownHeader,
 		DropdownDivider
 	} from 'flowbite-svelte';
+	import { getContext } from 'svelte';
 
-	export let cookies;
+	const user = getContext('userEmail');
 
-	$: loggedIn = !cookies.error;
+	$: loggedIn = $user._id;
 </script>
 
 <nav class="bg-cyan-500 flex flex-row justify-between items-center h-20">
@@ -40,8 +41,8 @@
 		</div>
 		<Dropdown placement="bottom" triggeredBy="#avatar-menu">
 			<DropdownHeader>
-				<span class="block text-sm">{cookies.username}</span>
-				<span class="block truncate text-sm font-medium">{cookies.email}</span>
+				<span class="block text-sm">{$user.username}</span>
+				<span class="block truncate text-sm font-medium">{$user.email}</span>
 			</DropdownHeader>
 			<DropdownItem href="/dashboard">Dashboard</DropdownItem>
 			<DropdownItem href="/settings">Settings</DropdownItem>

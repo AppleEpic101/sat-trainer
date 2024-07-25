@@ -569,9 +569,13 @@ export const register = async (data) => {
                 }
             },
         },
-
-        isAdmin: false,
-        isReviewer: false,
+        meta: {
+            isAdmin: false,
+            isReviewer: false,
+            bio: "Sigma SAT is better than Khan Academy. Change my mind.",
+            pfp: "/profile-pics/pfp.jpg",
+            dateCreated: new Date(),
+        },
         editLog: [],
         settings: {
             darkMode: false,
