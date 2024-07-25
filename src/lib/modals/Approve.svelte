@@ -2,11 +2,11 @@
 	import InputText from '$lib/components/InputText.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
+	import { userBasic } from '$lib/stores/user.js';
+	$: user = $userBasic;
 
 	export let showModal = false;
 	export let review;
-	$: console.log(review);
 
 	let dialog;
 	$: if (dialog && showModal) dialog.showModal();
@@ -23,7 +23,8 @@
 			},
 			body: JSON.stringify({
 				data: review,
-				versionIndex
+				versionIndex,
+				user
 			})
 		});
 	};

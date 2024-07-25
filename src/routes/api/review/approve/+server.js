@@ -13,7 +13,7 @@ const math = questions.collection("math");
 
 export const POST = async ({request}) => {
     const req = await request.json();
-    const { data, versionIndex} = req;
+    const { data, versionIndex, user } = req;
 
     let version = data.versions[versionIndex];
     let qData = version.newData;
@@ -31,7 +31,7 @@ export const POST = async ({request}) => {
                 type: "approve",
                 versionNumber: versionIndex + 1,
                 date,
-                user: data.user,
+                user,
             }
         } 
         } 

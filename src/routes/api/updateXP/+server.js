@@ -19,6 +19,8 @@ export const POST = async ({request}) => {
     let collection = question.section === "Reading" ? rw : math;
     let userCollection = question.section === "Reading" ? "reading" : "math";
 
+    console.log(question._id, "CHECK", isCorrect, selectedAnswer, question.question.correctAnswer);
+
 
 
     if(isCorrect) {

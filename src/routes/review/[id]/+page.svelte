@@ -6,6 +6,8 @@
 	import MessageInput from '$lib/components/MessageInput.svelte';
 	import Comment from '$lib/components/Comment.svelte';
 	import Approve from '$lib/modals/Approve.svelte';
+
+	import { userBasic } from '$lib/stores/user.js';
 	export let data;
 
 	let { meta } = data;
@@ -47,7 +49,7 @@
 		<MessageInput review={data} />
 	</div>
 
-	{#if data.user.isAdmin}
+	{#if $userBasic.meta.isAdmin}
 		<div class="flex flex-col gap-4">
 			<button
 				class="w-full h-10 bg-green-400"

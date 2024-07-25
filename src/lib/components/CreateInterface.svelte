@@ -11,7 +11,7 @@
 	import Select from '$lib/components/Select.svelte';
 	import { goto } from '$app/navigation';
 	export let data;
-	export let user;
+	import { userBasic } from '$lib/stores/user.js';
 
 	$: {
 		if (data.section === 'Reading') {
@@ -80,7 +80,7 @@
 						meta: {
 							type: 'Version Initial',
 							versionNumber: 1,
-							user,
+							user: $userBasic,
 							date,
 							comments
 						}
@@ -93,7 +93,7 @@
 						meta: {
 							type: 'Version Initial',
 							versionNumber: 1,
-							user,
+							user: $userBasic,
 							date,
 							comments
 						}
@@ -104,7 +104,7 @@
 					type: 'create',
 					comments: comments,
 					date: date,
-					user
+					user: $userBasic
 				}
 			})
 		});
