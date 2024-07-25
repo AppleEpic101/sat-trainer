@@ -11,5 +11,7 @@ export const POST = async ( {request} ) => {
     let { _id } = res;
 
     let data = await review.findOne({ _id: new ObjectId(_id) });
+    data._id = data._id.toString();
+
     return new Response(JSON.stringify(data), { status: 200 });
 }

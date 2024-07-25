@@ -6,8 +6,7 @@
 
 	let copy = JSON.parse(JSON.stringify(data.version.newData)); //copy
 
-	const { version, user } = data;
-	let activeTab = 'new';
+	const { version, user, id, versionNumber } = data;
 </script>
 
 <div class="ml-4">
@@ -21,5 +20,5 @@
 </div>
 
 <div class="m-4">
-	<ModifyInterface bind:newData={version.newData} {version} {user} oldData={copy} />
+	<ModifyInterface reviewID={id} bind:newData={version.newData} {version} {user} oldData={copy} />
 </div>

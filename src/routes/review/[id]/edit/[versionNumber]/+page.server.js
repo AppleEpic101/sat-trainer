@@ -13,6 +13,8 @@ export const load = async ( {fetch, params} ) => {
     let review = await res.json();
 
     return {
+        id, 
+        versionNumber,
         version: review.versions[versionNumber - 1]
     }
 }

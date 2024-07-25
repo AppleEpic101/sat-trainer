@@ -5,6 +5,7 @@
 
 	export let newData;
 	export let user;
+	export let reviewID;
 	export let version;
 	export let oldData;
 
@@ -33,7 +34,7 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				_id: version._id,
+				_id: reviewID,
 				version: {
 					oldData,
 					newData,
