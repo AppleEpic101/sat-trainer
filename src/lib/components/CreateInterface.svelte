@@ -16,6 +16,9 @@
 	$: {
 		if (data.section === 'Reading') {
 			data.questionType = 'mcq';
+			data.notation = 'MathML';
+		} else {
+			data.notation = 'LaTeX';
 		}
 
 		if (data.section === 'Reading' && !READING_DOMAIN_LIST.includes(data.domain)) {
@@ -132,6 +135,8 @@
 		options={[1, 2, 3, 4, 5, 6, 7]}
 		bind:selectedValue={data.difficulty}
 	/>
+
+	<Select label={'Notation'} options={['LaTeX', 'MathML']} bind:selectedValue={data.notation} />
 
 	<div class="text-lg">Question</div>
 	<InputText label={'Stimulus (HTML)'} bind:selectedValue={data.question.stimulus} />

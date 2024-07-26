@@ -2,6 +2,7 @@
 	import OldQuestion from '$lib/components/OldQuestion.svelte';
 	import NewQuestion from '$lib/components/NewQuestion.svelte';
 	import Tags from '$lib/components/Tags.svelte';
+	import ReadingTags from '$lib/components/ReadingTags.svelte';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { enhance } from '$app/forms';
@@ -43,7 +44,8 @@
 
 <div class="mx-24 my-4">
 	<div class="">
-		<Tags bind:tags={q} section={'Reading'} />
+		<ReadingTags bind:tags={q} />
+		<!-- <Tags bind:tags={q} section={'Reading'} /> -->
 
 		<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
 			>New Question

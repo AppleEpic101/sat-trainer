@@ -93,6 +93,7 @@
 		options={[1, 2, 3, 4, 5, 6, 7]}
 		bind:selectedValue={newData.difficulty}
 	/>
+	<Select label={'Notation'} options={['LaTeX', 'MathML']} bind:selectedValue={newData.notation} />
 
 	<div class="text-lg">Question</div>
 	<InputText label={'Stimulus (HTML)'} bind:selectedValue={newData.question.stimulus} />

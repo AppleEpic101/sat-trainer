@@ -5,7 +5,7 @@
 
 	const source = [
 		{ value: 'College Board', name: 'College Board' },
-		{ value: 'Sigma Staff', name: 'Sigma Staff' }
+		{ value: 'Sigma SAT', name: 'Sigma Staff' }
 	];
 
 	const difficulty = [
