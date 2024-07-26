@@ -42,12 +42,12 @@
 		bind:value={tags.difficulty}
 	/>
 	<MultiSelect class="grow" items={readingSkills} label={'Choose skills'} bind:value={tags.skill} />
-	<MultiSelect
+	<!-- <MultiSelect
 		class="grow"
 		items={qType}
 		label={'Choose question type'}
 		bind:value={tags.questionType}
-	/>
+	/> -->
 	<label>
 		<input type="checkbox" bind:checked={isLive} />
 		Exclude Active Questions

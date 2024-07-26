@@ -53,6 +53,7 @@
 		<button
 			class="w-full bg-green-400 my-2"
 			on:click={() => {
+				dialog.close();
 				approveQuestion();
 			}}>Yes</button
 		>
