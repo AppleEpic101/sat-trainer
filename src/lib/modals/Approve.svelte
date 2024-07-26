@@ -2,6 +2,7 @@
 	import InputText from '$lib/components/InputText.svelte';
 	import Select from '$lib/components/Select.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { userBasic } from '$lib/stores/user.js';
 	$: user = $userBasic;
 
@@ -27,6 +28,8 @@
 				user
 			})
 		});
+		let { questionID } = await res.json();
+		goto(`/problems/${questionID}`);
 	};
 </script>
 
@@ -53,7 +56,6 @@
 		<button
 			class="w-full bg-green-400 my-2"
 			on:click={() => {
-				dialog.close();
 				approveQuestion();
 			}}>Yes</button
 		>
