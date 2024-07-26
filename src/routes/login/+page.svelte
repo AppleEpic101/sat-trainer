@@ -12,6 +12,7 @@
 	<div class="border-2 border-black rounded-lg p-5 mt-8 w-96">
 		<h2 class="text-2xl font-bold">Login</h2>
 
+		<a href="/oauth">Login with Google</a>
 		<div class="my-3">
 			<label class="block" for="email">Username/Email:</label>
 			<input
