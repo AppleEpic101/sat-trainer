@@ -1,15 +1,15 @@
-// src/routes/oauth/+page.server.js
 import { OAuth2Client } from 'google-auth-library';
 import { MongoClient } from 'mongodb';
 import { MONGO_STRING, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, JWT_KEY } from '$env/static/private';
+import { redirect } from "@sveltejs/kit";
 import jwt from 'jsonwebtoken';
 
-const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, 'http://localhost:3000/oauth/callback');
+const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, 'http://localhost:5173/oauth');
 const mongoClient = await MongoClient.connect(MONGO_STRING);
 const db = mongoClient.db("accounts");
 const collection = db.collection("users");
 
-export const GET = async ({ url }) => {
+export const GET = async ({ url, cookies }) => {
     const code = url.searchParams.get('code');
     if (!code) {
         const authUrl = client.generateAuthUrl({
@@ -42,5 +42,12 @@ export const GET = async ({ url }) => {
     }
 
     const token = jwt.sign({ id: user._id.toString() }, JWT_KEY);
-    return new Response(JSON.stringify({ token }), { status: 200 });
+    cookies.set('auth', token, {
+        httpOnly: true,
+        secure: true,
+        path: "/",
+        maxAge: 60 * 60 * 24 * 30
+    });
+
+    throw redirect(303, "/");
 };
