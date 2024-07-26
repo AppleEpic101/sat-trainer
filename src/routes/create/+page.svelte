@@ -1,10 +1,10 @@
 <script>
 	import Question from '$lib/components/Question.svelte';
 	import CreateInterface from '$lib/components/CreateInterface.svelte';
-	import { basicUser } from '$lib/stores/user.js';
+	import { userBasic } from '$lib/stores/user.js';
 
 	let qData = {
-		author: $basicUser,
+		author: $userBasic,
 		attribution: '',
 		status: 'active',
 		source: 'Sigma SAT',
