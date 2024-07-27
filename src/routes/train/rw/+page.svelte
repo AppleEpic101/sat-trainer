@@ -8,8 +8,6 @@
 	import { enhance } from '$app/forms';
 	import { getLevel, updateRating } from '$lib/question/rating.js';
 
-	export let data;
-
 	let isLoading = true;
 
 	let q = {};

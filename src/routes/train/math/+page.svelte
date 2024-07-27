@@ -1,6 +1,7 @@
 <script>
 	import OldQuestion from '$lib/components/OldQuestion.svelte';
 	import NewQuestion from '$lib/components/NewQuestion.svelte';
+	import MathTags from '$lib/components/MathTags.svelte';
 	import Tags from '$lib/components/Tags.svelte';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
@@ -40,7 +41,8 @@
 
 <div class="mx-24 my-4">
 	<div class="">
-		<Tags bind:tags={q} section={'Math'} />
+		<MathTags bind:tags={q} />
+		<!-- <Tags bind:tags={q} section={'Math'} /> -->
 
 		<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
 			>New Question
