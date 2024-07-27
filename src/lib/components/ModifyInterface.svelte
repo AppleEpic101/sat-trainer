@@ -50,7 +50,7 @@
 				}
 			})
 		});
-		goto('/review');
+		goto(`/review/${reviewID}`);
 
 		let { message } = await res.json();
 	};
@@ -75,7 +75,7 @@
 		bind:selectedValue={newData.difficulty}
 	/>
 	<InputText label={'Attribution'} bind:selectedValue={newData.attribution} />
-	<Select label={'Notation'} option={['LaTeX', 'MathML']} bind:selectedValue={newData.notation} />
+	<Select label={'Notation'} options={['LaTeX', 'MathML']} bind:selectedValue={newData.notation} />
 
 	<div class="text-lg">Question</div>
 	<InputText label={'Stimulus (HTML)'} bind:selectedValue={newData.question.stimulus} />

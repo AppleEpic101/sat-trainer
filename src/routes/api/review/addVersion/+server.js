@@ -11,5 +11,5 @@ export const POST = async ({request}) => {
     
     review.updateOne({_id: new ObjectId(_id)}, {$push: {versions: version, messageLog: version}})
 
-    return new Response("Version added", {status: 200});
+    return new Response(JSON.stringify({}), {status: 200});
 }
