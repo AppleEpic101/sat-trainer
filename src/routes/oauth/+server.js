@@ -31,15 +31,30 @@ export const GET = async ({ url, cookies }) => {
     const payload = ticket.getPayload();
     const { sub, email, name } = payload;
 
-    let user = await collection.findOne({ oauthId: sub });
+    let user = await collection.findOne({ $or: [{ oauthId: sub }, { email: email }] });
     if (!user) {
+        // Ensure the username is unique
+        let uniqueUsername = name;
+        let usernameExists = await collection.findOne({ username: uniqueUsername });
+        let counter = 1;
+        while (usernameExists) {
+            uniqueUsername = `${name}${counter}`;
+            usernameExists = await collection.findOne({ username: uniqueUsername });
+            counter++;
+        }
+
+        // Create a new account if the user does not exist
         user = {
-            username: name,
+            username: uniqueUsername,
             email: email,
             oauthId: sub,
             ...ACCOUNT_INIT
-        };
-        await collection.insertOne(user);
+    };
+    await collection.insertOne(user);
+    } else if (!user.oauthId) {
+        // Merge accounts if the user exists with the same email but without oauthId
+        user.oauthId = sub;
+        await collection.updateOne({ _id: user._id }, { $set: { oauthId: sub } });
     }
 
     const token = jwt.sign({ id: user._id.toString() }, JWT_KEY);

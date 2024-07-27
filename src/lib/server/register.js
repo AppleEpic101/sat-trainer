@@ -32,10 +32,15 @@ export const register = async (data) => {
 
     let { email, username, password } = data;
 
-    const user = await collection.findOne({ email });
+    const user = await collection.findOne({ 
+        $or: [
+            { email },
+            { username }
+        ]
+    });
     
     if (user) {
-        return { error: "User already exists."};
+        return { error: "User with this email or username already exists."};
     }
 
     const salt = await bcrypt.genSalt(10);
