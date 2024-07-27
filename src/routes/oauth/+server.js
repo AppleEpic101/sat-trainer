@@ -2,6 +2,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { MongoClient } from 'mongodb';
 import { MONGO_STRING, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, JWT_KEY } from '$env/static/private';
 import { redirect } from "@sveltejs/kit";
+import { ACCOUNT_INIT } from "$lib/type.js";
 import jwt from 'jsonwebtoken';
 
 const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, 'http://localhost:5173/oauth');
@@ -36,7 +37,7 @@ export const GET = async ({ url, cookies }) => {
             username: name,
             email: email,
             oauthId: sub,
-            // other user fields
+            ...ACCOUNT_INIT
         };
         await collection.insertOne(user);
     }
