@@ -5,8 +5,8 @@
 	import { browser } from '$app/environment';
 	export let data;
 
-	let currentQuery = data.query;
-	let query = data.query;
+	let currentQuery = data.query; // query from the URL
+	let query = data.query; // query from the input field
 
 	$: list = data.questions;
 
@@ -18,11 +18,11 @@
 	};
 
 	let q = {};
-	$: console.log(q);
-	let count;
+	// $: console.log(q);
+	// let count;
 
 	const fetchData = async () => {
-		console.log('LOADING');
+		// console.log('LOADING');
 		const res = await fetch('/api/questionTextSearch', {
 			method: 'POST',
 			headers: {
@@ -36,7 +36,7 @@
 		});
 
 		data.questions = await res.json();
-		console.log('PENIS', data.questions);
+		// console.log('PENIS', data.questions);
 	};
 
 	// onMount(() => {

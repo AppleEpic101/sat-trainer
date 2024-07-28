@@ -30,7 +30,7 @@ export const POST = async ({request}) => {
     if (query.trim() === "") {
         data = await collection.find(match).toArray();
     } else {
-        data = await collection.find({ $text: { $search: query }, $match: match}).toArray();
+        data = await collection.find({ $text: { $search: query }, ...match}).toArray();
     }
 
     return new Response(JSON.stringify(data), { status: 201 });
