@@ -23,13 +23,15 @@ export const handle = async ({ event, resolve }) => {
         }
     } else {
         const user = await collection.findOne({ _id: new ObjectId(auth.id) });
-        const isAdmin = user.meta.isAdmin;
-        const isReviewer = user.meta.isReviewer;
+        let isAdmin = user.meta.isAdmin;
+        let isReviewer = user.meta.isReviewer;
+
+        if(isAdmin) isReviewer = true;
 
         if (adminProtected.some(route => pathname.startsWith(route)) && !isAdmin) {
             throw redirect(307, "/");
-        }
-
+        } 
+        
         if (reviewerProtected.some(route => pathname.startsWith(route)) && !isReviewer) {
             throw redirect(307, "/");
         }
