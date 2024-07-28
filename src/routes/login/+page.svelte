@@ -1,5 +1,6 @@
 <script>
 	import { Input, Label, Helper, Button } from 'flowbite-svelte';
+	import { goto } from '$app/navigation';
 	import { enhance } from '$app/forms';
 	let email = '';
 	let password = '';
@@ -34,6 +35,11 @@
 				bind:value={password}
 			/>
 		</div>
+		<button
+			on:click={() => {
+				goto('/request-reset');
+			}}>Forgot password?</button
+		>
 
 		<button class="w-full text-base mt-3 p-2 bg-purple-400" type="submit">Log in</button>
 

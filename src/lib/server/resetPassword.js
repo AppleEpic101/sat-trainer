@@ -25,7 +25,7 @@ export const requestPasswordReset = async (email) => {
 
 	const token = jwt.sign({ id: user._id.toString() }, JWT_KEY, { expiresIn: '1h' });
 
-	const resetLink = `http://yourdomain.com/reset-password?token=${token}`;
+	const resetLink = `http:localhost:5173/reset-password?token=${token}`;
 
 	const mailOptions = {
 		from: EMAIL_USER,

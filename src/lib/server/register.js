@@ -82,3 +82,21 @@ export const updateInfo = async (data) => {
     await collection.updateOne({_id: new ObjectId(_id)}, { $set: data});
     return { message: "Update successful!", update: data}
 }
+
+export const resetPassword = async (token, newPassword) => {
+    try {
+        const decoded = jwt.verify(token, JWT_KEY);
+        const userId = decoded.id;
+
+        const hashedPassword = await hash(newPassword);
+
+        await collection.updateOne(
+            { _id: new ObjectId(userId) },
+            { $set: { password: hashedPassword } }
+        );
+
+        return { message: "Password reset successful." };
+    } catch (error) {
+        return { error: "Invalid or expired token." };
+    }
+};
