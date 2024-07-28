@@ -1,5 +1,8 @@
 <script>
 	import { goto } from '$app/navigation';
+	import MathTags from '$lib/components/MathTags.svelte';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	export let data;
 
 	let currentQuery = data.query;
@@ -13,9 +16,36 @@
 			currentQuery = query;
 		}
 	};
+
+	let q = {};
+	const fetchData = async () => {
+		const res = await fetch('/api/questionTextSearch', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				query: currentQuery,
+				section: 'Math',
+				tags: q
+			})
+		});
+
+		data.questions = await res.json();
+	};
+
+	// Reactively call fetchData and countDocs when `q` changes, but only in the browser
+	let init = true;
+	onMount(() => {
+		init = false;
+	});
+	$: if (q && browser && !init) {
+		fetchData();
+	}
 </script>
 
 <div class="mx-24 my-8">
+	<MathTags bind:tags={q} />
 	<input
 		type="text"
 		placeholder="Search..."
@@ -24,7 +54,7 @@
 		on:keydown={handleKeyDown}
 	/>
 	<div>Query: {currentQuery}</div>
-	<div class="text-xl">Questions</div>
+	<div class="text-xl">Questions ({data?.questions?.length} questions in database)</div>
 
 	<table class="table-fixed w-full">
 		<thead>

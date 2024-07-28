@@ -45,6 +45,7 @@
 	// 		countDocs();
 	// 	}
 	// });
+
 	// Reactively call fetchData and countDocs when `q` changes, but only in the browser
 	let init = true;
 	onMount(() => {
