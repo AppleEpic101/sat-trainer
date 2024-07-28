@@ -8,7 +8,8 @@ export const load = async ({ fetch }) => {
     userEmail.set({
         _id: data._id,
         username: data.username,
-        email: data.email
+        email: data.email,
+        meta: data.meta
     });
     userBasic.set({
         _id: data._id,

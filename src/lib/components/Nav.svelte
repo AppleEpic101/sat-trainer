@@ -14,6 +14,8 @@
 	import { userEmail } from '$lib/stores/user.js';
 
 	$: loggedIn = $userEmail?._id;
+	$: isAdmin = $userEmail.meta.isAdmin;
+	$: isReviewer = $userEmail.meta.isReviewer;
 </script>
 
 <nav class="bg-cyan-500 flex flex-row justify-between items-center h-20">
@@ -25,11 +27,13 @@
 		<a href="/" class="text-lg font-semibold">Home</a>
 		<a href="/about" class="text-lg font-semibold">About</a>
 		{#if loggedIn}
-			<a href="/problems" class="text-lg font-semibold">Problems</a>
 			<a href="/train" class="text-lg font-semibold">Train</a>
+			<a href="/problems" class="text-lg font-semibold">Problems</a>
 			<!-- <a href="/stats" class="text-lg font-semibold">Stats</a> -->
 		{/if}
-		<!-- <a href="/contact" class="text-lg font-semibold">Contact</a> -->
+		{#if isReviewer || isAdmin}
+			<a href="/review" class="text-lg font-semibold">Review-Board</a>
+		{/if}
 	</div>
 
 	{#if loggedIn}
