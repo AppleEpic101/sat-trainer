@@ -10,8 +10,8 @@ const db = client.db("accounts");
 const collection = db.collection("users");
 
 const loginProtected = ['/train', '/dashboard', '/settings', '/review', '/create', '/question', '/problems']
-const reviewerProtected = ['/review', '/create', '/question', '/problems']
-const adminProtected = ['/review', '/create', '/question', '/problems']
+const reviewerProtected = ['/review', '/create', '/question']
+const adminProtected = ['/review', '/create', '/question']
 
 export const handle = async ({ event, resolve }) => {
     const pathname = event.url.pathname;

@@ -27,11 +27,11 @@
 		<a href="/" class="text-lg font-semibold">Home</a>
 		<a href="/about" class="text-lg font-semibold">About</a>
 		{#if loggedIn}
+			<a href="/problems" class="text-lg font-semibold">Problems</a>
 			<a href="/train" class="text-lg font-semibold">Train</a>
 			<!-- <a href="/stats" class="text-lg font-semibold">Stats</a> -->
 		{/if}
 		{#if isReviewer || isAdmin}
-			<a href="/problems" class="text-lg font-semibold">Problems</a>
 			<a href="/review" class="text-lg font-semibold">Review-Board</a>
 		{/if}
 	</div>
