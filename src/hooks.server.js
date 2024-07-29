@@ -9,9 +9,9 @@ const client = await MongoClient.connect(MONGO_STRING);
 const db = client.db("accounts");
 const collection = db.collection("users");
 
-const loginProtected = ['/train', '/dashboard', '/settings', '/review', '/create', '/question']
-const reviewerProtected = ['/review', '/create', '/question']
-const adminProtected = ['/review', '/create', '/question']
+const loginProtected = ['/train', '/dashboard', '/settings', '/review', '/create', '/question', '/problems']
+const reviewerProtected = ['/review', '/create', '/question', '/problems']
+const adminProtected = ['/review', '/create', '/question', '/problems']
 
 export const handle = async ({ event, resolve }) => {
     const pathname = event.url.pathname;
