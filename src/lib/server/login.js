@@ -29,7 +29,7 @@ export const login = async (data) => {
         return {
             status: 401,
             body: {
-                message: "Unauthorized"
+                message: "Incorrect username/email or password."
             }
         }
     }

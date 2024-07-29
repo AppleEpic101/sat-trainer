@@ -37,7 +37,7 @@
 		</div>
 		<button
 			on:click={() => {
-				goto('/request-reset');
+				// goto('/request-reset');
 			}}>Forgot password?</button
 		>
 
