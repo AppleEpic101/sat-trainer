@@ -1,11 +1,4 @@
-import { MongoClient } from "mongodb";
-import { MONGO_STRING } from "$env/static/private";
-
-const client = await MongoClient.connect(MONGO_STRING);
-const questions = client.db("questions");
-
-const rw = questions.collection("rw");
-const math = questions.collection("math");
+import { RW, MATH } from "$lib/server/connect";
 
 export const POST = async ({request}) => {
     const res = await request.json();
@@ -21,7 +14,7 @@ export const POST = async ({request}) => {
         }
     }
 
-    let collection = section === "Reading" ? rw : math;
+    let collection = section === "Reading" ? RW : MATH;
 
     let data = await collection.aggregate([{ $match: match}, { $sample: { size: 1 } }]).toArray(); // single document
 
