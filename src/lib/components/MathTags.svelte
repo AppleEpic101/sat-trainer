@@ -24,7 +24,7 @@
 
 	let isLive = false;
 
-	tags.source = ['College Board'];
+	// tags.source = ['College Board'];
 
 	$: {
 		if (isLive) {

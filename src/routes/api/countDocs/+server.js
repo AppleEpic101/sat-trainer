@@ -21,8 +21,10 @@ export const GET = async ({url}) => {
 
         const count = await collection.countDocuments(queryParams);
 
+        client.close();
         return new Response(JSON.stringify({count}), {status: 200});
     } catch(e) {
+        client.close();
         console.log(e);
     }
 }

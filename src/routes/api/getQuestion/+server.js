@@ -17,6 +17,6 @@ export const POST = async ({request}) => {
     let collection = section === "Reading" ? RW : MATH;
 
     let data = await collection.aggregate([{ $match: match}, { $sample: { size: 1 } }]).toArray(); // single document
-
+    client.close();
     return new Response(JSON.stringify(data[0]), { status: 201 });
 }
