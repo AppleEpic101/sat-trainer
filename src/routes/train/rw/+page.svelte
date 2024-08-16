@@ -40,7 +40,7 @@
 	$: if (browser) q && countDocs();
 </script>
 
-<div class="mx-24 my-4">
+<div class="px-24 py-4">
 	<div class="">
 		<ReadingTags bind:tags={q} />
 		<!-- <Tags bind:tags={q} section={'Reading'} /> -->

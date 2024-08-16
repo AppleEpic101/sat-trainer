@@ -9,7 +9,9 @@
 
 	let isLoading = true;
 
-	let q = {};
+	let q = {
+		source: ['College Board']
+	};
 
 	let document, count;
 	const fetchData = async () => {
@@ -39,7 +41,7 @@
 	$: if (browser) q && countDocs();
 </script>
 
-<div class="mx-24 my-4">
+<div class="px-24 py-4">
 	<div class="">
 		<MathTags bind:tags={q} />
 		<!-- <Tags bind:tags={q} section={'Math'} /> -->

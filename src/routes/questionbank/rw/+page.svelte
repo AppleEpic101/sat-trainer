@@ -10,7 +10,9 @@
 
 	let isLoading = true;
 
-	let q = {};
+	let q = {
+		source: ['College Board']
+	};
 
 	let document, count;
 	const fetchData = async () => {
@@ -34,6 +36,19 @@
 		count = data.count;
 	};
 
+	let lastClickTime = 0;
+	const debounce = (func, delay) => {
+		return function (...args) {
+			const now = Date.now();
+			if (now - lastClickTime >= delay) {
+				lastClickTime = now;
+				func(...args);
+			}
+		};
+	};
+
+	const debouncedFetchData = debounce(fetchData, 1000);
+
 	$: onMount(() => {
 		fetchData();
 	});
@@ -45,7 +60,7 @@
 		<ReadingTags bind:tags={q} />
 		<!-- <Tags bind:tags={q} section={'Reading'} /> -->
 
-		<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={fetchData}
+		<button class="bg-cyan-500 w-full my-4 p-2 rounded-md" on:click={debouncedFetchData}
 			>New Question
 			{#if count}
 				({count} questions)

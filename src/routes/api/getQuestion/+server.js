@@ -1,6 +1,14 @@
-import { RW, MATH } from "$lib/server/connect";
+import { MongoClient } from "mongodb";
+import { MONGO_STRING } from "$env/static/private";
 
 export const POST = async ({request}) => {
+    const client = new MongoClient(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    const questions = client.db("questions");
+
+    const rw = questions.collection("rw");
+    const math = questions.collection("math");
+    
     const res = await request.json();
     const { section, focus, query } = res;
 
@@ -14,7 +22,7 @@ export const POST = async ({request}) => {
         }
     }
 
-    let collection = section === "Reading" ? RW : MATH;
+    let collection = section === "Reading" ? rw : math;
 
     let data = await collection.aggregate([{ $match: match}, { $sample: { size: 1 } }]).toArray(); // single document
     client.close();

@@ -6,11 +6,12 @@
 
 <Nav />
 
-<main class="">
+<main class="bg-white">
 	<slot />
 </main>
 
 <Footer />
+
 <!-- <link rel="stylesheet" href="/app.css" /> -->
 
 <!-- <style>
@@ -60,3 +61,12 @@
 		margin: 0 1rem;
 	}
 </style> -->
+
+<style>
+	:global(html) {
+		background-color: #164e63; /* Set your desired background color */
+		margin: 0;
+		padding: 0;
+		height: 100%;
+	}
+</style>
