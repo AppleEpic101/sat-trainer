@@ -35,7 +35,7 @@
 	}
 </script>
 
-<div class="flex flex-wrap gap-4 mb-4">
+<div class="flex flex-wrap gap-4 mb-4 items-center">
 	<!-- <MultiSelect class="mr-4 grow" items={source} label={'Choose source'} bind:value={tags.source} /> -->
 	<MultiSelect class="grow" items={readingSkills} label={'Choose skills'} bind:value={tags.skill} />
 	<MultiSelect
@@ -50,8 +50,30 @@
 		label={'Choose question type'}
 		bind:value={tags.questionType}
 	/> -->
-	<label>
-		<input type="checkbox" bind:checked={isLive} />
-		Exclude Active Questions
+	<label class="relative cursor-pointer hover:underline checkbox-label">
+		<input type="checkbox" bind:checked={isLive} class="mr-2" />Exclude Active Questions
+		<span class="tooltip"
+			>Excludes questions from official BlueBook and linear paper practice exams</span
+		>
 	</label>
 </div>
+
+<style>
+	.tooltip {
+		position: absolute;
+		left: 0;
+		top: 100%;
+		background: #f9f9f9;
+		border: 1px solid #ccc;
+		padding: 5px;
+		width: 200px;
+		font-size: 12px;
+		white-space: wrap;
+		z-index: 1;
+		display: none;
+	}
+
+	.checkbox-label:hover .tooltip {
+		display: block;
+	}
+</style>
