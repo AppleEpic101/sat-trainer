@@ -25,7 +25,7 @@
 					<h2 class="mb-6 text-sm font-semibold uppercase text-white">Follow us</h2>
 					<ul class=" text-gray-300 font-medium">
 						<li class="mb-4">
-							<a href="https://github.com/themesberg/flowbite" class="hover:underline">Github</a>
+							<a href="https://github.com" class="hover:underline">Github (soon)</a>
 						</li>
 						<li>
 							<a href="https://discord.gg/77fHugCbd8" class="hover:underline">Discord</a>
@@ -33,13 +33,13 @@
 					</ul>
 				</div>
 				<div>
-					<h2 class="mb-6 text-sm font-semibold uppercase text-white">Join</h2>
+					<h2 class="mb-6 text-sm font-semibold uppercase text-white">Navigate</h2>
 					<ul class="text-gray-300 font-medium">
 						<li class="mb-4">
-							<a href="#" class="hover:underline">Privacy Policy</a>
+							<a href="/about" class="hover:underline">About</a>
 						</li>
 						<li>
-							<a href="#" class="hover:underline">Terms &amp; Conditions</a>
+							<a href="/questionbank" class="hover:underline">Question Bank</a>
 						</li>
 					</ul>
 				</div>
