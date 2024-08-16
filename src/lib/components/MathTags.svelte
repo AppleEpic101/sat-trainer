@@ -24,6 +24,8 @@
 
 	let isLive = false;
 
+	tags.source = ['College Board'];
+
 	$: {
 		if (isLive) {
 			tags.isLive = [false];
@@ -34,14 +36,14 @@
 </script>
 
 <div class="flex flex-wrap gap-4 mb-4">
-	<MultiSelect class="mr-4 grow" items={source} label={'Choose source'} bind:value={tags.source} />
+	<!-- <MultiSelect class="mr-4 grow" items={source} label={'Choose source'} bind:value={tags.source} /> -->
+	<MultiSelect class="grow" items={mathSkills} label={'Choose skills'} bind:value={tags.skill} />
 	<MultiSelect
 		class="mr-4 grow"
 		items={difficulty}
 		label={'Choose difficulty'}
 		bind:value={tags.difficulty}
 	/>
-	<MultiSelect class="grow" items={mathSkills} label={'Choose skills'} bind:value={tags.skill} />
 	<MultiSelect
 		class="grow"
 		items={qType}

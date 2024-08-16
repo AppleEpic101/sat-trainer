@@ -18,7 +18,7 @@
 	$: isReviewer = $userEmail?.meta?.isReviewer;
 </script>
 
-<nav class="bg-cyan-500 flex flex-row justify-between items-center h-20">
+<nav class="bg-cyan-600 flex flex-row justify-between items-center h-20">
 	<a class="flex flex-row ml-24" href="/">
 		<img src="/logo.png" class="me-3 h-12 sm:h-10" alt="Logo" />
 		<span class="self-center whitespace-nowrap text-xl font-semibold">Sigma SAT</span>
@@ -26,6 +26,7 @@
 	<div class="flex flex-row gap-8">
 		<a href="/" class="text-lg font-semibold">Home</a>
 		<a href="/about" class="text-lg font-semibold">About</a>
+		<a href="/questionbank" class="text-lg font-semibold">QuestionBank</a>
 		{#if loggedIn}
 			<a href="/problems" class="text-lg font-semibold">Problems</a>
 			<a href="/train" class="text-lg font-semibold">Train</a>
@@ -57,10 +58,11 @@
 			</form>
 		</Dropdown>
 	{:else}
-		<div class="flex flex-row gap-8 mr-24">
+		<!-- <div class="flex flex-row gap-8 mr-24">
 			<a href="/login" class="text-lg font-semibold">Login</a>
 			<a href="/register" class="text-lg font-semibold">Register</a>
-		</div>
+		</div> -->
+		<div class="flex flex-row gap-8 mr-24 w-32"></div>
 	{/if}
 </nav>
 

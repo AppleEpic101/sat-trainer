@@ -6,7 +6,7 @@
 
 <Nav />
 
-<main class="min-h-screen">
+<main class="">
 	<slot />
 </main>
 
