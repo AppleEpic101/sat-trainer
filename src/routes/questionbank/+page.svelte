@@ -30,7 +30,7 @@
 </script>
 
 <svelte:head>
-	<title>Sigma SAT | QuestionBank</title>
+	<title>QuestionBank</title>
 	<meta
 		name="description"
 		content="Dynamic training from College Board's Educator Question Bank for the SAT!"

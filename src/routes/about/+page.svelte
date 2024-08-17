@@ -18,7 +18,7 @@
 	</p>
 </div>
 <svelte:head>
-	<title>Sigma SAT | About Us</title>
+	<title>About</title>
 	<meta
 		name="description"
 		content="Founded by students, Sigma SAT is a nonprofit organization that is dedicated to providing a free, online, adaptive training for the DSAT."

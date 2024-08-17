@@ -55,7 +55,7 @@
 </script>
 
 <svelte:head>
-	<title>Sigma SAT | Math QB</title>
+	<title>Math QB</title>
 	<meta
 		name="description"
 		content="Math training from College Board's Educator Question Bank for the SAT!"

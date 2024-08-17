@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Sigma SAT | Home</title>
+	<title>Home</title>
 	<meta
 		name="description"
 		content="Free, adaptive trainer for the Digital SAT with official practice questions from the official College Board!"
@@ -29,13 +29,13 @@
 	<div class="flex flex-col gap-4 mt-8">
 		<a
 			href="/questionbank/rw"
-			class="font-bold text-3xl border-black bg-orange-300 text-black w-96 p-2 text-center rounded-full"
+			class="font-bold text-3xl border-black bg-orange-300 hover:bg-orange-400 text-black w-96 p-2 text-center rounded-full"
 		>
 			Train Reading
 		</a>
 		<a
 			href="/questionbank/math"
-			class="font-bold text-3xl border-black bg-indigo-300 text-black p-2 w-96 text-center rounded-full"
+			class="font-bold text-3xl border-black bg-indigo-300 hover:bg-indigo-400 text-black p-2 w-96 text-center rounded-full"
 		>
 			Train Math
 		</a>

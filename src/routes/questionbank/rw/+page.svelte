@@ -56,7 +56,7 @@
 </script>
 
 <svelte:head>
-	<title>Sigma SAT | Reading/Writing QB</title>
+	<title>Reading/Writing QB</title>
 	<meta
 		name="description"
 		content="Reading/Writing training from College Board's Educator Question Bank for the SAT!"
