@@ -54,6 +54,19 @@
 	$: if (browser) q && countDocs();
 </script>
 
+<svelte:head>
+	<title>Sigma SAT | Math QB</title>
+	<meta
+		name="description"
+		content="Math training from College Board's Educator Question Bank for the SAT!"
+	/>
+	<meta name="og:title" content="Sigma SAT | Math QB" />
+	<meta
+		name="og:description"
+		content="Math training from College Board's Educator Question Bank for the SAT!"
+	/>
+</svelte:head>
+
 <div class="px-24 py-4">
 	<div class="">
 		<MathTags bind:tags={q} />

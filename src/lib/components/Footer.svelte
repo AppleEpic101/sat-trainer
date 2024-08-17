@@ -38,9 +38,9 @@
 						<li class="mb-4">
 							<a href="/about" class="hover:underline">About</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="/questionbank" class="hover:underline">Question Bank</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</div>

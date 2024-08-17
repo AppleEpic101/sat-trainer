@@ -29,6 +29,19 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Sigma SAT | QuestionBank</title>
+	<meta
+		name="description"
+		content="Dynamic training from College Board's Educator Question Bank for the SAT!"
+	/>
+	<meta name="og:title" content="Sigma SAT | QuestionBank" />
+	<meta
+		name="og:description"
+		content="Dynamic training from College Board's Educator Question Bank for the SAT!"
+	/>
+</svelte:head>
+
 <div class="bg-sky-950 h-screen flex flex-col gap-8 items-center p-4">
 	<div>
 		<div class="text-3xl text-white mb-4">QuestionBank Mode</div>

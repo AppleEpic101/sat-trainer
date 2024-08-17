@@ -17,3 +17,15 @@
 		Practice Exams and QAS from 2016-2023.
 	</p>
 </div>
+<svelte:head>
+	<title>Sigma SAT | About Us</title>
+	<meta
+		name="description"
+		content="Founded by students, Sigma SAT is a nonprofit organization that is dedicated to providing a free, online, adaptive training for the DSAT."
+	/>
+	<meta name="og:title" content="Sigma SAT | About Us" />
+	<meta
+		name="og:description"
+		content="Founded by students, Sigma SAT is a nonprofit organization that is dedicated to providing a free, online, adaptive training for the DSAT."
+	/>
+</svelte:head>

@@ -1,3 +1,16 @@
+<svelte:head>
+	<title>Sigma SAT | Home</title>
+	<meta
+		name="description"
+		content="Free, adaptive trainer for the Digital SAT with official practice questions from the official College Board!"
+	/>
+	<meta name="og:title" content="Sigma SAT | Home" />
+	<meta
+		name="og:description"
+		content="Free, adaptive trainer for the Digital SAT with official practice questions from the official College Board!"
+	/>
+</svelte:head>
+
 <div class="bg-sky-950 h-screen flex flex-col gap-4 justify-center items-center relative">
 	<div class="flex flex-col gap-4 items-center -mt-16">
 		<img src="/logo.png" class="w-28 h-28" />
