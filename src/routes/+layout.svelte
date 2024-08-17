@@ -2,6 +2,7 @@
 	import '../app.css';
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import Discord from '$lib/modals/Discord.svelte';
 </script>
 
 <Nav />
@@ -11,6 +12,8 @@
 </main>
 
 <Footer />
+
+<Discord />
 
 <!-- <link rel="stylesheet" href="/app.css" /> -->
 
