@@ -4,6 +4,7 @@
 	import MathTags from '$lib/components/MathTags.svelte';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 	export let data;
 
 	let currentQuery = data.query;
@@ -46,6 +47,11 @@
 		fetchData();
 	}
 </script>
+
+<PageHeader
+	title="Math Question Database"
+	description="Search for math questions from the College Board."
+/>
 
 <div class="px-24 py-4">
 	<div class="border-2 border-black p-4">

@@ -2,6 +2,7 @@
 	import Unsaved from '$lib/modals/Unsaved.svelte';
 	import StaticQuestion from '$lib/components/StaticQuestion.svelte';
 	import ReviewInterface from '$lib/components/ReviewInterface.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 
 	import { user } from '$lib/stores/user.js';
 	export let data;
@@ -13,7 +14,9 @@
 	let showModal = false;
 </script>
 
-<div class="m-4">
+<PageHeader title="{data.question.id.SAT} " />
+
+<div class="p-4">
 	<StaticQuestion bind:data={data.question} />
 
 	<!-- {#if $user.meta.isAdmin}

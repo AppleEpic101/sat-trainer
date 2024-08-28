@@ -3,6 +3,7 @@
 	import ReadingTags from '$lib/components/ReadingTags.svelte';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 	export let data;
 
 	let currentQuery = data.query; // query from the URL
@@ -46,6 +47,11 @@
 		fetchData();
 	}
 </script>
+
+<PageHeader
+	title="Reading/Writing Question Database"
+	description="Search for reading and writing questions from the College Board."
+/>
 
 <div class="px-24 py-4">
 	<div class="border-2 border-black p-4">
