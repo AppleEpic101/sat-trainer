@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { MONGO_STRING } from "$env/static/private";
 
 export const POST = async ({request}) => {
-    const client = new MongoClient(MONGO_STRING, { useNewUrlParser: true, useUnifiedTopology: true });
+    const client = new MongoClient(MONGO_STRING);
 
     const questions = client.db("questions");
 

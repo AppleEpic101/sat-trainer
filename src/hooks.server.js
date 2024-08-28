@@ -10,7 +10,7 @@ const db = client.db("accounts");
 const collection = db.collection("users");
 
 
-const loginProtected = ['/train', '/dashboard', '/settings', '/review', '/question/', '/create', '/problems']
+const loginProtected = ['/train', '/dashboard', '/settings', '/review', '/create']
 // const loginProtected = ['/train', '/dashboard', '/settings', '/review', '/create', '/question', '/problems']
 const reviewerProtected = ['/review', '/create', '/question']
 const adminProtected = ['/review', '/create', '/question']

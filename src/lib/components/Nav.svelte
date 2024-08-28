@@ -27,6 +27,7 @@
 		<a href="/" class="text-lg font-semibold">Home</a>
 		<a href="/about" class="text-lg font-semibold">About</a>
 		<a href="/questionbank" class="text-lg font-semibold">QuestionBank</a>
+		<a href="/problems" class="text-lg font-semibold">Problem List</a>
 		{#if loggedIn}
 			<a href="/problems" class="text-lg font-semibold">Problems</a>
 			<a href="/train" class="text-lg font-semibold">Train</a>

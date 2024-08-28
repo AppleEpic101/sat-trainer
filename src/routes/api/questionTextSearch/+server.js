@@ -1,16 +1,16 @@
 import { MongoClient } from "mongodb";
 import { MONGO_STRING } from "$env/static/private";
 
-const client = await MongoClient.connect(MONGO_STRING);
-const questions = client.db("questions");
-
-const rw = questions.collection("rw");
-const math = questions.collection("math");
-
-await rw.createIndex({"question.stimulus": "text"});
-await math.createIndex({"question.stimulus": "text"});
-
 export const POST = async ({request}) => {
+    const client = await MongoClient.connect(MONGO_STRING);
+    const questions = client.db("questions");
+
+    const rw = questions.collection("rw");
+    const math = questions.collection("math");
+
+    await rw.createIndex({"question.stimulus": "text"});
+    await math.createIndex({"question.stimulus": "text"});
+
     const res = await request.json();
     const { section, query, limit, skip, tags } = res;
 
@@ -26,6 +26,8 @@ export const POST = async ({request}) => {
         }
     }
 
+    match.source = "College Board";
+
     let data;
     if (query.trim() === "") {
         data = await collection.find(match).toArray();
@@ -36,6 +38,8 @@ export const POST = async ({request}) => {
             { score: { $meta: "textScore" } }
         ).sort({ score: { $meta: "textScore" } }).toArray();
     }
+
+    client.close();
 
     return new Response(JSON.stringify(data), { status: 201 });
 }

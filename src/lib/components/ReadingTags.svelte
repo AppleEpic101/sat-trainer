@@ -70,6 +70,7 @@
 		font-size: 12px;
 		white-space: wrap;
 		z-index: 1;
+		color: black;
 		display: none;
 	}
 

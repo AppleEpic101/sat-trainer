@@ -16,7 +16,7 @@
 <div class="m-4">
 	<StaticQuestion bind:data={data.question} />
 
-	{#if $user.meta.isAdmin}
+	<!-- {#if $user.meta.isAdmin}
 		<ReviewInterface bind:newData={data.question} {user} oldData={copy} />
-	{/if}
+	{/if} -->
 </div>
