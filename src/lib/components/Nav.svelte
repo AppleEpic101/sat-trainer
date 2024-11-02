@@ -59,11 +59,10 @@
 			</form>
 		</Dropdown>
 	{:else}
-		<!-- <div class="flex flex-row gap-8 mr-24">
+		<div class="flex flex-row gap-8 mr-24">
 			<a href="/login" class="text-lg font-semibold">Login</a>
 			<a href="/register" class="text-lg font-semibold">Register</a>
-		</div> -->
-		<div class="flex flex-row gap-8 mr-24 w-32"></div>
+		</div>
 	{/if}
 </nav>
 

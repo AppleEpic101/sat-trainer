@@ -19,6 +19,6 @@
 	<Question data={version.newData} showAnswer={true} />
 </div>
 
-<div class="m-4">
+<div class="p-4">
 	<ModifyInterface reviewID={id} bind:newData={version.newData} {version} {user} oldData={copy} />
 </div>

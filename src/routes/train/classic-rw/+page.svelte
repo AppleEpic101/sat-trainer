@@ -79,7 +79,7 @@
 	}
 </script>
 
-<div class="m-4">
+<div class="p-4">
 	<div class="flex flex-row justify-between gap-4 mb-2">
 		<div class="w-1/2">
 			<Leveling

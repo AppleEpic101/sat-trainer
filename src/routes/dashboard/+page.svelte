@@ -7,7 +7,7 @@
 	const math = log['All Math Topics'].stats;
 </script>
 
-<div class="bg-slate-300 border-black m-8 p-4">
+<div class="bg-slate-300 border-black p-4">
 	<div class="text-4xl font-bold">Welcome {username}!</div>
 	<div class="text-2xl mt-4">General Stats</div>
 	<div class="flex flex-col ml-4">

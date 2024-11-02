@@ -36,7 +36,7 @@
 	};
 </script>
 
-<div class="m-4">
+<div class="p-4">
 	<Question data={qData} showAnswer={false} />
 
 	<CreateInterface bind:data={qData} />

@@ -65,7 +65,7 @@
 			<div class="text-xl text-white mb-4">Find any errors? Report it to me :)</div>
 		</div>
 	</div>
-	<div class="text-4xl text-white mb-4">Lock in! You have {countdown} until the August SAT</div>
+	<!-- <div class="text-4xl text-white mb-4">Lock in! You have {countdown} until the August SAT</div> -->
 	<div class="flex flex-row gap-8">
 		<a
 			class="font-bold text-2xl bg-orange-300 hover:bg-orange-400 text-black w-48 text-center p-6 rounded-lg shadow-lg transition duration-300"

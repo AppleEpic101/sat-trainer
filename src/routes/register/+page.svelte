@@ -9,7 +9,7 @@
 </script>
 
 <form method="POST" use:enhance class="flex justify-center items-center">
-	<div class="border-2 border-black rounded-lg p-5 mt-8 w-96">
+	<div class="border-2 border-black rounded-lg p-5 my-8 w-96">
 		<h2 class="text-2xl font-bold">Register</h2>
 
 		<div class="my-3">

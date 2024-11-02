@@ -1,4 +1,4 @@
-<div class="mx-8 my-4">
+<div class="px-8 py-4">
 	<div class="text-2xl">Classic Mode</div>
 	<div class="flex flex-row justify-evenly align my-8">
 		<a class="font-bold text-2xl border-black bg-slate-600 text-white p-10" href="/train/classic-rw"
